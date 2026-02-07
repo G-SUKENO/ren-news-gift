@@ -1,0 +1,31 @@
+name: Update News Daily
+
+on:
+  schedule:
+    - cron: '0 21 * * *' # 日本時間の毎朝6時に実行
+  workflow_dispatch:      # 手動実行も可能にする
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run update script
+        run: python3 generate_json.py
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add news.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update news" && git push)
