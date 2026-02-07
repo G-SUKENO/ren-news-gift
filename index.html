@@ -27,13 +27,29 @@
         }
         .container { width: 100%; max-width: 500px; }
         h1 {
-            font-size: 24px;
+            font-size: 22px;
             text-align: center;
             color: var(--accent-color);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             letter-spacing: 2px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
+        }
+        /* 検索窓のスタイル */
+        .search-container {
+            margin-bottom: 25px;
+        }
+        #search-bar {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 25px;
+            border: 1px solid #444;
+            background: #222;
+            color: white;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        #search-bar:focus {
+            border-color: var(--accent-color);
         }
         #news-list { display: grid; gap: 15px; }
         .news-item {
@@ -41,10 +57,9 @@
             padding: 15px;
             border-radius: 12px;
             border-left: 4px solid var(--accent-color);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .date {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--accent-color);
             font-weight: bold;
             margin-bottom: 5px;
@@ -53,41 +68,56 @@
         .news-item a {
             color: var(--text-color);
             text-decoration: none;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             line-height: 1.4;
-        }
-        .url-hint {
-            font-size: 11px;
-            color: var(--sub-text);
-            margin-top: 10px;
-            display: block;
-            text-align: right;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🖤 永瀬廉 NEWS</h1>
+        
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="記事を検索...">
+        </div>
+
         <div id="news-list">読み込み中...</div>
     </div>
+
     <script>
-        fetch('news.json')
-            .then(response => response.json())
-            .then(data => {
-                const list = document.getElementById('news-list');
-                list.innerHTML = '';
-                data.forEach(item => {
-                    const div = document.createElement('div');
-                    div.className = 'news-item';
-                    div.innerHTML = `
-                        <span class="date">${item.date}</span>
-                        <a href="${item.url}" target="_blank">${item.title}</a>
-                        <span class="url-hint">記事を読む ➔</span>
-                    `;
-                    list.appendChild(div);
-                });
+        let allNews = [];
+
+        function renderNews(items) {
+            const list = document.getElementById('news-list');
+            list.innerHTML = '';
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'news-item';
+                div.innerHTML = `
+                    <span class="date">${item.date}</span>
+                    <a href="${item.url}" target="_blank">${item.title}</a>
+                `;
+                list.appendChild(div);
             });
+            if(items.length === 0) {
+                list.innerHTML = '<p style="text-align:center; color:#888;">見つかりませんでした</p>';
+            }
+        }
+
+        fetch('news.json')
+            .then(res => res.json())
+            .then(data => {
+                allNews = data;
+                renderNews(allNews);
+            });
+
+        // 検索機能のロジック
+        document.getElementById('search-bar').addEventListener('input', (e) => {
+            const word = e.target.value.toLowerCase();
+            const filtered = allNews.filter(n => n.title.toLowerCase().includes(word));
+            renderNews(filtered);
+        });
     </script>
 </body>
 </html>
