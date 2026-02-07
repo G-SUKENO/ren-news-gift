@@ -12,7 +12,7 @@
         :root {
             --main-bg: #0f0f0f;
             --card-bg: #1e1e1e;
-            --accent-color: #d4af37; /* Gold */
+            --accent-color: #d4af37;
             --text-color: #f5f5f5;
             --sub-text: #b0b0b0;
         }
@@ -25,10 +25,7 @@
             display: flex;
             justify-content: center;
         }
-        .container {
-            width: 100%;
-            max-width: 500px;
-        }
+        .container { width: 100%; max-width: 500px; }
         h1 {
             font-size: 24px;
             text-align: center;
@@ -38,20 +35,20 @@
             border-bottom: 1px solid #333;
             padding-bottom: 15px;
         }
-        #news-list {
-            display: grid;
-            gap: 15px;
-        }
+        #news-list { display: grid; gap: 15px; }
         .news-item {
             background: var(--card-bg);
             padding: 15px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
             border-left: 4px solid var(--accent-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-        .news-item:active {
-            transform: scale(0.98);
+        .date {
+            font-size: 12px;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
         }
         .news-item a {
             color: var(--text-color);
@@ -59,12 +56,11 @@
             font-size: 16px;
             font-weight: 600;
             line-height: 1.4;
-            display: block;
         }
-        .news-item .url-hint {
+        .url-hint {
             font-size: 11px;
             color: var(--sub-text);
-            margin-top: 8px;
+            margin-top: 10px;
             display: block;
             text-align: right;
         }
@@ -72,10 +68,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>永瀬廉 NEWS</h1>
+        <h1>🖤 永瀬廉 NEWS</h1>
         <div id="news-list">読み込み中...</div>
     </div>
-
     <script>
         fetch('news.json')
             .then(response => response.json())
@@ -86,14 +81,12 @@
                     const div = document.createElement('div');
                     div.className = 'news-item';
                     div.innerHTML = `
+                        <span class="date">${item.date}</span>
                         <a href="${item.url}" target="_blank">${item.title}</a>
                         <span class="url-hint">記事を読む ➔</span>
                     `;
                     list.appendChild(div);
                 });
-            })
-            .catch(err => {
-                document.getElementById('news-list').innerHTML = 'ニュースの読み込みに失敗しました';
             });
     </script>
 </body>
