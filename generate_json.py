@@ -6,7 +6,6 @@ from datetime import datetime
 
 def get_news():
     filename = 'news.json'
-    # 1. 既存のデータを読み込む（アーカイブの読み込み）
     if os.path.exists(filename):
         with open(filename, 'r', encoding='utf-8') as f:
             try:
@@ -16,10 +15,8 @@ def get_news():
     else:
         archive = []
 
-    # URLをキーにして重複チェック
     existing_urls = {item['url'] for item in archive}
 
-    # 2. 新しいニュースを取得
     url = "https://news.google.com/rss/search?q=永瀬廉&hl=ja&gl=JP&ceid=JP:ja"
     response = requests.get(url)
     root = ET.fromstring(response.content)
@@ -36,16 +33,16 @@ def get_news():
                 "title": title,
                 "url": link,
                 "date": date_obj.strftime('%Y/%m/%d'),
-                "timestamp": date_obj.timestamp() # ソート用
+                "year": date_obj.strftime('%Y'), # 年別アーカイブ用
+                "timestamp": date_obj.timestamp()
             })
 
-    # 3. 新旧データを合体して、日付順に並び替える
     combined = new_items + archive
     combined.sort(key=lambda x: x.get('timestamp', 0), reverse=True)
 
-    # 4. 保存（最大300件くらいまで残す設定）
+    # アーカイブとして1000件まで保持
     with open(filename, 'w', encoding='utf-8') as f:
-        json.dump(combined[:300], f, ensure_ascii=False, indent=4)
+        json.dump(combined[:1000], f, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
     get_news()
