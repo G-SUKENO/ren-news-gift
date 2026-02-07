@@ -10,6 +10,11 @@ def get_news():
         with open(filename, 'r', encoding='utf-8') as f:
             try:
                 archive = json.load(f)
+                # 古いデータに 'year' がなければ日付から計算して追加する（大掃除）
+                for item in archive:
+                    if 'year' not in item or item['year'] == "undefined":
+                        # "2026/02/08" の最初の4文字を年にする
+                        item['year'] = item['date'].split('/')[0]
             except:
                 archive = []
     else:
@@ -33,14 +38,14 @@ def get_news():
                 "title": title,
                 "url": link,
                 "date": date_obj.strftime('%Y/%m/%d'),
-                "year": date_obj.strftime('%Y'), # 年別アーカイブ用
+                "year": date_obj.strftime('%Y'),
                 "timestamp": date_obj.timestamp()
             })
 
     combined = new_items + archive
+    # 常に最新順に並び替え
     combined.sort(key=lambda x: x.get('timestamp', 0), reverse=True)
 
-    # アーカイブとして1000件まで保持
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(combined[:1000], f, ensure_ascii=False, indent=4)
 
