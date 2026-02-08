@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="apple-touch-icon" href="icon.png">
     <title>永瀬廉NEWS</title>
     <style>
         :root { --main-bg: #0d0d0d; --card-bg: #1a1a1a; --accent: #d4af37; --text: #ffffff; }
         * { box-sizing: border-box; }
-        body { font-family: -apple-system, sans-serif; background: var(--main-bg); color: var(--text); margin: 0; padding: 16px; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 480px; }
-        h1 { font-size: 18px; text-align: center; color: var(--accent); letter-spacing: 4px; margin: 10px 0 20px; font-weight: 300; }
-        #search-bar { width: 100%; padding: 14px 20px; border-radius: 30px; border: 1px solid #333; background: #222; color: white; margin-bottom: 20px; outline: none; font-size: 16px; -webkit-appearance: none; }
+        body { font-family: -apple-system, sans-serif; background: var(--main-bg); color: var(--text); margin: 0; padding: 16px; }
+        .container { width: 100%; max-width: 480px; margin: 0 auto; }
+        h1 { font-size: 18px; text-align: center; color: var(--accent); letter-spacing: 4px; margin-bottom: 20px; }
+        #search-bar { width: 100%; padding: 14px 20px; border-radius: 30px; border: 1px solid #333; background: #222; color: white; margin-bottom: 20px; outline: none; }
         .news-item { background: var(--card-bg); border-radius: 15px; margin-bottom: 12px; display: flex; height: 95px; text-decoration: none; color: inherit; overflow: hidden; border: 1px solid #252525; }
         .news-img { width: 95px; height: 95px; object-fit: cover; background: #222; flex-shrink: 0; }
         .news-content { padding: 12px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; min-width: 0; }
@@ -31,37 +29,31 @@
     </div>
     <script>
         const placeholder = "https://placehold.jp/24/1a1a1a/d4af37/150x150.png?text=%E2%98%85";
-        function renderNews(items) {
+        function render(data) {
             const list = document.getElementById('news-list');
             list.innerHTML = '';
-            if (items.length === 0) return;
-            const latestDate = items[0].date;
-            items.forEach(item => {
+            if(!data.length) return;
+            const topDate = data[0].date;
+            data.forEach(n => {
                 const a = document.createElement('a');
-                a.className = 'news-item'; a.href = item.url; a.target = '_blank';
-                const imgSrc = item.img || placeholder;
+                a.className = 'news-item'; a.href = n.url; a.target = '_blank';
+                const imgSrc = (n.img && n.img.startsWith('http')) ? n.img : placeholder;
                 a.innerHTML = `<img src="${imgSrc}" onerror="this.src='${placeholder}'" class="news-img">
                     <div class="news-content">
-                        <div class="news-title">${item.title}</div>
+                        <div class="news-title">${n.title}</div>
                         <div class="meta-row">
-                            <span class="date">${item.date}</span>
-                            <span class="source-tag">${item.source}</span>
-                            ${item.date === latestDate ? '<span class="new-badge">NEW</span>' : ''}
+                            <span class="date">${n.date}</span>
+                            <span class="source-tag">${n.source}</span>
+                            ${n.date === topDate ? '<span class="new-badge">NEW</span>' : ''}
                         </div>
                     </div>`;
                 list.appendChild(a);
             });
         }
-        fetch('news.json?t=' + Date.now()).then(res => res.json()).then(data => {
-            renderNews(data.slice(0, 30));
-        });
-        document.getElementById('search-bar').addEventListener('input', (e) => {
-            const word = e.target.value.toLowerCase();
-            fetch('news.json').then(res => res.json()).then(data => {
-                const filtered = data.filter(n => n.title.toLowerCase().includes(word));
-                renderNews(filtered.slice(0, 30));
-            });
-        });
+        // 秒単位のタイムスタンプを付けて、キャッシュを強制的に無効化
+        fetch('news.json?cache=' + new Date().getTime())
+            .then(res => res.json())
+            .then(data => render(data.slice(0, 30)));
     </script>
 </body>
 </html>
