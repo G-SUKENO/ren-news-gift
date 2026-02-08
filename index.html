@@ -6,40 +6,45 @@
     <title>REN NAGASE PORTAL</title>
     <style>
         :root { --bg-color: #000; --card-bg: #111; --accent-color: #d4af37; --text-color: #fff; }
-        body { font-family: -apple-system, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; overflow-x: hidden; }
-        
-        /* ヘッダーデザイン：サブタイトルを上に配置 */
-        header { padding: 30px 15px 20px; text-align: center; border-bottom: 1px solid #222; }
-        .subtitle { 
-            font-size: 0.6rem; 
-            color: var(--accent-color); 
-            letter-spacing: 0.3rem; 
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            opacity: 0.8;
-            font-weight: 300;
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            margin: 0; padding: 0; 
+            overflow-x: hidden;
+            overscroll-behavior-y: contain; /* ブラウザ標準の更新を止めて自作を優先 */
         }
+        
+        /* 更新インジケーター */
+        #ptr-loader {
+            height: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            transition: height 0.2s ease;
+        }
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-top: 2px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        header { padding: 30px 15px 20px; text-align: center; border-bottom: 1px solid #222; }
+        .subtitle { font-size: 0.6rem; color: var(--accent-color); letter-spacing: 0.3rem; text-transform: uppercase; margin-bottom: 8px; opacity: 0.8; font-weight: 300; }
         h1 { margin: 0; font-size: 1.2rem; color: var(--accent-color); letter-spacing: 0.2rem; font-weight: bold; }
         
-        .sns-hub { 
-            display: grid; 
-            padding: 15px 5px; 
-            border-bottom: 1px solid #222; 
-            gap: 15px 0;
-            background: linear-gradient(180deg, #000, #080808);
-        }
+        .sns-hub { display: grid; padding: 15px 5px; border-bottom: 1px solid #222; gap: 15px 0; background: linear-gradient(180deg, #000, #080808); }
         @media (min-width: 601px) { .sns-hub { grid-template-columns: repeat(6, 1fr); } }
         @media (max-width: 600px) { .sns-hub { grid-template-columns: repeat(3, 1fr); } }
 
         .sns-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #fff; }
-        .sns-icon { 
-            width: 44px; height: 44px; border-radius: 50%; 
-            border: 1px solid var(--accent-color); 
-            display: flex; justify-content: center; align-items: center; 
-            font-size: 0.5rem; margin-bottom: 6px; color: var(--accent-color); 
-            background: var(--card-bg);
-            box-shadow: 0 0 10px rgba(212,175,55,0.15);
-        }
+        .sns-icon { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--accent-color); display: flex; justify-content: center; align-items: center; font-size: 0.5rem; margin-bottom: 6px; color: var(--accent-color); background: var(--card-bg); box-shadow: 0 0 10px rgba(212,175,55,0.15); }
         .sns-label { font-size: 0.55rem; font-weight: bold; white-space: nowrap; }
 
         .section-label { padding: 15px 15px 5px; font-size: 0.7rem; color: var(--accent-color); font-weight: bold; border-left: 3px solid var(--accent-color); margin: 15px 0 0 15px; text-transform: uppercase; }
@@ -62,48 +67,39 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="subtitle">T.Miku Only</div>
-        <h1>REN NAGASE PORTAL</h1>
-    </header>
-    
-    <div class="sns-hub">
-        <a href="https://www.universal-music.co.jp/king-and-prince/" class="sns-item" target="_blank">
-            <div class="sns-icon">OFFICIAL</div><div class="sns-label">Official Site</div>
-        </a>
-        <a href="https://starto.jp/s/p/artist/41" class="sns-item" target="_blank">
-            <div class="sns-icon">START</div><div class="sns-label">Schedule</div>
-        </a>
-        <a href="https://www.youtube.com/@kp_official_523" class="sns-item" target="_blank">
-            <div class="sns-icon">YOUTUBE</div><div class="sns-label">YouTube</div>
-        </a>
-        <a href="https://www.instagram.com/ren.nagase.official/" class="sns-item" target="_blank">
-            <div class="sns-icon">INSTA</div><div class="sns-label">Instagram</div>
-        </a>
-        <a href="https://x.com/kp_official0523" class="sns-item" target="_blank">
-            <div class="sns-icon">X</div><div class="sns-label">X</div>
-        </a>
-        <a href="https://www.tiktok.com/@kp_official_523" class="sns-item" target="_blank">
-            <div class="sns-icon">TIKTOK</div><div class="sns-label">TikTok</div>
-        </a>
+    <div id="ptr-loader"><div class="spinner"></div></div>
+
+    <div id="content-body">
+        <header>
+            <div class="subtitle">T.Miku Only</div>
+            <h1>REN NAGASE PORTAL</h1>
+        </header>
+        
+        <div class="sns-hub">
+            <a href="https://www.universal-music.co.jp/king-and-prince/" class="sns-item" target="_blank"><div class="sns-icon">OFFICIAL</div><div class="sns-label">Official Site</div></a>
+            <a href="https://starto.jp/s/p/artist/41" class="sns-item" target="_blank"><div class="sns-icon">START</div><div class="sns-label">Schedule</div></a>
+            <a href="https://www.youtube.com/@kp_official_523" class="sns-item" target="_blank"><div class="sns-icon">YOUTUBE</div><div class="sns-label">YouTube</div></a>
+            <a href="https://www.instagram.com/ren.nagase.official/" class="sns-item" target="_blank"><div class="sns-icon">INSTA</div><div class="sns-label">Instagram</div></a>
+            <a href="https://x.com/kp_official0523" class="sns-item" target="_blank"><div class="sns-icon">X</div><div class="sns-label">X</div></a>
+            <a href="https://www.tiktok.com/@kp_official_523" class="sns-item" target="_blank"><div class="sns-icon">TIKTOK</div><div class="sns-label">TikTok</div></a>
+        </div>
+
+        <div class="section-label">Featured Movie</div>
+        <div class="featured-video" id="main-video"></div>
+        <div class="section-label">New Arrivals</div>
+        <div class="video-scroll" id="video-list"></div>
+        <div class="section-label">Latest News</div>
+        <div id="news-container"></div>
     </div>
 
-    <div class="section-label">Featured Movie</div>
-    <div class="featured-video" id="main-video"></div>
-
-    <div class="section-label">New Arrivals</div>
-    <div class="video-scroll" id="video-list"></div>
-
-    <div class="section-label">Latest News</div>
-    <div id="news-container"></div>
-
     <script>
-        async function init() {
+        // データ読み込み関数
+        async function loadData() {
             try {
                 const res = await fetch('news.json?v=' + Date.now());
                 const data = await res.json();
                 
-                // 動画セクション
+                // YouTube
                 const allVideos = [];
                 if(data.featured) allVideos.push(data.featured);
                 if(data.regulars) allVideos.push(...data.regulars);
@@ -112,13 +108,15 @@
                 if(allVideos.length > 0) {
                     document.getElementById('main-video').innerHTML = `<div class="v-main"><iframe src="https://www.youtube.com/embed/${allVideos[0].id}" frameborder="0" allowfullscreen></iframe></div>`;
                     const list = document.getElementById('video-list');
+                    list.innerHTML = ""; // 初期化
                     allVideos.slice(1).forEach(v => {
                         list.innerHTML += `<a href="https://www.youtube.com/watch?v=${v.id}" class="v-card" target="_blank"><img src="${v.thumbnail}" class="v-thumb"><div class="v-title">${v.title}</div></a>`;
                     });
                 }
                 
-                // ニュースセクション
+                // ニュース
                 const container = document.getElementById('news-container');
+                container.innerHTML = ""; // 初期化
                 (data.news || []).forEach(item => {
                     container.innerHTML += `
                         <a href="${item.url}" class="news-card" target="_blank">
@@ -129,9 +127,38 @@
                             </div>
                         </a>`;
                 });
-            } catch (e) { console.error("Data load error:", e); }
+            } catch (e) { console.error(e); }
         }
-        init();
+
+        // Pull-to-Refresh ロジック
+        let startY = 0;
+        const loader = document.getElementById('ptr-loader');
+
+        window.addEventListener('touchstart', (e) => {
+            if (window.scrollY === 0) startY = e.touches[0].pageY;
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            const y = e.touches[0].pageY;
+            const dist = y - startY;
+            if (window.scrollY === 0 && dist > 0 && dist < 100) {
+                loader.style.height = dist + 'px';
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchend', async (e) => {
+            const dist = parseInt(loader.style.height);
+            if (dist > 60) {
+                loader.style.height = '40px'; // 読み込み中の高さ
+                await loadData();
+                setTimeout(() => { loader.style.height = '0'; }, 500);
+            } else {
+                loader.style.height = '0';
+            }
+        }, { passive: true });
+
+        // 初回読み込み
+        loadData();
     </script>
 </body>
 </html>
