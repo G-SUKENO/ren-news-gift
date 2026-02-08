@@ -1,122 +1,97 @@
 import requests
-import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup
 import json
-import re
-import time
 import urllib.parse
 from datetime import datetime
-from bs4 import BeautifulSoup
+import time
 
-# より「人間」に見えるようにヘッダーを強化
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-    'Accept-Language': 'ja,en-US;q=0.9,en;q=0.8',
-    'Cache-Control': 'no-cache',
-    'Pragma': 'no-cache',
+    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1'
 }
 
-def get_real_url(google_url):
-    """Googleの壁（同意画面・リダイレクト警告）を突破して本物のURLを抽出する"""
-    try:
-        session = requests.Session()
-        # 1. Googleの中継ページにアクセス
-        res = session.get(google_url, headers=HEADERS, timeout=15, allow_redirects=True)
-        
-        # もし一発でニュースサイトに飛べたなら、それを返す
-        if "google.com" not in res.url:
-            return res.url
-            
-        # 2. 止まってしまった場合、HTMLから本物のリンクを「強奪」する
-        html = res.text
-        
-        # パターンA: <a>タグのhrefから、google以外のリンクを探す
-        soup = BeautifulSoup(html, 'html.parser')
-        for a in soup.find_all('a', href=True):
-            href = a['href']
-            if href.startswith('http') and 'google.com' not in href:
-                return href
-        
-        # パターンB: JavaScriptのリダイレクト用コードから抽出
-        js_url = re.search(r'window\.location\.replace\("(https?://[^"]+)"\)', html)
-        if js_url: return js_url.group(1)
-        
-        # パターンC: 「Redirect Notice」のリンクテキスト自体を探す
-        link_text = re.search(r'URL=(https?://[^\s">]+)', html, re.I)
-        if link_text: return link_text.group(1)
+def get_image_proxy(img_url):
+    if not img_url: return ""
+    return f"https://wsrv.nl/?url={urllib.parse.quote(img_url)}&w=400&h=400&fit=cover"
 
-        return res.url
-    except:
-        return google_url
-
-def get_image(url):
-    """本物のサイトから画像URLを抜き出す"""
-    if not url or "google.com" in url: return ""
-    try:
-        # サイトに潜入
-        res = requests.get(url, headers=HEADERS, timeout=12)
-        soup = BeautifulSoup(res.text, 'html.parser')
-        
-        # 優先順位をつけて画像を探す
-        img = ""
-        og_img = soup.find("meta", property="og:image") or \
-                 soup.find("meta", attrs={"name": "twitter:image"}) or \
-                 soup.find("link", rel="image_src")
-                 
-        if og_img:
-            img = og_img.get('content') or og_img.get('href')
-            
-        if img and img.startswith('http'):
-            # 魔法の鏡(wsrv.nl)で表示を保証
-            return f"https://wsrv.nl/?url={urllib.parse.quote(img)}&w=400&h=400&fit=cover"
-    except:
-        pass
-    return ""
-
-def get_news():
-    print("--- 永瀬廉NEWS: GitHubサーバーで壁を粉砕中 ---")
-    rss_url = "https://news.google.com/rss/search?q=永瀬廉&hl=ja&gl=JP&ceid=JP:ja"
-    
-    try:
-        res = requests.get(rss_url, timeout=15)
-        root = ET.fromstring(res.content)
-    except:
-        print("RSSの取得に失敗しました")
-        return
-
+def scrape_modelpress():
+    print("モデルプレスを探索中...")
     items = []
-    # 成功率を重視して12件
-    for el in root.findall('.//item')[:12]:
-        source = el.find('source').text if el.find('source') is not None else "ニュース"
-        title = el.find('title').text
-        clean_title = re.sub(r' - .*$', '', title).strip()
-        google_link = el.find('link').text
-        
-        print(f"解析中: {source}...")
-        
-        # 1. 物理的にリンク先を特定
-        real_url = get_real_url(google_link)
-        
-        # 2. そのサイトから画像をもぎ取る
-        img = get_image(real_url)
-        
-        if img:
-            print(f"  ✨ 画像を確保しました！ ({real_url[:30]}...)")
-        else:
-            print(f"  ❌ 画像なし (到達先: {real_url[:30]}...)")
-            
-        pub_date = el.find('pubDate').text
-        dt = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %Z')
-        
-        items.append({
-            "title": clean_title, "source": source, "url": real_url, "img": img,
-            "date": dt.strftime('%Y/%m/%d'), "timestamp": dt.timestamp()
-        })
-        time.sleep(1)
+    try:
+        url = "https://mdpr.jp/tag/15482" # 永瀬廉タグページ
+        res = requests.get(url, headers=HEADERS, timeout=10)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        for art in soup.select('.p-articleList__item')[:8]:
+            title = art.select_one('.p-articleList__title').text.strip()
+            link = art.select_one('a')['href']
+            if not link.startswith('http'): link = "https://mdpr.jp" + link
+            img_tag = art.select_one('img')
+            img = img_tag.get('src') or img_tag.get('data-src')
+            items.append({
+                "title": title, "source": "モデルプレス", "url": link, "img": get_image_proxy(img),
+                "date": datetime.now().strftime('%Y/%m/%d'), "timestamp": time.time()
+            })
+    except: pass
+    return items
 
+def scrape_natalie():
+    print("ナタリーを探索中...")
+    items = []
+    try:
+        url = "https://natalie.mu/search?query=永瀬廉"
+        res = requests.get(url, headers=HEADERS, timeout=10)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        for art in soup.select('.NA_card')[:8]:
+            title_tag = art.select_one('.NA_card_title')
+            if not title_tag: continue
+            link = art.select_one('a')['href']
+            if not link.startswith('http'): link = "https://natalie.mu" + link
+            img = art.select_one('img').get('src')
+            items.append({
+                "title": title_tag.text.strip(), "source": "ナタリー", "url": link, "img": get_image_proxy(img),
+                "date": datetime.now().strftime('%Y/%m/%d'), "timestamp": time.time() - 100 # 並び替え用
+            })
+    except: pass
+    return items
+
+def scrape_oricon():
+    print("オリコンを探索中...")
+    items = []
+    try:
+        # オリコンの検索結果（最新順）
+        url = "https://www.oricon.co.jp/search/result.php?types=news&word=永瀬廉"
+        res = requests.get(url, headers=HEADERS, timeout=10)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        # 記事リストのセレクタ
+        articles = soup.select('.news-list li')[:8]
+        for art in articles:
+            title_tag = art.select_one('.title')
+            if not title_tag: continue
+            link = title_tag.find('a')['href']
+            if not link.startswith('http'): link = "https://www.oricon.co.jp" + link
+            img_tag = art.select_one('img')
+            img = img_tag.get('src') if img_tag else ""
+            items.append({
+                "title": title_tag.text.strip(), "source": "オリコン", "url": link, "img": get_image_proxy(img),
+                "date": datetime.now().strftime('%Y/%m/%d'), "timestamp": time.time() - 200
+            })
+    except: pass
+    return items
+
+def main():
+    print("--- 3大サイト直通・永瀬廉NEWS 始動 ---")
+    all_news = scrape_modelpress() + scrape_natalie() + scrape_oricon()
+    
+    # 重複削除（タイトルで判定）
+    seen_titles = set()
+    unique_news = []
+    for news in all_news:
+        if news['title'] not in seen_titles:
+            seen_titles.add(news['title'])
+            unique_news.append(news)
+    
     with open('news.json', 'w', encoding='utf-8') as f:
-        json.dump(items, f, ensure_ascii=False, indent=4)
-    print("--- ミッション完了 ---")
+        json.dump(unique_news, f, ensure_ascii=False, indent=4)
+    print(f"合計 {len(unique_news)} 件の記事を確保！")
 
 if __name__ == "__main__":
-    get_news()
+    main()
