@@ -10,23 +10,48 @@
         header { padding: 15px; text-align: center; border-bottom: 1px solid #222; }
         h1 { margin: 0; font-size: 1rem; color: var(--accent-color); letter-spacing: 0.1rem; }
         
-        .sns-hub { display: flex; justify-content: space-around; padding: 12px 5px; border-bottom: 1px solid #222; }
-        .sns-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #fff; width: 18%; }
-        .sns-icon { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--accent-color); display: flex; justify-content: center; align-items: center; font-size: 0.5rem; margin-bottom: 4px; color: var(--accent-color); }
-        .sns-label { font-size: 0.55rem; font-weight: bold; }
+        /* SNSハブの基本設定 */
+        .sns-hub { 
+            display: grid; 
+            padding: 15px 10px; 
+            border-bottom: 1px solid #222; 
+            gap: 15px 0;
+        }
+
+        /* PC表示：横1列 (5カラム) */
+        @media (min-width: 601px) {
+            .sns-hub { grid-template-columns: repeat(5, 1fr); }
+        }
+
+        /* スマホ表示：2段構成 (上段2つ / 下段3つ) */
+        @media (max-width: 600px) {
+            .sns-hub { grid-template-columns: repeat(6, 1fr); }
+            /* 上段：公式, START (3カラムずつ使用して半分に分ける) */
+            .item-off, .item-start { grid-column: span 3; }
+            /* 下段：YouTube, Insta, X (2カラムずつ使用して3等分にする) */
+            .item-yt, .item-insta, .item-x { grid-column: span 2; }
+        }
+
+        .sns-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #fff; }
+        .sns-icon { 
+            width: 44px; height: 44px; border-radius: 50%; 
+            border: 1px solid var(--accent-color); 
+            display: flex; justify-content: center; align-items: center; 
+            font-size: 0.5rem; margin-bottom: 4px; color: var(--accent-color); 
+            background: var(--card-bg);
+            box-shadow: 0 0 8px rgba(212,175,55,0.1);
+        }
+        .sns-label { font-size: 0.55rem; font-weight: bold; white-space: nowrap; }
 
         .section-label { padding: 15px 15px 5px; font-size: 0.7rem; color: var(--accent-color); font-weight: bold; border-left: 3px solid var(--accent-color); margin-left: 15px; text-transform: uppercase; }
-
         .featured-video { padding: 12px; }
         .v-main { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; border: 1px solid #333; }
         .v-main iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
         .video-scroll { display: flex; overflow-x: auto; padding: 10px 15px; gap: 12px; }
         .video-scroll::-webkit-scrollbar { display: none; }
         .v-card { min-width: 140px; text-decoration: none; color: #fff; }
         .v-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; border: 1px solid #222; }
         .v-title { font-size: 0.6rem; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3; }
-
         #news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; padding: 12px; }
         .news-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; text-decoration: none; color: inherit; border: 1px solid #222; }
         .news-img { width: 100%; aspect-ratio: 16/10; object-fit: cover; }
@@ -37,12 +62,23 @@
 </head>
 <body>
     <header><h1>REN NAGASE PORTAL</h1></header>
+    
     <div class="sns-hub">
-        <a href="https://www.instagram.com/ren.nagase.official/" class="sns-item" target="_blank"><div class="sns-icon">INSTA</div><div class="sns-label">Instagram</div></a>
-        <a href="https://www.tiktok.com/@kp_official_523" class="sns-item" target="_blank"><div class="sns-icon">TIKTOK</div><div class="sns-label">TikTok</div></a>
-        <a href="https://www.youtube.com/@kp_official_523" class="sns-item" target="_blank"><div class="sns-icon">YOUTUBE</div><div class="sns-label">YouTube</div></a>
-        <a href="https://starto.jp/s/p/artist/41" class="sns-item" target="_blank"><div class="sns-icon">START</div><div class="sns-label">Schedule</div></a>
-        <a href="https://www.universal-music.co.jp/king-and-prince/" class="sns-item" target="_blank"><div class="sns-icon">UMJ</div><div class="sns-label">Official</div></a>
+        <a href="https://www.universal-music.co.jp/king-and-prince/" class="sns-item item-off" target="_blank">
+            <div class="sns-icon">OFFICIAL</div><div class="sns-label">UMJ Official</div>
+        </a>
+        <a href="https://starto.jp/s/p/artist/41" class="sns-item item-start" target="_blank">
+            <div class="sns-icon">START</div><div class="sns-label">Schedule</div>
+        </a>
+        <a href="https://www.youtube.com/@kp_official_523" class="sns-item item-yt" target="_blank">
+            <div class="sns-icon">YOUTUBE</div><div class="sns-label">YouTube</div>
+        </a>
+        <a href="https://www.instagram.com/ren.nagase.official/" class="sns-item item-insta" target="_blank">
+            <div class="sns-icon">INSTA</div><div class="sns-label">Instagram</div>
+        </a>
+        <a href="https://x.com/kp_official0523" class="sns-item item-x" target="_blank">
+            <div class="sns-icon">X</div><div class="sns-label">X</div>
+        </a>
     </div>
 
     <div class="section-label">Featured Movie</div>
@@ -59,38 +95,20 @@
             try {
                 const res = await fetch('news.json?v=' + Date.now());
                 const data = await res.json();
-                
-                // YouTube: 1つ目を代表、残りをリストに（regularsとshortsを統合して扱う）
                 const allVideos = [];
                 if(data.featured) allVideos.push(data.featured);
                 if(data.regulars) allVideos.push(...data.regulars);
                 if(data.shorts) allVideos.push(...data.shorts);
-
                 if(allVideos.length > 0) {
-                    document.getElementById('main-video').innerHTML = 
-                        `<div class="v-main"><iframe src="https://www.youtube.com/embed/${allVideos[0].id}" frameborder="0" allowfullscreen></iframe></div>`;
-                    
+                    document.getElementById('main-video').innerHTML = `<div class="v-main"><iframe src="https://www.youtube.com/embed/${allVideos[0].id}" frameborder="0" allowfullscreen></iframe></div>`;
                     const list = document.getElementById('video-list');
                     allVideos.slice(1).forEach(v => {
-                        list.innerHTML += `
-                            <a href="https://www.youtube.com/watch?v=${v.id}" class="v-card" target="_blank">
-                                <img src="${v.thumbnail}" class="v-thumb">
-                                <div class="v-title">${v.title}</div>
-                            </a>`;
+                        list.innerHTML += `<a href="https://www.youtube.com/watch?v=${v.id}" class="v-card" target="_blank"><img src="${v.thumbnail}" class="v-thumb"><div class="v-title">${v.title}</div></a>`;
                     });
                 }
-                
                 const container = document.getElementById('news-container');
-                const newsItems = data.news || [];
-                newsItems.forEach(item => {
-                    container.innerHTML += `
-                        <a href="${item.url}" class="news-card" target="_blank">
-                            <img src="${item.img || ''}" class="news-img">
-                            <div class="news-content">
-                                <div class="news-source">${item.source}</div>
-                                <div class="news-title">${item.title}</div>
-                            </div>
-                        </a>`;
+                (data.news || []).forEach(item => {
+                    container.innerHTML += `<a href="${item.url}" class="news-card" target="_blank"><img src="${item.img || ''}" class="news-img"><div class="news-content"><div class="news-source">${item.source}</div><div class="news-title">${item.title}</div></div></a>`;
                 });
             } catch (e) { console.error(e); }
         }
