@@ -4,90 +4,98 @@ import json
 import os
 import time
 import re
+import urllib.parse
 from datetime import datetime
 from bs4 import BeautifulSoup
-import urllib.parse
 
-# iPhone17(最新)を装い、Googleの同意画面をパスするクッキーをセット
+# 本物のブラウザ（Mac/Chrome）のふりを徹底する
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Mobile/15E148 Safari/604.1',
-    'Cookie': 'CONSENT=YES+cb.20230531-04-p0.ja+FX+908'
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Language': 'ja,en-US;q=0.9,en;q=0.8',
+    'Referer': 'https://news.google.com/'
 }
 
-def get_real_info(rss_url):
+def get_real_info(google_url):
     try:
-        # 1. Googleの中継を許可して最終ページへ
-        res = requests.get(rss_url, timeout=12, headers=HEADERS, allow_redirects=True)
+        # 1. まずGoogleのリダイレクトページを取得
+        res = requests.get(google_url, timeout=12, headers=HEADERS, allow_redirects=True)
+        
+        # もしGoogleの同意ページなどで止まったら、HTMLから直接URLを探す
         final_url = res.url
-        
-        # もしGoogleで止まっていたら失敗
         if "google.com" in final_url:
-            return final_url, ""
-
-        # 2. ページ解析
-        soup = BeautifulSoup(res.text, 'html.parser')
-        img_url = ""
+            urls = re.findall(r'https?://[^\s<>"]+|www\.[^\s<>"]+', res.text)
+            for u in urls:
+                if "google.com" not in u and "gstatic.com" not in u:
+                    final_url = u
+                    break
         
-        # OGP, Twitter, Thumbnailの順で画像を探す
-        for prop in ["og:image", "twitter:image", "thumbnail"]:
-            tag = soup.find("meta", {"property": prop}) or soup.find("meta", {"name": prop})
-            if tag and tag.get("content"):
-                val = tag["content"]
-                if val.startswith("http") and "google" not in val:
-                    # ★ 魔法の鏡(wsrv.nl)を通してブロックを回避
-                    safe_url = urllib.parse.quote(val)
-                    img_url = f"https://wsrv.nl/?url={safe_url}&w=300&h=300&fit=cover"
+        # 2. 本物のサイトへ直接アクセス
+        print(f"    -> 本物のサイトへ潜入中...")
+        res = requests.get(final_url, timeout=12, headers=HEADERS)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        
+        # 3. 画像タグを全力で捜索
+        img_url = ""
+        target_tags = [
+            ("meta", {"property": "og:image"}),
+            ("meta", {"name": "twitter:image"}),
+            ("meta", {"property": "og:image:url"}),
+            ("link", {"rel": "image_src"})
+        ]
+        
+        for tag, attrs in target_tags:
+            found = soup.find(tag, attrs)
+            if found:
+                val = found.get("content") or found.get("href")
+                if val and "http" in val and "google" not in val:
+                    # 魔法の鏡(wsrv.nl)を通してブロック回避
+                    img_url = f"https://wsrv.nl/?url={urllib.parse.quote(val)}&w=400&h=400&fit=cover"
                     break
         return final_url, img_url
     except:
-        return rss_url, ""
+        return google_url, ""
 
 def get_news():
     filename = 'news.json'
-    # ★「成功」のために、一度古いデータをリセットして最新だけを取得
     new_archive = []
-    
-    # ナタリーとモデルプレスに絞る
+    # 成功率が高いナタリーとモデルプレスに絞る
     queries = ["永瀬廉 site:natalie.mu", "永瀬廉 site:mdpr.jp"]
     
-    print("--- ついに成功させるための挑戦 ---")
+    print("--- 永瀬廉ニュース：成功への挑戦 ---")
     for q in queries:
         rss_url = f"https://news.google.com/rss/search?q={q}&hl=ja&gl=JP&ceid=JP:ja"
         try:
-            res = requests.get(rss_url, timeout=10, headers=HEADERS)
-            root = ET.fromstring(res.content)
-            
-            for item in root.findall('.//item')[:6]:
-                raw_title = item.find('title').text
-                source_el = item.find('source')
-                source = source_el.text if source_el is not None else "News"
+            root = ET.fromstring(requests.get(rss_url, timeout=10).content)
+            for el in root.findall('.//item')[:5]:
+                # メディア名の取得
+                source_el = el.find('source')
+                s_name = source_el.text if source_el is not None else "ニュース"
                 
-                # タイトルから余計なものを消す
+                raw_title = el.find('title').text
                 clean_title = re.sub(r' - .*$', '', raw_title).strip()
-                rss_link = item.find('link').text
+                link = el.find('link').text
                 
                 if not any(x['title'] == clean_title for x in new_archive):
-                    print(f"解析中: {clean_title[:15]}... [{source}]")
-                    _, img = get_real_info(rss_link)
+                    print(f"解析中: {clean_title[:10]}... [{s_name}]")
+                    _, f_img = get_real_info(link)
                     
-                    if img: print("  -> ✨画像URLの取得に成功！")
-                    else: print("  -> ❌まだ画像が見つかりません")
+                    if f_img: print("  -> ✨成功！画像を確保しました")
+                    else: print("  -> ❌画像がまだ見つかりません")
                     
-                    pub_date = item.find('pubDate').text
-                    date_obj = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %Z')
+                    pub_date = el.find('pubDate').text
+                    dt = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %Z')
                     
                     new_archive.append({
-                        "title": clean_title, "source": source, "url": rss_link, "img": img,
-                        "date": date_obj.strftime('%Y/%m/%d'), "year": date_obj.strftime('%Y'),
-                        "timestamp": date_obj.timestamp()
+                        "title": clean_title, "source": s_name, "url": link, "img": f_img,
+                        "date": dt.strftime('%Y/%m/%d'), "year": dt.strftime('%Y'), "timestamp": dt.timestamp()
                     })
                     time.sleep(2)
-        except Exception as e:
-            print(f"エラー: {e}")
+        except: continue
 
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(new_archive, f, ensure_ascii=False, indent=4)
-    print("--- 完了！ ---")
+    print("--- 全データ保存完了 ---")
 
 if __name__ == "__main__":
     get_news()
