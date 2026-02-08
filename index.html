@@ -8,9 +8,8 @@
         :root {
             --bg-color: #000000;
             --card-bg: #111111;
-            --accent-color: #d4af37;
+            --accent-color: #d4af37; /* ゴールド */
             --text-color: #ffffff;
-            --text-muted: #888888;
         }
         body {
             font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
@@ -22,30 +21,95 @@
         header { padding: 20px 15px 10px; text-align: center; border-bottom: 1px solid #222; }
         h1 { margin: 0; font-size: 1.1rem; letter-spacing: 0.2rem; color: var(--accent-color); }
 
-        /* SNSハブ：5つ並んでもスクロールで快適に */
+        /* SNSハブ：5つ並んでもスマホで収まるよう調整 */
         .sns-hub { 
             display: flex; 
-            justify-content: flex-start; 
-            padding: 15px 10px; 
+            justify-content: space-around; /* 均等に配置 */
+            padding: 15px 5px; 
             border-bottom: 1px solid #222; 
-            overflow-x: auto; 
-            -webkit-overflow-scrolling: touch;
-            gap: 15px;
         }
-        /* スクロールバーを隠す */
-        .sns-hub::-webkit-scrollbar { display: none; }
-        
-        .sns-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-color); min-width: 65px; }
+        .sns-item { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-decoration: none; 
+            color: var(--text-color); 
+            width: 18%; /* 5つ並べるために幅を制限 */
+        }
         .sns-icon { 
-            width: 48px; height: 48px; border-radius: 50%; 
-            background: var(--card-bg); border: 1px solid var(--accent-color); 
+            width: 44px; height: 44px; /* スマホ向けにわずかにサイズダウン */
+            border-radius: 50%; 
+            background: var(--card-bg); 
+            border: 1px solid var(--accent-color); 
             display: flex; justify-content: center; align-items: center; 
-            font-size: 0.55rem; margin-bottom: 6px; font-weight: bold; color: var(--accent-color); 
+            font-size: 0.5rem; margin-bottom: 6px; 
+            font-weight: bold; color: var(--accent-color); 
             box-shadow: 0 0 8px rgba(212, 175, 55, 0.1);
         }
-        .sns-label { font-size: 0.6rem; font-weight: bold; white-space: nowrap; }
+        .sns-label { font-size: 0.55rem; font-weight: bold; white-space: nowrap; }
 
-        /* 動画セクション */
+        .video-section { padding: 15px; background: #050505; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid #333; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        .section-label { padding: 15px 15px 5px; font-size: 0.75rem; color: var(--accent-color); font-weight: bold; text-transform: uppercase; border-left: 3px solid var(--accent-color); margin: 10px 0 0 15px; }
+
+        #news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; padding: 12px; }
+        .news-card { background: var(--card-bg); border-radius: 10px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; border: 1px solid #222; }
+        .news-card[data-source*="公式"] { border: 1px solid var(--accent-color); }
+        .news-img { width: 100%; aspect-ratio: 16/10; object-fit: cover; background-color: #222; }
+        .news
+cat << 'EOF' > index.html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>REN NAGASE PORTAL</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: #111111;
+            --accent-color: #d4af37; /* ゴールド */
+            --text-color: #ffffff;
+        }
+        body {
+            font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0; padding: 0;
+            overflow-x: hidden;
+        }
+        header { padding: 20px 15px 10px; text-align: center; border-bottom: 1px solid #222; }
+        h1 { margin: 0; font-size: 1.1rem; letter-spacing: 0.2rem; color: var(--accent-color); }
+
+        /* SNSハブ：5つ並んでもスマホで収まるよう調整 */
+        .sns-hub { 
+            display: flex; 
+            justify-content: space-around; /* 均等に配置 */
+            padding: 15px 5px; 
+            border-bottom: 1px solid #222; 
+        }
+        .sns-item { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-decoration: none; 
+            color: var(--text-color); 
+            width: 18%; /* 5つ並べるために幅を制限 */
+        }
+        .sns-icon { 
+            width: 44px; height: 44px; /* スマホ向けにわずかにサイズダウン */
+            border-radius: 50%; 
+            background: var(--card-bg); 
+            border: 1px solid var(--accent-color); 
+            display: flex; justify-content: center; align-items: center; 
+            font-size: 0.5rem; margin-bottom: 6px; 
+            font-weight: bold; color: var(--accent-color); 
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.1);
+        }
+        .sns-label { font-size: 0.55rem; font-weight: bold; white-space: nowrap; }
+
         .video-section { padding: 15px; background: #050505; }
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid #333; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -69,10 +133,10 @@
             <div class="sns-icon">INSTA</div><div class="sns-label">Instagram</div>
         </a>
         <a href="https://www.tiktok.com/@kp_official_523" class="sns-item" target="_blank">
-            <div class="sns-icon" style="border-color:#ff0050; color:#00f2ea;">TIKTOK</div><div class="sns-label">TikTok</div>
+            <div class="sns-icon">TIKTOK</div><div class="sns-label">TikTok</div>
         </a>
         <a href="https://www.youtube.com/@kp_official_523" class="sns-item" target="_blank">
-            <div class="sns-icon" style="color:#ff0000; border-color:#ff0000;">YOUTUBE</div><div class="sns-label">YouTube</div>
+            <div class="sns-icon">YOUTUBE</div><div class="sns-label">YouTube</div>
         </a>
         <a href="https://starto.jp/s/p/artist/41" class="sns-item" target="_blank">
             <div class="sns-icon">START</div><div class="sns-label">Schedule</div>
