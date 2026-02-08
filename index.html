@@ -2,67 +2,63 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="icon.png">
     <title>永瀬廉NEWS</title>
     <style>
         :root { --main-bg: #0f0f0f; --card-bg: #1e1e1e; --accent-color: #d4af37; --text-color: #f5f5f5; --sub-text: #b0b0b0; --new-badge: #ff4500; }
-        body { font-family: -apple-system, sans-serif; background: var(--main-bg); color: var(--text-color); margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 500px; }
-        h1 { font-size: 20px; text-align: center; color: var(--accent-color); letter-spacing: 3px; font-weight: normal; margin-bottom: 25px; }
-        #search-bar { width: 100%; padding: 12px; border-radius: 25px; border: 1px solid #333; background: #222; color: white; margin-bottom: 20px; box-sizing: border-box; outline: none; }
-        .news-item { background: var(--card-bg); border-radius: 12px; margin-bottom: 12px; overflow: hidden; display: flex; height: 100px; border-left: 4px solid var(--accent-color); text-decoration: none; color: inherit; }
-        .news-img { width: 100px; height: 100%; object-fit: cover; background: #333; flex-shrink: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: var(--main-bg); color: var(--text-color); margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { width: 100%; max-width: 500px; padding-bottom: 40px; }
+        h1 { font-size: 20px; text-align: center; color: var(--accent-color); letter-spacing: 3px; font-weight: normal; margin: 20px 0 25px; }
+        #search-bar { width: 100%; padding: 12px; border-radius: 25px; border: 1px solid #333; background: #222; color: white; margin-bottom: 20px; box-sizing: border-box; outline: none; font-size: 16px; }
+        .news-item { background: var(--card-bg); border-radius: 12px; margin-bottom: 12px; overflow: hidden; display: flex; height: 95px; border-left: 4px solid var(--accent-color); text-decoration: none; color: inherit; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .news-img { width: 95px; height: 100%; object-fit: cover; background: #2a2a2a; flex-shrink: 0; }
         .news-content { padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; min-width: 0; }
         .meta-row { display: flex; align-items: center; gap: 6px; }
         .date { font-size: 10px; color: var(--sub-text); }
-        .source-tag { font-size: 9px; background: #333; color: var(--accent-color); padding: 1px 6px; border-radius: 4px; border: 0.5px solid var(--accent-color); }
+        .source-tag { font-size: 9px; background: #333; color: var(--accent-color); padding: 1px 6px; border-radius: 4px; border: 0.5px solid var(--accent-color); white-space: nowrap; }
         .new-badge { background: var(--new-badge); color: white; font-size: 9px; padding: 1px 5px; border-radius: 4px; font-weight: bold; }
-        .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .archive-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-        .year-btn { background: #222; color: var(--accent-color); border: 1px solid var(--accent-color); padding: 8px 15px; border-radius: 20px; font-size: 12px; }
+        .news-title { font-size: 13.5px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .archive-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; }
+        .year-btn { background: #222; color: var(--accent-color); border: 1px solid var(--accent-color); padding: 6px 12px; border-radius: 20px; font-size: 11px; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>永瀬廉 NEWS</h1>
         <input type="text" id="search-bar" placeholder="記事を検索...">
-        <div id="news-list"></div>
+        <div id="news-list">読み込み中...</div>
         <div class="archive-buttons" id="year-buttons"></div>
     </div>
     <script>
-        let allNews = [];
-        let latestDate = "";
+        let allNews = []; let latestDate = "";
+        const placeholder = "https://placehold.jp/30/2a2a2a/d4af37/150x150.png?text=%E2%98%85";
         function renderNews(items) {
-            const list = document.getElementById('news-list');
-            list.innerHTML = '';
+            const list = document.getElementById('news-list'); list.innerHTML = '';
             items.forEach(item => {
-                const a = document.createElement('a');
-                a.className = 'news-item';
-                a.href = item.url; a.target = '_blank';
-                const imgSrc = item.img || 'https://placehold.jp/24/1e1e1e/d4af37/100x100.png?text=%E2%98%85';
-                a.innerHTML = `<img src="${imgSrc}" class="news-img"><div class="news-content"><div class="news-title">${item.title}</div><div class="meta-row"><span class="date">${item.date}</span><span class="source-tag">${item.source}</span>${item.date === latestDate ? '<span class="new-badge">NEW</span>' : ''}</div></div>`;
+                const a = document.createElement('a'); a.className = 'news-item'; a.href = item.url; a.target = '_blank';
+                // undefined対策：sourceがなければ 'News'
+                const source = item.source || 'News';
+                // 画像が空、またはGoogleロゴならプレースホルダーを出す
+                const imgSrc = (item.img && !item.img.includes('google')) ? item.img : placeholder;
+                a.innerHTML = `<img src="${imgSrc}" onerror="this.src='${placeholder}'" class="news-img"><div class="news-content"><div class="news-title">${item.title}</div><div class="meta-row"><span class="date">${item.date}</span><span class="source-tag">${source}</span>${item.date === latestDate ? '<span class="new-badge">NEW</span>' : ''}</div></div>`;
                 list.appendChild(a);
             });
         }
-        fetch('news.json').then(res => res.json()).then(data => {
+        fetch('news.json?t=' + new Date().getTime()).then(res => res.json()).then(data => {
             allNews = data;
             if(data.length > 0) {
-                latestDate = data[0].date;
-                renderNews(allNews.slice(0, 30));
-                const years = [...new Set(data.map(n => n.year))];
-                years.forEach(year => {
-                    const btn = document.createElement('button');
-                    btn.className = 'year-btn'; btn.innerText = year + '年';
+                latestDate = data[0].date; renderNews(allNews.slice(0, 30));
+                [...new Set(data.map(n => n.year))].forEach(year => {
+                    const btn = document.createElement('button'); btn.className = 'year-btn'; btn.innerText = year + '年';
                     btn.onclick = () => renderNews(allNews.filter(n => n.year === year));
                     document.getElementById('year-buttons').appendChild(btn);
                 });
             }
         });
-        document.getElementById('search-bar').addEventListener('input', (e) => {
-            const word = e.target.value.toLowerCase();
-            renderNews(allNews.filter(n => n.title.toLowerCase().includes(word)));
-        });
+        document.getElementById('search-bar').addEventListener('input', (e) => renderNews(allNews.filter(n => n.title.toLowerCase().includes(e.target.value.toLowerCase()))));
     </script>
 </body>
 </html>

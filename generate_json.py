@@ -7,35 +7,32 @@ import re
 from datetime import datetime
 from bs4 import BeautifulSoup
 
+UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Mobile/15E148 Safari/604.1'
+
 def fetch_article_info(rss_url):
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1'
-    }
+    headers = {'User-Agent': UA}
     try:
-        res = requests.get(rss_url, timeout=10, headers=headers, allow_redirects=True)
+        res = requests.get(rss_url, timeout=12, headers=headers, allow_redirects=True)
         final_url = res.url
         if "news.google.com" in final_url: return final_url, ""
 
         soup = BeautifulSoup(res.text, 'html.parser')
         img_url = ""
-        
-        # 優先順位をつけて画像を探す
-        selectors = [
-            ("meta", {"property": "og:image"}),
-            ("meta", {"name": "twitter:image"}),
-            ("meta", {"property": "og:image:secure_url"}),
-            ("link", {"rel": "image_src"})
-        ]
+        selectors = [("meta", {"property": "og:image"}), ("meta", {"name": "twitter:image"}), ("link", {"rel": "image_src"})]
         
         for tag, attr in selectors:
             target = soup.find(tag, attr)
             if target:
-                img_url = target.get("content") or target.get("href")
-                if img_url and "http" in img_url and "google" not in img_url:
+                candidate = target.get("content") or target.get("href")
+                if candidate and candidate.startswith("http") and "google" not in candidate:
+                    img_url = candidate
                     break
         
+        if img_url: print(f"  [Success] 画像発見!")
+        else: print(f"  [Failed] 画像なし: {final_url[:30]}")
         return final_url, img_url
-    except:
+    except Exception as e:
+        print(f"  [Error] {e}")
         return rss_url, ""
 
 def get_news():
@@ -44,58 +41,61 @@ def get_news():
         with open(filename, 'r', encoding='utf-8') as f:
             try: archive = json.load(f)
             except: archive = []
-    else:
-        archive = []
+    else: archive = []
 
-    # 「googleロゴ」や「空」の画像を15件ずつ「本物の画像」に修正していく
-    updated_count = 0
+    print("--- 既存記事の修正(15件) ---")
+    updated = 0
     for item in archive:
-        is_bad_img = not item.get('img') or "google" in item.get('img') or "placeholder" in item.get('img')
-        if is_bad_img and updated_count < 15:
-            print(f"画像を再取得中: {item['title'][:15]}...")
+        if (not item.get('img') or "google" in item.get('img')) and updated < 15:
+            print(f"再トライ: {item['title'][:15]}...")
             _, img_url = fetch_article_info(item['url'])
             if img_url:
                 item['img'] = img_url
-                updated_count += 1
-            time.sleep(1.2)
+                updated += 1
+            time.sleep(1.5)
 
     def normalize_title(t):
-        t = re.sub(r' - .*$', '', t)
-        return re.sub(r'[^\w]', '', t)
+        return re.sub(r'[^\w]', '', re.sub(r' - .*$', '', t))
 
     existing_urls = {item['url'] for item in archive}
     existing_titles = {normalize_title(item['title']) for item in archive[:50]}
+    
+    # 検索ワードを広げて網羅性を高める
     queries = ["永瀬廉", "永瀬廉 site:natalie.mu", "永瀬廉 site:mdpr.jp", "永瀬廉 site:oricon.co.jp"]
     new_items = []
 
+    print("\n--- 新着記事の取得 ---")
     for q in queries:
         rss_url = f"https://news.google.com/rss/search?q={q}&hl=ja&gl=JP&ceid=JP:ja"
         try:
             root = ET.fromstring(requests.get(rss_url, timeout=10).content)
-        except: continue
-        
-        for item in root.findall('.//item')[:8]:
-            raw_title = item.find('title').text
-            rss_link = item.find('link').text
-            norm_title = normalize_title(raw_title)
+            for item in root.findall('.//item')[:8]:
+                raw_title = item.find('title').text
+                rss_link = item.find('link').text
+                if (normalize_title(raw_title) not in existing_titles) and (rss_link not in existing_urls):
+                    print(f"新着発見: {raw_title[:20]}...")
+                    direct_url, img_url = fetch_article_info(rss_link)
+                    
+                    # ソース（サイト名）の抽出を強化
+                    source = "News"
+                    title = raw_title
+                    for sep in [' - ', ' | ', '：', '｜']:
+                        if sep in raw_title:
+                            parts = raw_title.rsplit(sep, 1)
+                            title, source = parts[0], parts[1]
+                            break
 
-            if (norm_title not in existing_titles) and (rss_link not in existing_urls):
-                direct_url, img_url = fetch_article_info(rss_link)
-                if "google" in img_url: img_url = ""
-                
-                parts = raw_title.rsplit(' - ', 1)
-                title, source = (parts[0], parts[1]) if len(parts) > 1 else (raw_title, "News")
-                pub_date = item.find('pubDate').text
-                date_obj = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %Z')
-                
-                new_items.append({
-                    "title": title, "source": source, "url": direct_url, "img": img_url,
-                    "date": date_obj.strftime('%Y/%m/%d'), "year": date_obj.strftime('%Y'),
-                    "timestamp": date_obj.timestamp()
-                })
-                existing_titles.add(norm_title)
-                existing_urls.add(direct_url)
-                time.sleep(1)
+                    pub_date = item.find('pubDate').text
+                    date_obj = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %Z')
+                    new_items.append({
+                        "title": title, "source": source, "url": direct_url, "img": img_url,
+                        "date": date_obj.strftime('%Y/%m/%d'), "year": date_obj.strftime('%Y'),
+                        "timestamp": date_obj.timestamp()
+                    })
+                    existing_titles.add(normalize_title(raw_title))
+                    existing_urls.add(direct_url)
+                    time.sleep(1.5)
+        except: continue
 
     combined = new_items + archive
     combined.sort(key=lambda x: x.get('timestamp', 0), reverse=True)
