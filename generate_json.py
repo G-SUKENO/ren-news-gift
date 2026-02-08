@@ -60,6 +60,7 @@ def get_image_from_real_url(real_url):
 
 def get_news():
     filename = 'news.json'
+    # 確実に成功させるために件数を絞って挑戦
     queries = ["永瀬廉", "永瀬廉 site:natalie.mu", "永瀬廉 site:mdpr.jp"]
     new_archive = []
 
@@ -71,6 +72,7 @@ def get_news():
             for el in root.findall('.//item')[:10]:
                 source = el.find('source').text if el.find('source') is not None else "ニュース"
                 raw_title = el.find('title').text
+                # タイトルからソース名を削る
                 clean_title = re.sub(r' [-|－|:|｜] .*$', '', raw_title).strip()
                 clean_title = clean_title.replace(f" - {source}", "").strip()
                 
