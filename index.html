@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="apple-touch-icon" href="icon.png">
     <title>永瀬廉NEWS</title>
     <style>
         :root { --main-bg: #0d0d0d; --card-bg: #1a1a1a; --accent: #d4af37; --text: #ffffff; }
         * { box-sizing: border-box; }
         body { font-family: -apple-system, sans-serif; background: var(--main-bg); color: var(--text); margin: 0; padding: 16px; display: flex; justify-content: center; }
         .container { width: 100%; max-width: 480px; }
-        h1 { font-size: 18px; text-align: center; color: var(--accent); letter-spacing: 4px; margin-bottom: 25px; }
+        .header { text-align: center; margin: 10px 0 25px; }
+        h1 { font-size: 18px; color: var(--accent); letter-spacing: 4px; margin: 0; font-weight: 300; }
+        .update-time { font-size: 10px; color: #666; margin-top: 5px; letter-spacing: 1px; }
+        #search-bar { width: 100%; padding: 14px 20px; border-radius: 30px; border: 1px solid #333; background: #222; color: white; margin-bottom: 20px; outline: none; font-size: 16px; -webkit-appearance: none; }
         .news-item { background: var(--card-bg); border-radius: 15px; margin-bottom: 12px; display: flex; height: 95px; text-decoration: none; color: inherit; overflow: hidden; border: 1px solid #252525; }
         .news-img { width: 95px; height: 95px; object-fit: cover; background: #222; flex-shrink: 0; }
         .news-content { padding: 12px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; min-width: 0; }
@@ -22,34 +26,42 @@
 </head>
 <body>
     <div class="container">
-        <h1>永瀬廉 NEWS</h1>
+        <div class="header">
+            <h1>永瀬廉 NEWS</h1>
+            <div id="last-update" class="update-time"></div>
+        </div>
+        <input type="text" id="search-bar" placeholder="キーワードで探す">
         <div id="news-list"></div>
     </div>
     <script>
         const placeholder = "https://placehold.jp/24/1a1a1a/d4af37/150x150.png?text=%E2%98%85";
-        // キャッシュを破壊するために秒単位のタイムスタンプを付与
-        fetch('news.json?v=' + Date.now())
-            .then(res => res.json())
-            .then(data => {
-                const list = document.getElementById('news-list');
-                const topDate = data[0]?.date;
-                data.forEach(item => {
-                    const a = document.createElement('a');
-                    a.className = 'news-item'; a.href = item.url; a.target = '_blank';
-                    // 画像があればそれ、なければ★
-                    const imgSrc = (item.img && item.img.includes('http')) ? item.img : placeholder;
-                    a.innerHTML = `<img src="${imgSrc}" onerror="this.src='${placeholder}'" class="news-img">
-                        <div class="news-content">
-                            <div class="news-title">${item.title}</div>
-                            <div class="meta-row">
-                                <span class="date">${item.date}</span>
-                                <span class="source-tag">${item.source || 'News'}</span>
-                                ${item.date === topDate ? '<span class="new-badge">NEW</span>' : ''}
-                            </div>
-                        </div>`;
-                    list.appendChild(a);
-                });
+        function render(data) {
+            const list = document.getElementById('news-list');
+            list.innerHTML = '';
+            if(!data.length) return;
+            const topDate = data[0].date;
+            data.forEach(n => {
+                const a = document.createElement('a'); a.className = 'news-item'; a.href = n.url; a.target = '_blank';
+                const imgSrc = (n.img && n.img.includes('http')) ? n.img : placeholder;
+                a.innerHTML = `<img src="${imgSrc}" onerror="this.src='${placeholder}'" class="news-img">
+                    <div class="news-content"><div class="news-title">${n.title}</div>
+                    <div class="meta-row"><span class="date">${n.date}</span><span class="source-tag">${n.source}</span>
+                    ${n.date === topDate ? '<span class="new-badge">NEW</span>' : ''}</div></div>`;
+                list.appendChild(a);
             });
+        }
+        fetch('news.json?t=' + Date.now()).then(res => res.json()).then(data => {
+            render(data.slice(0, 30));
+            // 更新時間を表示（現在時刻）
+            const now = new Date();
+            document.getElementById('last-update').innerText = `最終更新：${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
+        });
+        document.getElementById('search-bar').addEventListener('input', (e) => {
+            const word = e.target.value.toLowerCase();
+            fetch('news.json').then(res => res.json()).then(data => {
+                render(data.filter(n => n.title.toLowerCase().includes(word)).slice(0, 30));
+            });
+        });
     </script>
 </body>
 </html>
