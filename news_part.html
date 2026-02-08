@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <style>
+        body { background: #000; color: #fff; margin: 0; font-family: -apple-system, sans-serif; }
+        .news-list { padding: 10px; }
+        .news-item { padding: 15px 0; border-bottom: 1px solid #222; text-decoration: none; display: block; }
+        .news-meta { font-size: 0.65rem; color: #d4af37; font-weight: bold; margin-bottom: 4px; letter-spacing: 0.05rem; }
+        .news-title { font-size: 0.85rem; color: #eee; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <div id="list" class="news-list">Loading...</div>
+    <script>
+        async function load() {
+            try {
+                const res = await fetch('news.json?t=' + Date.now());
+                const data = await res.json();
+                const articles = data.news || [];
+                document.getElementById('list').innerHTML = articles.map(a => `
+                    <a href="${a.url}" target="_blank" class="news-item">
+                        <div class="news-meta">${a.site_name}</div>
+                        <div class="news-title">${a.title}</div>
+                    </a>
+                `).join('');
+            } catch (e) { document.getElementById('list').innerText = 'Load Error'; }
+        }
+        load();
+    </script>
+</body>
+</html>
