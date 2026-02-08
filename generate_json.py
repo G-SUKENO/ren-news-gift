@@ -14,29 +14,33 @@ def get_soup(url):
         return BeautifulSoup(r.content, "html.parser") if r.status_code == 200 else None
     except: return None
 
-# --- YouTube取得 ---
+# --- [1] YouTube最新動画の取得 ---
 def fetch_youtube():
-    print("\n--- YouTube (King & Prince公式) を攻略中 ---")
+    print("\n[YouTube] King & Prince公式を確認中...")
     try:
         url = "https://www.youtube.com/@kp_official0523/videos"
         r = requests.get(url, headers=HEADERS, timeout=15)
-        video_ids = re.findall(r"watch\?v=([a-zA-Z0-9_-]{11})", r.text)
+        video_ids = re.findall(r'"videoId":"([a-zA-Z0-9_-]{11})"', r.text)
+        if not video_ids:
+            video_ids = re.findall(r"watch\?v=([a-zA-Z0-9_-]{11})", r.text)
+        
         if video_ids:
             v_id = video_ids[0]
-            print(f"  [成功] 最新動画ID: {v_id}")
+            img_url = f"https://img.youtube.com/vi/{v_id}/maxresdefault.jpg"
+            print(f"  -> 成功: {v_id}")
             return {
                 "video_id": v_id,
                 "title": "King & Prince 最新動画",
                 "url": f"https://www.youtube.com/watch?v={v_id}",
-                "image": f"https://img.youtube.com/vi/{v_id}/maxresdefault.jpg",
-                "thumbnail": f"https://img.youtube.com/vi/{v_id}/maxresdefault.jpg"
+                "image": img_url, "img": img_url, "thumbnail": img_url
             }
     except Exception as e:
-        print(f"  [失敗] YouTube: {e}")
+        print(f"  -> 失敗: {e}")
     return None
 
-# --- ニュース取得関数群 ---
-def fetch_official():
+# --- [2] ニュースサイト別攻略ロジック ---
+
+def fetch_official(): # 公式
     news = []
     soup = get_soup("https://www.universal-music.co.jp/king-and-prince/news/")
     if soup:
@@ -45,11 +49,11 @@ def fetch_official():
                 url = "https://www.universal-music.co.jp" + a['href'] if a['href'].startswith("/") else a['href']
                 sd = get_soup(url)
                 img = sd.find("meta", property="og:image")["content"] if sd and sd.find("meta", property="og:image") else ""
-                news.append({"title": a.get_text(strip=True)[:50], "url": url, "source": "公式", "img": img, "image": img, "thumbnail": img})
+                news.append({"title": a.get_text(strip=True)[:50], "url": url, "source": "公式", "image": img, "img": img, "thumbnail": img})
             if len(news) >= 3: break
     return news
 
-def fetch_natalie():
+def fetch_natalie(): # ナタリー
     news = []
     soup = get_soup("https://natalie.mu/search/news?query=%E6%B0%B8%E7%80%AC%E5%BB%89")
     if soup:
@@ -59,10 +63,10 @@ def fetch_natalie():
                 url = "https://natalie.mu" + link['href']
                 sd = get_soup(url)
                 img = sd.find("meta", property="og:image")["content"] if sd and sd.find("meta", property="og:image") else ""
-                news.append({"title": link.get_text(strip=True), "url": url, "source": "ナタリー", "img": img, "image": img, "thumbnail": img})
+                news.append({"title": link.get_text(strip=True), "url": url, "source": "ナタリー", "image": img, "img": img, "thumbnail": img})
     return news
 
-def fetch_oricon():
+def fetch_oricon(): # オリコン
     news = []
     soup = get_soup("https://www.oricon.co.jp/prof/637850/article/")
     if soup:
@@ -72,10 +76,10 @@ def fetch_oricon():
                 url = "https://www.oricon.co.jp" + link['href'] if link['href'].startswith("/") else link['href']
                 sd = get_soup(url)
                 img = sd.find("meta", property="og:image")["content"] if sd and sd.find("meta", property="og:image") else ""
-                news.append({"title": art.find(["h2", "p"]).get_text(strip=True), "url": url, "source": "オリコン", "img": img, "image": img, "thumbnail": img})
+                news.append({"title": art.find(["h2", "p"]).get_text(strip=True), "url": url, "source": "オリコン", "image": img, "img": img, "thumbnail": img})
     return news
 
-def fetch_billboard():
+def fetch_billboard(): # Billboard
     news = []
     soup = get_soup("https://www.billboard-japan.com/artists/detail/569261")
     if soup:
@@ -84,11 +88,11 @@ def fetch_billboard():
                 url = "https://www.billboard-japan.com" + a['href']
                 sd = get_soup(url)
                 img = sd.find("meta", property="og:image")["content"] if sd and sd.find("meta", property="og:image") else ""
-                news.append({"title": a.get_text(strip=True), "url": url, "source": "Billboard", "img": img, "image": img, "thumbnail": img})
+                news.append({"title": a.get_text(strip=True), "url": url, "source": "Billboard", "image": img, "img": img, "thumbnail": img})
             if len(news) >= 3: break
     return news
 
-def fetch_edgeline():
+def fetch_edgeline(): # エッジライン
     news = []
     soup = get_soup("https://www.edgeline-tokyo.com/?s=%E6%B0%B8%E7%80%AC%E5%BB%89")
     if soup:
@@ -96,10 +100,10 @@ def fetch_edgeline():
             url = art.find("a")['href']
             sd = get_soup(url)
             img = sd.find("meta", property="og:image")["content"] if sd and sd.find("meta", property="og:image") else ""
-            news.append({"title": art.find("h2").get_text(strip=True), "url": url, "source": "エッジライン", "img": img, "image": img, "thumbnail": img})
+            news.append({"title": art.find("h2").get_text(strip=True), "url": url, "source": "エッジライン", "image": img, "img": img, "thumbnail": img})
     return news
 
-def fetch_modelpress():
+def fetch_modelpress(): # モデルプレス
     news = []
     soup = get_soup("https://mdpr.jp/model/detail/2554")
     if soup:
@@ -108,10 +112,10 @@ def fetch_modelpress():
             url = "https://mdpr.jp" + link['href']
             sd = get_soup(url)
             img = sd.find("meta", property="og:image")["content"] if sd and sd.find("meta", property="og:image") else ""
-            news.append({"title": "モデルプレス特選フォト", "url": url, "source": "モデルプレス", "img": img, "image": img, "thumbnail": img})
+            news.append({"title": "モデルプレス特選フォト", "url": url, "source": "モデルプレス", "image": img, "img": img, "thumbnail": img})
     return news
 
-def fetch_moviewalker():
+def fetch_moviewalker(): # 映画Walker (新ドメイン版)
     news = []
     soup = get_soup("https://press.moviewalker.jp/person/288683/")
     if soup:
@@ -120,18 +124,21 @@ def fetch_moviewalker():
                 url = "https://press.moviewalker.jp" + a['href']
                 sd = get_soup(url)
                 img = sd.find("meta", property="og:image")["content"] if sd and sd.find("meta", property="og:image") else ""
-                news.append({"title": a.get_text(strip=True) or "映画ニュース", "url": url, "source": "映画Walker", "img": img, "image": img, "thumbnail": img})
+                title = a.get_text(strip=True) or "映画ニュース"
+                news.append({"title": title, "url": url, "source": "映画Walker", "image": img, "img": img, "thumbnail": img})
             if len(news) >= 3: break
     return news
 
+# --- [3] 実行と保存 ---
+
 def main():
-    print(f"\n--- 復旧・巡回開始 ---")
-    all_news = []
+    print(f"--- 巡回開始: {datetime.now()} ---")
     
-    # 1. YouTube取得 (HTMLがこれを待っている可能性があります)
+    # YouTubeの取得
     yt_data = fetch_youtube()
     
-    # 2. ニュース取得
+    # 全ニュースの取得
+    all_news = []
     fetchers = [
         ("公式", fetch_official), ("ナタリー", fetch_natalie), ("オリコン", fetch_oricon),
         ("Billboard", fetch_billboard), ("エッジライン", fetch_edgeline),
@@ -139,24 +146,25 @@ def main():
     ]
     
     for name, func in fetchers:
-        print(f"--- {name} 攻略中 ---")
+        print(f"[{name}] 解析中...")
         try:
-            results = func()
-            all_news.extend(results)
+            res = func()
+            all_news.extend(res)
+            print(f"  -> {len(res)}件 完了")
         except Exception as e:
-            print(f"  [失敗] {name}: {e}")
+            print(f"  -> エラー: {e}")
         time.sleep(1)
 
-    # HTMLが期待する構造（youtubeキーとnewsキー）で保存
-    output = {
+    # 構造の統合 (画面側が期待する全ての形式を網羅)
+    final_output = {
         "youtube": yt_data,
         "news": all_news,
         "updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
     
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
-        json.dump(output, f, ensure_ascii=False, indent=4)
-    print(f"\n完了: 全{len(all_news)}件 + YouTubeを整理しました。")
+        json.dump(final_output, f, ensure_ascii=False, indent=4)
+    print(f"\n完了: {DATA_FILE} を更新しました。")
 
 if __name__ == "__main__":
     main()
