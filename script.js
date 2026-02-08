@@ -1,35 +1,38 @@
-async function initShorts() {
-    try {
-        const response = await fetch('news.json');
-        const data = await response.json();
-        const container = document.getElementById('news-container');
-        if (!container) return;
+function renderShorts() {
+    console.log("SHORTセクションの上書きを開始します...");
+    fetch('news.json')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('news-container');
+            if (!container) return;
 
-        container.innerHTML = '';
-        // data.news の中にあるアイテムを処理
-        const items = data.news || [];
-        
-        items.forEach(item => {
-            // img, thumbnail, thumbnail_url のどれがあっても動くようにする
-            const imageUrl = item.img || item.thumbnail || item.thumbnail_url;
-            if (!imageUrl) return;
+            // 重要：HTMLに残っている古いゴミ（placeholder画像など）をここで一気に全消去！
+            container.innerHTML = '';
 
-            const slide = document.createElement('div');
-            slide.className = 'swiper-slide';
-            slide.style.width = '150px'; // ショート動画らしい縦長感
-            slide.innerHTML = `
-                <a href="${item.url}" target="_blank" style="text-decoration:none; color:white;">
-                    <div style="position:relative; padding-top:177%; overflow:hidden; border-radius:12px; background:#333;">
-                        <img src="${imageUrl}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
-                    </div>
-                    <p style="font-size:11px; margin-top:8px; line-height:1.2; height:2.4em; overflow:hidden;">${item.title}</p>
-                </a>
-            `;
-            container.appendChild(slide);
-        });
-        console.log("SHORTセクションの描画に成功しました！表示件数:", items.length);
-    } catch (e) {
-        console.error("データの読み込みエラー:", e);
-    }
+            const items = data.news || [];
+            items.forEach(item => {
+                const imageUrl = item.img || item.thumbnail || item.thumbnail_url;
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                slide.style.width = '150px';
+                slide.innerHTML = `
+                    <a href="${item.url}" target="_blank" style="text-decoration:none; color:white;">
+                        <div style="position:relative; padding-top:177%; overflow:hidden; border-radius:12px; background:#222;">
+                            <img src="${imageUrl}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
+                        </div>
+                        <p style="font-size:11px; margin-top:8px; line-height:1.2; height:2.4em; overflow:hidden; text-align:center;">
+                            ${item.title}
+                        </p>
+                    </a>
+                `;
+                container.appendChild(slide);
+            });
+            console.log("SHORTセクションの強制上書きが完了しました！ 件数:", items.length);
+        })
+        .catch(err => console.error("読み込みエラー:", err));
 }
-window.addEventListener('load', initShorts);
+
+// ページが読み込まれたら即実行
+window.addEventListener('load', renderShorts);
+// 保険として3秒後にもう一度実行（遅延読み込み対策）
+setTimeout(renderShorts, 3000);
