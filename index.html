@@ -32,7 +32,6 @@
 
         .section-label { padding: 30px 15px 10px; font-size: 0.75rem; color: var(--accent-color); font-weight: bold; border-left: 3px solid var(--accent-color); margin-left: 15px; text-transform: uppercase; }
         
-        /* YouTube構成 */
         .featured-video { padding: 12px; }
         .v-main { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; border: 1px solid #333; }
         .v-main iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -41,7 +40,6 @@
         .v-card { min-width: 160px; text-decoration: none; color: #fff; }
         .v-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; }
 
-        /* ニュース構成 */
         #news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; padding: 12px; }
         .news-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; border: 1px solid #222; position: relative; }
         .news-badge { position: absolute; top: 8px; left: 8px; background: var(--accent-color); color: #000; font-size: 0.5rem; font-weight: bold; padding: 2px 6px; border-radius: 4px; z-index: 5; display: none; }
@@ -85,20 +83,36 @@
     </div>
 
     <script>
+        let allImages = [];
+        let currentInterval = null;
+
+        function rotateImage() {
+            if (allImages.length === 0) return;
+            const img = document.getElementById('random-photo');
+            img.style.opacity = 0;
+            setTimeout(() => {
+                const nextImg = allImages[Math.floor(Math.random() * allImages.length)];
+                img.src = nextImg + '?v=' + Date.now();
+            }, 1000); // 1秒かけてフェードアウトした後にソースを変更
+        }
+
         async function updateUI() {
             try {
                 const res = await fetch('news.json?v=' + Date.now());
                 const data = await res.json();
                 
-                // 画像
+                // 画像のローテーション設定
                 if (data.images?.length) {
+                    allImages = data.images;
                     const img = document.getElementById('random-photo');
-                    img.style.opacity = 0;
-                    img.src = data.images[Math.floor(Math.random() * data.images.length)] + '?v=' + Date.now();
+                    img.src = allImages[Math.floor(Math.random() * allImages.length)] + '?v=' + Date.now();
                     img.onload = () => img.style.opacity = 1;
+
+                    // すでにタイマーがあればクリアして5秒ごとに切り替えを開始
+                    if (currentInterval) clearInterval(currentInterval);
+                    currentInterval = setInterval(rotateImage, 5000);
                 }
 
-                // 動画（Featured & Arrivals）
                 if (data.featured) {
                     document.getElementById('main-video').innerHTML = `<div class="v-main"><iframe src="https://www.youtube.com/embed/${data.featured.id}" frameborder="0" allowfullscreen></iframe></div>`;
                 }
@@ -108,7 +122,6 @@
                     vList.innerHTML += `<a href="https://www.youtube.com/watch?v=${v.id}" class="v-card" target="_blank"><img src="${v.thumbnail}" class="v-thumb"><div style="font-size:0.6rem; margin-top:5px;">${v.title}</div></a>`;
                 });
 
-                // ニュース
                 const newsCont = document.getElementById('news-container');
                 newsCont.innerHTML = "";
                 (data.news || []).forEach(n => {
