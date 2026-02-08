@@ -1,330 +1,4 @@
 {
-    "images": [
-        "images/photo_1.jpg",
-        "images/photo_2.jpg",
-        "images/photo_3.jpg",
-        "images/photo_4.jpg",
-        "images/photo_5.jpg",
-        "images/photo_6.jpg",
-        "images/photo_7.jpg",
-        "images/photo_8.jpg",
-        "images/photo_9.jpg",
-        "images/photo_10.jpg",
-        "images/photo_11.jpg",
-        "images/photo_12.jpg",
-        "images/photo_13.jpg",
-        "images/photo_14.jpg",
-        "images/photo_15.jpg",
-        "images/photo_16.jpg",
-        "images/photo_17.jpg",
-        "images/photo_18.jpg",
-        "images/photo_19.jpg",
-        "images/photo_20.jpg",
-        "images/photo_21.jpg",
-        "images/photo_22.jpg",
-        "images/photo_23.jpg",
-        "images/photo_24.jpg",
-        "images/photo_25.jpg",
-        "images/photo_26.jpg",
-        "images/photo_27.jpg",
-        "images/photo_28.jpg",
-        "images/photo_29.jpg",
-        "images/photo_30.jpg",
-        "images/photo_31.jpg",
-        "images/photo_32.jpg",
-        "images/photo_33.jpg",
-        "images/photo_34.jpg",
-        "images/photo_35.jpg",
-        "images/photo_36.jpg",
-        "images/photo_37.jpg",
-        "images/photo_38.jpg",
-        "images/photo_39.jpg",
-        "images/photo_40.jpg",
-        "images/photo_41.jpg",
-        "images/photo_42.jpg",
-        "images/photo_43.jpg",
-        "images/photo_44.jpg",
-        "images/photo_45.jpg",
-        "images/photo_46.jpg",
-        "images/photo_47.jpg",
-        "images/photo_48.jpg",
-        "images/photo_49.jpg",
-        "images/photo_50.jpg",
-        "images/photo_51.jpg",
-        "images/photo_52.jpg",
-        "images/photo_53.jpg",
-        "images/photo_54.jpg",
-        "images/photo_55.jpg",
-        "images/photo_56.jpg",
-        "images/photo_57.jpg",
-        "images/photo_58.jpg",
-        "images/photo_59.jpg",
-        "images/photo_60.jpg",
-        "images/photo_61.jpg",
-        "images/photo_62.jpg",
-        "images/photo_63.jpg",
-        "images/photo_64.jpg",
-        "images/photo_65.jpg",
-        "images/photo_66.jpg",
-        "images/photo_67.jpg",
-        "images/photo_68.jpg",
-        "images/photo_69.jpg",
-        "images/photo_70.jpg",
-        "images/photo_71.jpg",
-        "images/photo_72.jpg",
-        "images/photo_73.jpg",
-        "images/photo_74.jpg",
-        "images/photo_75.jpg",
-        "images/photo_76.jpg",
-        "images/photo_77.jpg",
-        "images/photo_78.jpg",
-        "images/photo_79.jpg",
-        "images/photo_80.jpg",
-        "images/photo_81.jpg",
-        "images/photo_82.jpg",
-        "images/photo_83.jpg",
-        "images/photo_84.jpg",
-        "images/photo_85.jpg",
-        "images/photo_86.jpg",
-        "images/photo_87.jpg",
-        "images/photo_88.jpg",
-        "images/photo_89.jpg",
-        "images/photo_90.jpg",
-        "images/photo_91.jpg",
-        "images/photo_92.jpg",
-        "images/photo_93.jpg",
-        "images/photo_94.jpg",
-        "images/photo_95.jpg",
-        "images/photo_96.jpg",
-        "images/photo_97.jpg",
-        "images/photo_98.jpg",
-        "images/photo_99.jpg",
-        "images/photo_100.jpg",
-        "images/photo_101.jpg",
-        "images/photo_102.jpg",
-        "images/photo_103.jpg",
-        "images/photo_104.jpg",
-        "images/photo_105.jpg",
-        "images/photo_106.jpg",
-        "images/photo_107.jpg",
-        "images/photo_108.jpg",
-        "images/photo_109.jpg",
-        "images/photo_110.jpg",
-        "images/photo_111.jpg",
-        "images/photo_112.jpg",
-        "images/photo_113.jpg",
-        "images/photo_114.jpg",
-        "images/photo_115.jpg",
-        "images/photo_116.jpg",
-        "images/photo_117.jpg",
-        "images/photo_118.jpg",
-        "images/photo_119.jpg",
-        "images/photo_120.jpg",
-        "images/photo_121.jpg",
-        "images/photo_122.jpg",
-        "images/photo_123.jpg",
-        "images/photo_124.jpg",
-        "images/photo_125.jpg",
-        "images/photo_126.jpg",
-        "images/photo_127.jpg",
-        "images/photo_128.jpg",
-        "images/photo_129.jpg",
-        "images/photo_130.jpg",
-        "images/photo_131.jpg",
-        "images/photo_132.jpg",
-        "images/photo_133.jpg",
-        "images/photo_134.jpg",
-        "images/photo_135.jpg",
-        "images/photo_136.jpg",
-        "images/photo_137.jpg",
-        "images/photo_138.jpg",
-        "images/photo_139.jpg",
-        "images/photo_140.jpg",
-        "images/photo_141.jpg",
-        "images/photo_142.jpg",
-        "images/photo_143.jpg",
-        "images/photo_144.jpg",
-        "images/photo_145.jpg",
-        "images/photo_146.jpg",
-        "images/photo_147.jpg",
-        "images/photo_148.jpg",
-        "images/photo_149.jpg",
-        "images/photo_150.jpg",
-        "images/photo_151.jpg",
-        "images/photo_152.jpg",
-        "images/photo_153.jpg",
-        "images/photo_154.jpg",
-        "images/photo_155.jpg",
-        "images/photo_156.jpg",
-        "images/photo_157.jpg",
-        "images/photo_158.jpg",
-        "images/photo_159.jpg",
-        "images/photo_160.jpg",
-        "images/photo_161.jpg",
-        "images/photo_162.jpg",
-        "images/photo_163.jpg",
-        "images/photo_164.jpg",
-        "images/photo_165.jpg",
-        "images/photo_166.jpg",
-        "images/photo_167.jpg",
-        "images/photo_168.jpg",
-        "images/photo_169.jpg",
-        "images/photo_170.jpg",
-        "images/photo_171.jpg",
-        "images/photo_172.jpg",
-        "images/photo_173.jpg",
-        "images/photo_174.jpg",
-        "images/photo_175.jpg",
-        "images/photo_176.jpg",
-        "images/photo_177.jpg",
-        "images/photo_178.jpg",
-        "images/photo_179.jpg",
-        "images/photo_180.jpg",
-        "images/photo_181.jpg",
-        "images/photo_182.jpg",
-        "images/photo_183.jpg",
-        "images/photo_184.jpg",
-        "images/photo_185.jpg",
-        "images/photo_186.jpg",
-        "images/photo_187.jpg",
-        "images/photo_188.jpg",
-        "images/photo_189.jpg",
-        "images/photo_190.jpg",
-        "images/photo_191.jpg",
-        "images/photo_192.jpg",
-        "images/photo_193.jpg",
-        "images/photo_194.jpg",
-        "images/photo_195.jpg",
-        "images/photo_196.jpg",
-        "images/photo_197.jpg",
-        "images/photo_198.jpg",
-        "images/photo_199.jpg",
-        "images/photo_200.jpg",
-        "images/photo_201.jpg",
-        "images/photo_202.jpg",
-        "images/photo_203.jpg",
-        "images/photo_204.jpg",
-        "images/photo_205.jpg",
-        "images/photo_206.jpg",
-        "images/photo_207.jpg",
-        "images/photo_208.jpg",
-        "images/photo_209.jpg",
-        "images/photo_210.jpg",
-        "images/photo_211.jpg",
-        "images/photo_212.jpg",
-        "images/photo_213.jpg",
-        "images/photo_214.jpg",
-        "images/photo_215.jpg",
-        "images/photo_216.jpg",
-        "images/photo_217.jpg",
-        "images/photo_218.jpg",
-        "images/photo_219.jpg",
-        "images/photo_220.jpg",
-        "images/photo_221.jpg",
-        "images/photo_222.jpg",
-        "images/photo_223.jpg",
-        "images/photo_224.jpg",
-        "images/photo_225.jpg",
-        "images/photo_226.jpg",
-        "images/photo_227.jpg",
-        "images/photo_228.jpg",
-        "images/photo_229.jpg",
-        "images/photo_230.jpg",
-        "images/photo_231.jpg",
-        "images/photo_232.jpg",
-        "images/photo_233.jpg",
-        "images/photo_234.jpg",
-        "images/photo_235.jpg",
-        "images/photo_236.jpg",
-        "images/photo_237.jpg",
-        "images/photo_238.jpg",
-        "images/photo_239.jpg",
-        "images/photo_240.jpg",
-        "images/photo_241.jpg",
-        "images/photo_242.jpg",
-        "images/photo_243.jpg",
-        "images/photo_244.jpg",
-        "images/photo_245.jpg",
-        "images/photo_246.jpg",
-        "images/photo_247.jpg"
-    ],
-    "featured": {
-        "id": "8HxFsdGL6og",
-        "title": "King & Prince「Shake Hands」 in Quiet Session Club vol.1",
-        "thumbnail": "https://i1.ytimg.com/vi/8HxFsdGL6og/hqdefault.jpg"
-    },
-    "regulars": [
-        {
-            "id": "v_di_t9_9dM",
-            "title": "King & Prince「Waltz for Lily」MV Teaser",
-            "thumbnail": "https://i3.ytimg.com/vi/v_di_t9_9dM/hqdefault.jpg"
-        },
-        {
-            "id": "Zw3Pqhn-uKc",
-            "title": "King & Prince 18th Single「Waltz for Lily」Teaser",
-            "thumbnail": "https://i3.ytimg.com/vi/Zw3Pqhn-uKc/hqdefault.jpg"
-        },
-        {
-            "id": "ujuUdPkXTjI",
-            "title": "最後まで見てね🎶 #KingandPrince #STARRING #Theater #永瀬廉 #髙橋海人",
-            "thumbnail": "https://i2.ytimg.com/vi/ujuUdPkXTjI/hqdefault.jpg"
-        },
-        {
-            "id": "vJ3AMSwaQpE",
-            "title": "おすそわけ📽️ #STARRING_プレミアナイト #KingandPrince #STARRING #Theater",
-            "thumbnail": "https://i3.ytimg.com/vi/vJ3AMSwaQpE/hqdefault.jpg"
-        },
-        {
-            "id": "ULBuaVFP7-M",
-            "title": "かわいい子がいた♡ #KingandPrince #STARRING #Theater #永瀬廉 #髙橋海人",
-            "thumbnail": "https://i2.ytimg.com/vi/ULBuaVFP7-M/hqdefault.jpg"
-        },
-        {
-            "id": "8xai2nEOhRY",
-            "title": "😎 #KingandPrince #STARRING #Theater #永瀬廉 #髙橋海人",
-            "thumbnail": "https://i1.ytimg.com/vi/8xai2nEOhRY/hqdefault.jpg"
-        },
-        {
-            "id": "kjYouchGoys",
-            "title": "Let's Theater walk!! #KingandPrince #STARRING #Theater #永瀬廉 #髙橋海人",
-            "thumbnail": "https://i4.ytimg.com/vi/kjYouchGoys/hqdefault.jpg"
-        },
-        {
-            "id": "O7q7sclLCzA",
-            "title": "📸 #KingandPrince #STARRING #Theater #永瀬廉 #髙橋海人",
-            "thumbnail": "https://i4.ytimg.com/vi/O7q7sclLCzA/hqdefault.jpg"
-        },
-        {
-            "id": "_FvyQXwE-o0",
-            "title": "「Theater」Lyric Video✏️ #KingandPrince #STARRING #Theater #永瀬廉 #髙橋海人",
-            "thumbnail": "https://i4.ytimg.com/vi/_FvyQXwE-o0/hqdefault.jpg"
-        },
-        {
-            "id": "3eBSOS8wtBg",
-            "title": "待ち侘びた金土日✨ #KingandPrince #STARRING #Theater #髙橋海人 #永瀬廉",
-            "thumbnail": "https://i4.ytimg.com/vi/3eBSOS8wtBg/hqdefault.jpg"
-        },
-        {
-            "id": "H6qPeOdMmBs",
-            "title": "いつも通りだ🎶 #KingandPrince #STARRING #Theater #永瀬廉",
-            "thumbnail": "https://i1.ytimg.com/vi/H6qPeOdMmBs/hqdefault.jpg"
-        },
-        {
-            "id": "d6YyCMYUrNo",
-            "title": "あなたの月火水を見せてちょうだい #KingandPrince #STARRING #Theater #髙橋海人 #永瀬廉",
-            "thumbnail": "https://i1.ytimg.com/vi/d6YyCMYUrNo/hqdefault.jpg"
-        },
-        {
-            "id": "LBbCcDNn7OE",
-            "title": "King & Prince「Home, Stupid Home」特報 (King & Prince “STARRING” Film Collection)",
-            "thumbnail": "https://i1.ytimg.com/vi/LBbCcDNn7OE/hqdefault.jpg"
-        },
-        {
-            "id": "KOFVhtb0nZg",
-            "title": "King & Prince「ROOFTOP PICNICS」特報 (King & Prince “STARRING” Film Collection)",
-            "thumbnail": "https://i4.ytimg.com/vi/KOFVhtb0nZg/hqdefault.jpg"
-        }
-    ],
     "news": [
         {
             "title": "2026.01.30TOPICSKing & Prince NEWシングル「Waltz for Lily」 ジャケット写真と収録内容を一挙公開！",
@@ -388,6 +62,720 @@
             "source": "ナタリー",
             "date": "2026/02/08 16:14",
             "img": "https://wsrv.nl/?url=https%3A//ogre.natalie.mu/media/news/music/2026/0130/kingandprince_jkt202603_LimitedLIVE.jpg%3Fimpolicy%3Dtwitter_card_face_crop&w=400&h=250&fit=cover"
+        },
+        {
+            "title": "King & Prince「Shake Hands」“Quiet Session Club” ver.がYouTubeで公開中♪ - 推し楽",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBHbzVRZFdqZ2pqUnBSLURYRU9vaDZYR0J6VnI0OVg2RWxJbGg1Vlo4ZE5lUXVkbURXVklqYm85bzdRVVhJOVpjRURCT1ZFZlBSSHdNSDlkbzc?oc=5",
+            "date": "2026-02-08 05:14",
+            "source": "推し楽",
+            "img": ""
+        },
+        {
+            "title": "鈴木亮平、戸田恵梨香、永瀬廉ら出演「リブート」第4話、ついに早瀬が正体を明かす!? - 推し楽",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9HUVhDZmVNOHctSUdNY1gyQ2F1eHFaM1FuM1JSWXpyZ015MTBDcktfWkJTcDJlWEVIWlEtek1mS0VDRjJhSW1YS1E4RnR0WWFFMENiMGlzb0c?oc=5",
+            "date": "2026-02-08 05:11",
+            "source": "推し楽",
+            "img": ""
+        },
+        {
+            "title": "King & Prince、「Shake Hands」スタジオライブ映像公開 - Billboard JAPAN",
+            "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1tN2VDcnFaVGxySjV3YnB6ZWpyZEtIN2s5WHBrLWlSbnJ1VWl4Q0ZBSEFTSFFWa3ZwZW1RYldkWHVBNXFsbERyUEVNYU44VzM2bFI0XzlrVGRsZnE2QzZrTGhB?oc=5",
+            "date": "2026-02-07 22:20",
+            "source": "Billboard JAPAN",
+            "img": ""
+        },
+        {
+            "title": "キンプリ永瀬廉、日曜劇場の悪役熱演に反響「演技上手すぎて怖い」「マジで埋めますよ…にドキドキ」（ENCOUNT） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9iVTFaSE9XNDEzcHQzSC1hWXJFN3JndE5QeVkzUkttMWxjc3U5SFkwZXJzai01ZmcxdWlRbWoyUHZuN3lrTzRwRW5ZTUtmTWpHTzV2eEwta2lmVF9Od0NZQ3UySjE3LThnVFozMG9zbTZCSGxZTHJhX2pSb0VjQkE?oc=5",
+            "date": "2026-02-07 01:28",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "King & Prince「Shake Hands」スタジオライブ映像公開 - JOYSOUND 音楽ニュース",
+            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5ibTdOWGQ2M0ZiYlYwMi13eW5lcUU2MEVuTUsxQlFLeDNUOTdvYUJlM1NvWDJWOHppN0Y1NC0zUlhnSTBuaUladUkzZDdmX2xjM2c?oc=5",
+            "date": "2026-02-06 18:06",
+            "source": "JOYSOUND 音楽ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉がボーダーニットにデニム姿で壁にもたれゆるく微笑むショットに「スタイルよすぎ」「柔らかい雰囲気がかっこいい」「萌え袖だー」（THE FIRST TIMES） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE50Q0hVbURqMDE1dWNjQ3RNTTJJLTVIYkE4OW43N2tXUlZoVUVkeG9va0JDWExtX1EweVNvTHpRV2g0T0lsYmZ1eFVSRGE4cHFaWlY0d2N1UHBiQmpXLXdtOXNNZUNYUi14UU5fbU9DZUVfemZyZVFVVlR2dXBFN0U?oc=5",
+            "date": "2026-02-06 12:20",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "MAZZEL・NAOYA、母から「説教LINEが死ぬほど届く」内容にキンプリ永瀬廉「愛がある」お茶目な返信も明かす - au Webポータル",
+            "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBKTFE2ekt1eWFTT2lnQzRXalVBQjByRjBJcHlPbDg1NzJWd2NQU1R4UXVlaDNUdVdyWXlUcTFMam1MbElFYmpQZ0R4THJ3NkFOb0N1NUxQUDBwalB1UzNjbXJ5VEI2NVFPaGJ0Um5UWWMtYWJON010LTVn?oc=5",
+            "date": "2026-02-06 09:55",
+            "source": "au Webポータル",
+            "img": ""
+        },
+        {
+            "title": "MAZZEL・NAOYA、母から「説教LINEが死ぬほど届く」内容にキンプリ永瀬廉「愛がある」お茶目な返信も明かす - モデルプレス",
+            "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE00S3k2S3lyaWNyRVZsSGlpUmhDVGJzdFNlMEJaVjJ0TXJZSHJhczdVRnkxX0VZLUpVYmR4RXNndV9BdkNGZGNPUjh0Y9IBR0FVX3lxTE4ycndCRXlaQmhRelBIQUEyTTFidVY0VzJDS3FUaVZpUnJOcGRQNmNFb044cER1UUsyemljdXVPZGZYVzJnUUlZ?oc=5",
+            "date": "2026-02-06 09:33",
+            "source": "モデルプレス",
+            "img": ""
+        },
+        {
+            "title": "back numberの“ガチファン”永瀬廉の熱すぎるトークに視聴者もびっくり「解像度高すぎる！」＜日曜日の初耳学＞ - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQb1I1ekc5SEpUQ1pZeVJORExob1FtOW1DVzVHY3Fib0lieTVsNXRBX0xZUVJybVpLbEtOLUplWFYxUDFYUWwyVEFyeUhxUjlvZ0xPX2I4aERldWRYcGw5dVZHOEVTT0VMUkNIb2dtZ3ZDV3pkMFZrQ2VKRzVnNEdvRFRVVkRERDVk?oc=5",
+            "date": "2026-02-06 09:02",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "back numberの“ガチファン”永瀬廉の熱すぎるトークに視聴者もびっくり「解像度高すぎる！」＜日曜日の初耳学＞ - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE8wY3BwNDhuV29mMTZia3FFbk4weTJjVGc2R05jd2JTMnkxSWY1MG90eHptbXp3cWkyLTVrUmF3ZTYxTUkySnRlUmdwT1pPQjY5djdiWkFJQ0FhZFprX1ZRT19PeHo5amhzNm1VbTdRZXN3X2dhdWJoNmlUdWF1Q28?oc=5",
+            "date": "2026-02-06 09:02",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "back numberの“ガチファン”永瀬廉の熱すぎるトークに視聴者もびっくり「解像度高すぎる！」＜日曜日の初耳学＞ - TBS NEWS DIG",
+            "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1ZcmtWYUhYM1A4eW4zVWQ1NWhDQ2E5MjhpSXlXa3BiVzYwTlNoSWVoelhYTjZvdzFCQUJXa0N2b2l5QnNSdE9zQXZPVmh4WGxaeDhwemUwT2oyelBVb3pXeQ?oc=5",
+            "date": "2026-02-06 09:00",
+            "source": "TBS NEWS DIG",
+            "img": ""
+        },
+        {
+            "title": "『リブート』行き場のない子どもを救うNPO法人「しぇるたー」で働く職員。でもそれは「表の顔」で…。合六の部下・冬橋航を演じるのは、永瀬廉さん＜キャスト紹介＞ - 婦人公論.jp",
+            "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE91Mk9lMjdWUE9welVJZTVpSmNqYjFCeWhSem1CX1YtWW0wa2NFQ3NqNDVhenlEZEt3WklTdzdhS2xuTkk0MDkzUzIzZU9LcW8?oc=5",
+            "date": "2026-02-06 08:00",
+            "source": "婦人公論.jp",
+            "img": ""
+        },
+        {
+            "title": "『リブート』行き場のない子どもを救うNPO法人「しぇるたー」で働く職員。でもそれは「表の顔」で…。合六の部下・冬橋航を演じるのは、永瀬廉さん＜キャスト紹介＞（婦人公論.jp） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9OSFZQWlZnUjJDdmJrcTRmOW53TWFyRFhQZXIyVTkxOEZEQzQyVWRuREV4b1VIbWJyYzlkb1NUWTdvLXdBS0JjTExjT01hcGZZbjdEQXA1emJUVm9VNlNHTVEwTTJGbllLMVhtTmtLbXlmRzVPaFF2ZkdiZzJKWTQ?oc=5",
+            "date": "2026-02-06 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛『鬼の花嫁』3月公開！伊藤健太郎、尾野真千子ら豪華キャスト集結、“乙女心を鷲掴みにした”580万部人気作を実写化 - ウォーカープラス",
+            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBOY29Gd3VveUhyMFpzanZRM1MzVERCWkwyaXQtMWZ2dXpUZU9HMmcyQTBHZHJFOGt5OXhBYVJ3dEtidXBuRHgxVEFMd1ROb1MwenNHRGlR0gFbQVVfeXFMTUVRenR6bTFqUFg1UXVKT3Q0emFCTEFnTVRCc1NCR3ZVM0c1MGdBcmJsbWQ0dU5ZMVQzVEYxYkh3WjU1WDZLSkdGNHdDV3FjaF9TaGpOU1JzOUQ4SQ?oc=5",
+            "date": "2026-02-06 08:00",
+            "source": "ウォーカープラス",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛W主演映画『鬼の花嫁』の予告編で流れる曲は？（CDJournal） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5ObGlEdHFOcVljWTRRZDgyUnpVdm1oaURJSlJKWHhOcUpZdDgzQV9jRENZTUc2b0hvYkRWSm5LdHBBOGh2cDh6QVEyYW9hYmlPQzZuMHdMaUVRUkhJUGs0TTBFNzlCcWNSdWpCR28zMWlyNUNoaUJoalM5eVRJOUk?oc=5",
+            "date": "2026-02-06 04:49",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "「こんなに上手かった？」朝ドラで評価を高めた男性アイドル5選。巧みな芝居でお茶の間の支持を得た逸材をセレクト - 映画チャンネル",
+            "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBKc3lReHVTUVMyOWpOLXhBd0Y3QnBzX0FvVXJGOGs2RWM3OTBLWTJrS0RyNTg3ajhKWk5IOS03di1KSzhXVDN3QWVBbmctUjg?oc=5",
+            "date": "2026-02-06 01:34",
+            "source": "映画チャンネル",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉さんのお気に入りは？ ディオールのアディクト リップ グロウ オイルとフレグランスが話題（MAQUIA） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBZbWpEVGNfS0I4VmpIZlN3b0ozZ3c3ZEVHSm8wUWlsajZUNHJfVWhFdTdPLXhmdjNaREVoczVmSkxfTW5WaG5nQllVVTduLUlsQ0ZNMEswSmRmRnJTYTFoQm5leDBTdFRzVUFCMU5BMUVvcG9ocGdVR29mUndJT28?oc=5",
+            "date": "2026-02-05 12:30",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉＆藤澤涼架がにらみを利かせた『リブート』オフショットに「悪そうな顔も好き」「サイコパス感あって刺さる」「裏組織の最強バディかっこいい」（THE FIRST TIMES） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1TRFRZRTdGZXNNaTBUY0w4Uk9tZ3FaWWMzb1VRN2ZWSGc2TFZOVUZxazIzcXFjRUQ4dzlZb3FxOG5sYUJhRkdzaVpjNnp3V2xQaTNvZDRVcEhlLXpVWWlQT2g4bDY2ZFhvN2xWbVpFbUF1ck9xZ3lBTjN5eDBaS00?oc=5",
+            "date": "2026-02-05 11:40",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "リブート：「夏海さんも喜んでるでしょうね」 “冬橋”永瀬廉の意味深な一言がインパクト（ネタバレあり） - MANTAN WEB",
+            "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFA0bndZbFNNM05jeHZ1T1pBektIYmpYNkZ5VU8yWHJ2ZFhvZkhmUlJLMGkwaDlCazVubndtQTZhd2NJUTNrNjlEQVlmaUs2cHR6RndmTzZyb2c3b0dsN0xtLVV0MGdNT3dyTG5B?oc=5",
+            "date": "2026-02-05 10:11",
+            "source": "MANTAN WEB",
+            "img": ""
+        },
+        {
+            "title": "2/11(水)の庭ラジも福山雅治さん考案のあのコーナーを！ - 文化放送",
+            "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5XMWpzWXRLb2ZHY2RNM1ZMZkIzN25xTXR2MHdZUUN2WXZPQzFZOXk2X0RxRlJkTlA5NDFTd2hxc1N2aGFHejZzMHJHQXJrMXFjVTFv?oc=5",
+            "date": "2026-02-05 04:22",
+            "source": "文化放送",
+            "img": ""
+        },
+        {
+            "title": "キンプリ永瀬廉、キスマイ玉森裕太が「1歩先にやってる」叶えたいこと告白 - モデルプレス",
+            "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5FQUpldzFSb2J4M1R6V0tZMkx0VXR3bDhRUFlFblpMQXRpQ2ltMmNlVkdzaHRyNVZ6bFZtZEdzX2Z5U3Q3eFNtUHZic9IBR0FVX3lxTE9OQ3U5QUxORlc3S1NBem5yeDY3R1RIWDR2bHIxZmpsZUJpNkctTzVQTE5PT3l1N3M3aHpwMmhTUC1NSUJHaVFn?oc=5",
+            "date": "2026-02-05 03:54",
+            "source": "モデルプレス",
+            "img": ""
+        },
+        {
+            "title": "「最強バディ」「スピンオフ見てみたい」永瀬廉＆藤澤涼架、歓喜のツーショット「リブート」 - cinemacafe.net",
+            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5VTTJzbzJLblpZQllDVE5zM05rOWV6NlZNSEU4eG94N1JuOGFTNGZGZFRVZ0xKX24xeGhpb1hiV2o5SHNCanBrQTNBTWFpTXdHSldYb1VUcmRVYlJHTVotTV9UNXQ2OFJW?oc=5",
+            "date": "2026-02-04 08:00",
+            "source": "cinemacafe.net",
+            "img": ""
+        },
+        {
+            "title": "日曜劇場「リブート」冬橋（永瀬廉）の新事実明らかに 意外な人物との繋がりに注目集まる「思い入れがありそう」「生い立ちも関係してる？」【ネタバレあり】 - モデルプレス",
+            "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE5FVGVneGJNRDdzb1lrTnFlSDBPMjl5bm1XWENqdWVMR2hSQzAzeURpT1h6b0taSVZhckVnQlRxVG1mUnRwZlkwYi01VnrSAUhBVV95cUxPaGdnZFJVa1FsZHFDUkZJQ0NBNXdGSGxGcXd4cFVwcEVvSHNFMzRfNmhJc2lCeGFTTDdjUWlfSS0yNjZydDlKVDk?oc=5",
+            "date": "2026-02-04 04:49",
+            "source": "モデルプレス",
+            "img": ""
+        },
+        {
+            "title": "キンプリ永瀬廉が鈴木亮平に〝弟子入り〟 ＴＢＳ「リブート」現場で密着取材（東スポWEB） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9LX0NROGtRczg2OXFBbFhOMk1wVGlpazd5bElJT0JDX1N6aGpTd1hHX09HdDZSVl9ZV0R4Zzgta2o1ak5GOXg3VUVpUVVoN3FXR0hCdkxaSnVodW9VcF9FdXdheXNjRGYyaWZjQ3VyR2dOTlJqdlVBRnRjWmotMHc?oc=5",
+            "date": "2026-02-03 20:15",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "キンプリ永瀬廉が鈴木亮平に〝弟子入り〟 ＴＢＳ「リブート」現場で密着取材 - 東スポWEB",
+            "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9qcnYwZlMwa0VQdmp5MVFIMUpsM3JwSERzNkZ1Zjl0blV3QWY2UjYwT3kzUFlhUWxQVFdWbXRSM0tqOXplNW96ZF9TVUtFcGpXUUtILVNLQmk5WU44?oc=5",
+            "date": "2026-02-03 20:00",
+            "source": "東スポWEB",
+            "img": ""
+        },
+        {
+            "title": "キンプリ永瀬廉が鈴木亮平に〝弟子入り〟 ＴＢＳ「リブート」現場で密着取材 - au Webポータル",
+            "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1pbjdZOU4zRXRuTldfbjdlUURUV0NKSkNHZ3l4Z0U0MmZnNDRUVkdZcG0wVnpsZ0VYelpZQU41ajhzSWRkQU9NOXU3cTBudHlMU2tBckVIZS1YNkkyNl9XSDJOT0RVWWViNzF6YzMwVjJJNzlhVnRHcXgtcw?oc=5",
+            "date": "2026-02-03 20:00",
+            "source": "au Webポータル",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛W主演映画『鬼の花嫁』、King & Princeによる主題歌とのコラボ映像が解禁 - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFAyUlhwcTRRZHBvNlJxbG9yT3hrTHV3WER2aV91ckp5dWV5UFlIWG9tRDBnaTVFS25tUVZTU1UxZHl4amRZbFI5SXE3akxXS1ZrMkp5ZUQzTFBVQkw0emRDYjFxZ0M2V0l6MlFpTHo3VVU4OFNSTF9YcmY2MzBQYkk?oc=5",
+            "date": "2026-02-03 13:05",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛W主演映画『鬼の花嫁』、King & Princeによる主題歌とのコラボ映像が解禁 - Billboard JAPAN",
+            "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9BM0FKY2JjRnRJR2QxN3B6VldWaWN0V2h5UEJNRmRyWUhReXBLbTRIYkx0bkJoNWNFNUhaOXBVSDF3RUJFaEV0Sm1sTUF4ZVhpTXRfZE85eXhFNUZSbGtVLVJB?oc=5",
+            "date": "2026-02-03 13:00",
+            "source": "Billboard JAPAN",
+            "img": ""
+        },
+        {
+            "title": "黒スーツの永瀬廉が黒髪金メッシュセンター分けでキリリとした笑顔を見せる姿に「喪服も似合う」「ビジュ良すぎ」「冬橋のときの廉くんコワかっこいい」（THE FIRST TIMES） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBqUG40Q0RFY1NjTFZmX3dlTjBSUVJsSEVGQmJSZ1pDYU1RUHJHbEFOeW5zTDRmdE01WmNnbGJQVUJLWHRna19XalhGc3VvS1J5a3cyZ1MyRjdRT2lZaXdYWjlLNjVkLVN6Yk1jRjQ3TTNwNHJEbmE2ekdSanN3bE0?oc=5",
+            "date": "2026-02-03 10:58",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛『鬼の花嫁』とKing & Princeによる主題歌“Waltz for Lily”のコラボ映像が到着 - CINRA",
+            "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1HYmJZY2M1TFJZblFDQTFoNnZ6ZnBfNDA2aC1LdHFVbFJOMmxOMjBYQzEwbWR1WWRPd1htdDlfYjdKYkhOdDNYb3p4a0x6VWZNbGxsZGVKZUd3RndlaWV6Q01iUnkxUQ?oc=5",
+            "date": "2026-02-03 09:27",
+            "source": "CINRA",
+            "img": ""
+        },
+        {
+            "title": "【考察】鈴木亮平・永瀬廉が表現する複雑な人物の機微 『リブート』第3話 - grape [グレイプ]",
+            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE82YmJBY0FGZW5Wa3I4N2RXV2JMVjRBd0NHMm1TZkprQ181YVd1R19FZXRhSXJtZ3ZaTkszd1A4enBjSUJNemI0TkducWpGdkpuUjl6ejdObnhvdw?oc=5",
+            "date": "2026-02-03 04:31",
+            "source": "grape [グレイプ]",
+            "img": ""
+        },
+        {
+            "title": "映画「鬼の花嫁」主題歌コラボ映像が公開！ 永瀬廉＆吉川愛が距離を縮めていく最新カットも - 推し楽",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE85ZHNvUUwwTnYxV3NrM2lIb3FYdWJhN2RFV1liOXRGdTdZTHJ4VnQ3c3ZYRm5kUEUxOXdkMGJUR1FYZk4wZUpDQkY2NWRscHBZQnNpNzBqaXA?oc=5",
+            "date": "2026-02-03 04:14",
+            "source": "推し楽",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉＆吉川愛 W主演『鬼の花嫁』King & Prince主題歌「Waltz for Lily」とコラボした特別映像解禁 - CINEMA Life! シネマライフ",
+            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5PeXZzc3d0VFZCXzhLQVlUZDg5bkJHQlFEcU1ON2Z3ZVJ4RXVzaGZ5c0ZrX0Z1RV9vTEl5YUZYU0VBSlVzNGdBY1ZaODdZa25IbEE?oc=5",
+            "date": "2026-02-03 01:10",
+            "source": "CINEMA Life! シネマライフ",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛W主演映画『鬼の花嫁』×King & Prince主題歌「Waltz for Lily」コラボ映像解禁 - THE FIRST TIMES",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE44VWRuaXU2SEd5TVNnUHJFN1RYVzUxUVVWMkd6ZGt3T21zWGdCSmticUdyb19YWmRqTWdqNlJaX0V2UnU2NUg3SFo0Tl9MRmEtdWJvQnRNTTA?oc=5",
+            "date": "2026-02-03 01:04",
+            "source": "THE FIRST TIMES",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛『鬼の花嫁』King ＆ Princeの甘い歌声に宿る“愛し抜く覚悟”――主題歌コラボ映像＆場面写真解禁 - クランクイン！",
+            "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9ja2owdWkwQW1Ca1JGMnNULUhwT2tDU1h1T0FIaDJsNTJDeEpsZ2NOY0VGZDlJUnNDM25CZ3RTSDcwTERPM1R4Nmh2dmg?oc=5",
+            "date": "2026-02-02 22:03",
+            "source": "クランクイン！",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛『鬼の花嫁』King ＆ Princeの甘い歌声に宿る“愛し抜く覚悟”――主題歌コラボ映像＆場面写真解禁 - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBlMnU5cFplY3JkV0hUU215X214cnJ2RExjQnFmTWdLMjU1dVRLUHd0RTZWSWtCSTY4WGJDM0Ftb0NJZ3FMOGE4b0FKRzVBVW9HZFBjSGNyQjJKM2poVDNQZE4xNExvRGxwa1N6TjNxUGpJeldveHVvZUtxTEw5YkE?oc=5",
+            "date": "2026-02-02 22:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉＆吉川愛、運命が加速する『鬼の花嫁』King＆Prince主題歌特別映像 - cinemacafe.net",
+            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA2ZHdwNHFUVzFVU1Z4RzdzSjV6VkQwZXZ3UVoyQmpsbmF4aUhCZGFfZmxXaloyajRjVFFXYU1jcXgxbTNtajAtNnBEU3dIRlN4UC1CRTZLc2EtN2RBcTQtd3JUeDhieVEy?oc=5",
+            "date": "2026-02-02 22:00",
+            "source": "cinemacafe.net",
+            "img": ""
+        },
+        {
+            "title": "King & Princeの主題歌「Waltz for Lily」とコラボ！永瀬廉×吉川愛「鬼の花嫁」特別映像＆新場面写真公開 - 映画.com",
+            "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE56SFM2UTNoNHNyMWh1RUZhajVtazVJbkhJTG1YazlkdzJ3N2RNTUtTTzBxYUw3Rk1tLWo1YjFpaUtHcnJfakpXSg?oc=5",
+            "date": "2026-02-02 22:00",
+            "source": "映画.com",
+            "img": ""
+        },
+        {
+            "title": "キンプリ永瀬廉＆吉川愛が涙「鬼の花嫁」主題歌とコラボした特別映像解禁 - モデルプレス",
+            "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFAtRWJjaGRnYzVSVmVqcXpJMUVGOGw5bFNCM2FQVmtnTUN4d0FhWVd6eU9TVFNZRzlGWjkwMzc4ektrWTM5THBPUjFpd3FNd9IBSkFVX3lxTE9RbjhiNkk0UWZmQU5BYk5QdGNxRDQ4cTA1R1FyQkd5YkVYckxlVDFFeGpNZjVVX1YtSFZ2VzRKVmNzbWRqUk5YZGlB?oc=5",
+            "date": "2026-02-02 22:00",
+            "source": "モデルプレス",
+            "img": ""
+        },
+        {
+            "title": "映画『鬼の花嫁』×King & Prince主題歌がコラボした特別映像公開 永瀬廉と吉川愛の睦まじい場面写真も - ぴあエンタメ情報",
+            "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1HbmgtTUlfeWE0OEhBeVQxWnJyRUNvSDNRQmlLSlpVQXljZVI5S1RQUjFyTUxjTjVWNDhnZ0xtMTY0SEpOWEN6V05ocThORkVJcGdKMVJrV1VBOWZmWDRIbkhfcG0zNVZoN3U4eW9Ebw?oc=5",
+            "date": "2026-02-02 22:00",
+            "source": "ぴあエンタメ情報",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉と吉川愛がゆっくりと惹かれ合っていく　『鬼の花嫁』主題歌特別映像＆新場面写真 - リアルサウンド",
+            "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5TYVF4d29MbDA3elVKRWlLaG9GMDlwVzZmVkJvQ19DaS03dnlJWWkwTE9TcFliVU11eFhXeWdxTWxZZTBISmVDaDdTRG5vSmVtcnZ1R3pqcDFpblM4bkN1WXBR0gFnQVVfeXFMTV9uRjBKYWsxUlVTZlZKRzVqSXBNLTBTcnVVVGE0RWwwZWVqQUwwc1AtV1dCUmFTMVl0NUR0bEFaZmVVSEg3Z3FVM1RhS3pSTUpObVpXRC1NUGp6b1M2Z1RaWHpBM0ViNA?oc=5",
+            "date": "2026-02-02 22:00",
+            "source": "リアルサウンド",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛「鬼の花嫁」の物語をキンプリ主題歌が彩る、SPコラボ映像解禁 - ナタリー",
+            "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9oNjg1T1llbktCaC1fQlJ2VmEzbVE0cnVKTWtaQ0RZWUdsSEM2SkpsSXZpZG1RdXJkTU42TDd2SmxDV0xPQlRnT0JXVQ?oc=5",
+            "date": "2026-02-02 22:00",
+            "source": "ナタリー",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉＆吉川愛ダブル主演映画「鬼の花嫁」とKing & Prince主題歌のコラボ映像公開（動画あり） - ナタリー",
+            "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBHV3Zzck16UnVhZkw1UlRpRGVieE9yV1hTTHE4UEQ2R0VYb1hwZUc0UkxvWUdVbXFCNjJrS1Ixc1FtaTkxc0NVOTg1MnA?oc=5",
+            "date": "2026-02-02 22:00",
+            "source": "ナタリー",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉“鬼”と吉川愛“人間”が惹かれ合い寄り添う 映画『鬼の花嫁』×King & Prince主題歌「Waltz for Lily」特別映像が公開 - オリコンニュース",
+            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE02bWZqYVBFWHhDN3BQR3hEM2x4X1BFS2o0WTZhUFg3WFZ2ZGpSaXdfTi16aDBHeEhiSnlJaVBhZjJfMkROR2l4SlozMl9KVDZtYkk1YS1n?oc=5",
+            "date": "2026-02-02 22:00",
+            "source": "オリコンニュース",
+            "img": ""
+        },
+        {
+            "title": "King & Princeの主題歌「Waltz for Lily」とコラボ！永瀬廉×吉川愛「鬼の花嫁」特別映像＆新場面写真公開（映画.com） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1Ca2Z3QlZtbmNGWkhvbGRLU25wZVBWSVlEcm5OOTF5RU0xczFCbHZxVnhjYWxIb3REYmNfYVFjZ3hnRmJtaU93Nmt4WW44MGQwZk5YZWNtX3E4alhPakpieUhZdm1mZWVpY0hSaVhNa1NiODFHaVBtc0ZBaFFNUVk?oc=5",
+            "date": "2026-02-02 22:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "共感性の高い等身大の歌詞の世界を林修が深掘り▼大ファン永瀬廉が魅力を熱くプレゼン - TVer",
+            "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1VSDExWEp3T2NZYjJxWGFiQmVtNVNILWQ5TEJjU2dCM2ROWnZ0TWthQVBTTXdMSzRvT29nN1dyYURheW1xam5HaXpZOA?oc=5",
+            "date": "2026-02-01 14:03",
+            "source": "TVer",
+            "img": ""
+        },
+        {
+            "title": "back number清水依与吏、キンプリ永瀬廉の“熱唱”に感激「俺より覚えてる」（vois ヴォイス） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1lM2VONXotNU95b2VLQjNnUTFRTkx6SGJVR2pKUFVKT3ozSTdoeG8zUnQyX2pCczB4enQzRUFYVjFzVnJDTGJrSm9LYlR4RER0RS1vWi1VWDBySU0yd0k0V3A2dzBXeUpzMURqUkpLa1g3LTJMSE5DN2ZBZEhSMFk?oc=5",
+            "date": "2026-02-01 08:10",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉 ”スッキリ頬”姿をキャッチ！冠番組終了報道で考えられるソロ活動への加速（SmartFLASH） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBscE1RbjVuWkVYVUhIRTNuOU1VWDZNeHN0ZWlDVmhmTG5yS2R5NW11TjM4V2pUOTlsMGVKYXdMUTNBLTdXU3ByV2ZwVkNEN3RNODFpRnVxbkY4RFI2OFhGcXhKUGVjVnppaW9DTkxvaF9ETk1mdzNXWm16UGFfTm8?oc=5",
+            "date": "2026-01-31 22:59",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉、『リブート』で漂わせる“違和感”の正体 悪役で見せた俳優としての新境地（リアルサウンド） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5RWnpMYjBMSno3ajBwT1RkaXVFNElFS0RzWjlSYmVGUHZnZVhpb2s4Q3hraU9nYURSeFJaLV85V0piOGw4ZWlYX1Vvb19HN1hPeWZ3UUpiUE9adzBtYXp5NTM4M1hhd1lNNWtCUkV6c3htVXpuQmExRFotR05DWnM?oc=5",
+            "date": "2026-01-31 22:31",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉が日曜劇場『リブート』で放つ異様な存在感…目と声で震わせる新境地の演技とは？ “冬橋航”という不気味さを体現 - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5fdGxfWDIxZHRuR1gxaVV2Wl9uamFkNFctMGtjX3lHVTVkcG5ReHpmbnpBbkFLa19fTFVkSUxLNGE1cFZfTFRzNDgzcVlhclBFZnJSYjFCSEVtdDd4X29wTXRvMmxQVzQ4dThHaWVzbnl5LW55ZU9ic0Rya1FjbkE?oc=5",
+            "date": "2026-01-30 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "MCは永瀬廉（King ＆ Prince）「ミュージックカプセル ～人生の推しソング～」2月放送のゲストを解禁！ - tv-tokyo.co.jp",
+            "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9vYmQ4d1JZb0RrWXk3dW5JYTZnWUFpb0g1aS02TkNJaFRfX1NaT2NhT2p4R05DdWlaUWJSRnU3YmNXZEhsY0o5MFpWOW1fZVh5ZDdSNDNoTU40SnY2U0ZLWUs5cmQzWDZPcXNfTTl5aHFpRm4ybkZFSQ?oc=5",
+            "date": "2026-01-29 08:00",
+            "source": "tv-tokyo.co.jp",
+            "img": ""
+        },
+        {
+            "title": "毎週木曜深夜2時5分放送中！King & Prince永瀬廉MC「ミュージックカプセル ～人生の推しソング～」2月に放送されるゲストを解禁！ - tv-tokyo.co.jp",
+            "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE91bklnRnlJU2VHS2pQeks2dENJM2ZtWDZDR0lQenBQeGswVk5wQ3FZdWQyOUdmNkRIdTZGMVVLQ0Z1QUdyYW95UzlEX3hEaGZRcnIzd1NSTUV6M2huZFE0OHFoSjdIUQ?oc=5",
+            "date": "2026-01-29 08:00",
+            "source": "tv-tokyo.co.jp",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉がMCを務める音楽番組『ミュージックカプセル』にMAZZEL、高橋愛、柄本佑らの出演が決定（THE FIRST TIMES） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBrWWpzaEhLSFFCanVqNW1lZjd3OGRrWHVYQ1hkMFlhSDFrMU5KbW9ZZnoyRzhMVzd2cDNyYkdKTUpuTUhfcmJqVlhqY2FDcmR3djZkQ1FXSHFGdmYzR0RLc1RQTmprMlhBeG9LY2FBc2ZDb3VCa25ZWjhtX3ZIcVE?oc=5",
+            "date": "2026-01-29 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "メインMC永瀬廉（King & Prince）、テレ東『ミュージックカプセル』MAZZELなど2月ゲスト一挙発表 - Billboard JAPAN",
+            "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5vbHpDR19QSkJYclpvZ0pnWHo1T25fQkVBMVlSbUpIR2g0RkFoOGhlZXFJRGJEMFdXQkUtTlY5U2w3cnl0R1k4UjRNRmNvcE9RcUw2WEQwaG1CRVBVSklQWDdzdGc?oc=5",
+            "date": "2026-01-29 08:00",
+            "source": "Billboard JAPAN",
+            "img": ""
+        },
+        {
+            "title": "キンプリ永瀬廉がMC「ミュージックカプセル」2月ゲスト解禁（vois ヴォイス） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFB5VXpyY05WdUtBZ0JlYWs4cVJTWTZqVlNEYldVWW1aZWc3M2xWUVFOajFNd1VkTE1aLTExVDBZcHpGOUYxZGxGTjFhWmhzal9MR2FRSWo0TnNlaGxkUzlHcm9RSzFPQlRpelV4TEJ0Wkw1Q3J1U1FIaDZyWldwWkU?oc=5",
+            "date": "2026-01-29 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "“後ろに立たれたら終わり”冬橋航（永瀬廉）がキーパーソンに…今後の展開には「きっと号泣」「絶対泣けるやつ」日曜劇場「リブート」 - cinemacafe.net",
+            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE8wS1JxRFhTbV9kUE9DM3FNLUFiN2RzSmk2LU5MbWt5Q2pfMEdsTzdiVkNvRDhpOXpPcFBFcE4zWEJWbzZXVnB5bEdoaFVLLUU5dThSWGc2bGwtakpPM1R2QW1ZTnlVeFFr?oc=5",
+            "date": "2026-01-29 08:00",
+            "source": "cinemacafe.net",
+            "img": ""
+        },
+        {
+            "title": "リブート＞永瀬廉＆藤澤涼架が明かすダークな役への思い “座長”鈴木亮平へのリスペクトも（MANTANWEB） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFAyQWZWTEt0REQ1UGJnVmVXeXZPSXVyNS1TdEhzT2hRcDBXdlU1RDFmTnVsZFdtQ0hrM3NBVUQ4bmxWdkF4NUx3bWk2SmhGSTVzaTBGUE1wSFNUX2NlaGM0Rmp6ZnIzc2syZHZuMlVrblRZbDhRUlllRFRHTG1ibTQ?oc=5",
+            "date": "2026-01-25 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "鈴木亮平、永瀬廉ら出演「リブート」第3話から愛希れいかがゲスト登場！ - 推し楽",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9XLWdEU3hsSjhVUmpSSFNlR01vYnFvVlhyenZOM2NkRjdiTkFDRUZDUENEMXJ1d3NsV2dnMF9XT1ZEV1ZYazVFUVRTVlkwQkpheGZFWm1fQTQ?oc=5",
+            "date": "2026-01-25 05:21",
+            "source": "推し楽",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×藤澤涼架が語る『リブート』撮影秘話　「考察しながら楽しんでいただけたら」 - リアルサウンド",
+            "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBRNHRwSnNHYnl1YjktRlJSX210SEdIeTI1NEhLdHYzUmItdEc4WEd6VmNVVWNQQ2dVQWh4R0t5ckI2YnpsbV9CUF9DZzlWX2R5b2NQQlBsanBMNDZkTzhzaFhB0gFnQVVfeXFMTUpIdlctbENLZzFqOHZRenRGUjVLM3J4NkNxS0s5T2lrUW84YzA4cV85VzJmMjBlVlpxSWhFenJ6S28xenVIUnlQSHdXQjlGZUI0YjVaR3V4WWJnZkdQLU1WN1d0b2RvMA?oc=5",
+            "date": "2026-01-24 08:00",
+            "source": "リアルサウンド",
+            "img": ""
+        },
+        {
+            "title": "『リブート』永瀬廉＆藤澤涼架、鈴木亮平に驚き「この人は何ができないんだろう？」 - ｄメニューニュース",
+            "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOZEV6ZWdvQmhUbjZnTktpekZERUtMZzlBLUQ0N2VibnFqQV9BNFFsNDJyWnc4V0hPa1FsNVV4ZGFTSzVfZGNTWXJfSGdhSTNTSWtsc1JaZW01SE1rbUZhTEFZSVZTT0ZOTThoT2ZvU0ZnX2RPREFiZVZ1dk9XUktkNlpkUjTSAYoBQVVfeXFMTnk3YmpLNnc1ZUJvck9WOFBFNFR1NzhwOEtOa2RyaGJxTlFyVVdxUGtuSFNDOUJ0b1NwQ2t2X3JhTlhKOU1lV1pmU0d1V1YwWFQyb0FGY1QtWEp1RGhYV3MyOG5BM2lGbmtvbDEtSlR2TTB4Sm1iWE9OWVk1MmVna1kxa0NsanBkS0t3?oc=5",
+            "date": "2026-01-24 08:00",
+            "source": "ｄメニューニュース",
+            "img": ""
+        },
+        {
+            "title": "King & Prince 永瀬廉、トップアイドルとして大切にする“近さ”　ファンを信じる想いが充実した個人活動に - リアルサウンド",
+            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE91Uk84UmZNWnlEQ296RGROYlNSa3M1WWdIeVlabncwVGlOcG1pcFJ1cTNGTmlEeUtjUnlMV3R5YjJzVnZtSi10OGFSYWhycno5UkM1ZmNJb0lYZ9IBX0FVX3lxTE9yV29WQ0d1OEV2Z3h5Smx4MUJjckpONWtLZXNaWWhlLUNIbHV2azZ6ZkJZMmR2V3BtYXRDTmlVWmpzUldGOG8xSjF3ZGNPcXd4LXdJeWMtcHk2M25rZTdj?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "リアルサウンド",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛W主演映画『鬼の花嫁』ポスター＆本予告映像公開！主題歌はKing ＆ Prince「Waltz for Lily」 - THE FIRST TIMES",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE4waU85Mm9xd2ZtRFdoM2FZRW5WUExXY0k1YlBYQ19IZ0ZCUl9GQUFUT2MtMG0zUUFFbVZWMDlHR04xYkJQVm4xSnBYZXlPMC00bXpfcGJlaWI?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "THE FIRST TIMES",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉の美しい瞳に吸い込まれそうなドアップ公開！手元のパールも輝く”存在こそが芸術品”ショットに「まさにそれ」「かっこよすぎて叫んだ」「ずっと見ていたい」（THE FIRST TIMES） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9jQ29vWDFtOVExS1oyb1FSUHlETndWSkg0NVdKalVoS3ZkOS1DVXVVWHVtSE92bUZJM2NoNEVKM0haSnZkRnhZc1k2cnQzYmxNUGNHWWJJbWRMS0J6dExCendoUUtZalA1T2wxUWlSWi1HQ0JHRUhUQkYwMWJsdzQ?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "King & Prince、新曲は永瀬廉×吉川愛W主演映画『鬼の花嫁』主題歌「Waltz for Lily」 - Billboard JAPAN",
+            "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5VN1o3TE5JdHJpY2tuZTh5Z1Nhd0RZRk1pLThlTHc1b2lMMklLQTNiM0Z6UXhuVTZncHdHTEJhQjRvcG5VOTkwWlRDSWpCSnFOQ0dkSFYzZGE1bnpaRlVMamNn?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "Billboard JAPAN",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉＆髙橋海人の王子様のような白スーツ＆ゴージャスなファージャケットの新ビジュアルに「顔面最強」「過去一のアー写」「2人揃って前髪あるのやばすぎる」と反響（THE FIRST TIMES） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE11dkxVcjhxZmswaXJoQTVIeUxWcVpMMHhqNUVyb04xNnJId2NhX2NMS1N0ZUYzRG5kTEFRWjZzeHp3aUtnREZZZzZYWlpaOUt0d245MF9BOEQ0ZGp4bUIwcGpGakVFTExRNkYxeWprRWdnOVVySVFLUzJQeVY2V28?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "King & Prince、18thシングル「Waltz for Lily」3月発売 永瀬廉W主演映画『鬼の花嫁』主題歌に決定＆新ビジュアル公開（ぴあ） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5ZTDhUX0l6enZ0Z0NQUjdwanEtdkdmdkVsdXIzcHRLRjZyNFBSRjZmTDh6UGhnUjc2ZnBSbFNxdDNSMkdteWVSNzFhQWFvb25tQjZvNTRMS29WZHB2WjhhVDVFUUdva1NIaGpyQ2Zfbmh4T29HSWFZWW00c3ZMQ00?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "King ＆ Prince、永瀬廉＆吉川愛W主演「鬼の花嫁」主題歌に決定 書き下ろしラブソング「Waltz for Lily」リリース - モデルプレス",
+            "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5fSHZRS1hsNGNyMXVITE90Rlk1S052b29JdFFKVGxrajVpS01OejZFUFVBZWVMcUlvYXpMbi0yVjFrcEV0UERTNVItVmtZQdIBSkFVX3lxTE53SVdWSm4yMzVHdWQxeHNySEVBc3VpUnZLMGVSZkJaNC1pYUNuS3pzNEdhaDU5VkZIMy1Ra29LZzFLeElwRk9kWFVB?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "モデルプレス",
+            "img": ""
+        },
+        {
+            "title": "King & Prince 18枚目のシングル「Waltz for Lily」が3/25に発売！ 永瀬廉W主演映画『鬼の花嫁』主題歌に決定！ さらに新アーティスト写真も公開！ - universal-music.co.jp",
+            "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5NUExnNzFRRzR2TGN4ZW5wQnlYdEl6YkNyTVZkSS11YXNZc0l6eWhvUzJVSndZTlUxZXl2Sml1cnRTaHNsUDFic003elNRNWFOMjdtQmtIejJya1F0cUFrbjFRSXRtaW1MbGNwVFUtWDVHY3lX?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "universal-music.co.jp",
+            "img": ""
+        },
+        {
+            "title": "キンプリ永瀬廉、27歳の誕生日 “国民的アイドル”にして“国宝級イケメン”…ダークな役で新境地開拓 大好きなミッキーとの共演も話題に - WEBザテレビジョン",
+            "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9XYjBITjY3T3dQVDFNQlkwQmhFLVRQNXFmaGxIendqUzlIUG9tdUJjSmo1a1pWNUI4YTdTaTM5VFJNekxUN25WYmFRTEY4Zw?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "WEBザテレビジョン",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉が吉川愛を救う「鬼の花嫁」予告解禁、主題歌はKing & Princeの新曲（映画ナタリー） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5KdHZBSlI4ZXZ5R0R2WWVYYWlpRm9ISVR2V0tOM0ttSWhHWVIyY1VZY0d2Z3BKYVVaS3B3MGZKMk4xN3gxeHdwcVdYMjU3UjJmRi1kU0RZd1BwZ1dGTndnYXNGYjl4bFFzbFVNLXl3NWdQdnpMaFh4WFg0MXBuMWs?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛「鬼の花嫁」切なくも甘い本予告映像完成 主題歌はKing & Princeの書き下ろし最新曲（映画.com） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBMeFNWd1ZTV1pmTXF2dFFaUEtWbFdPUkxpb1I2NjFKYV8yMGtrX1loUHEzYW16MHYyVmtLbi1kaTJ6Ti1IREtrWTFyVl81em50OTg2UzRaSDRsQWpGZVlHRnQwX3ctZTdpMDllYmMzSUZrNXJhTFBfc244aUJPTnM?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛「鬼の花嫁」切なくも甘い本予告映像完成 主題歌はKing & Princeの書き下ろし最新曲 - 映画.com",
+            "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5YQ2NjMktzUldXaEVHbmFUMzNWZ3I3NEVYeFo0VG5sb2w2MEp0NGdyeXZxV2tNOXVwR1pFMTU5VE1fR3JIaDZ4aA?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "映画.com",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉、King ＆ Princeの主題歌に「作品にばちっと寄り添ってくれた」と自信 甘美な本予告が公開＜鬼の花嫁＞ - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5UOW83LVdiUl9ZU29oX1Z1VWF5NlFyZkM1NXFGQTVXdWktWnVCUTd6RU1Renl5Y0ZXRVhOU3laM0gxWVdPdjJ6Umh6cHF6VVBQeXp1a2k0ZUkwNDR0eEpqQ1lZbWpuQVRiUWcxa2dncG52WUVNVEJGa0hxTDRzNUk?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "King & Prince、新曲は永瀬廉×吉川愛W主演映画『鬼の花嫁』主題歌「Waltz for Lily」 - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE92ZVpDS0g2Y0dUSkIzUXI5cklBaFctRS1wa1pTU2JCakNjdnJidGxIMFhBVmlOakN3ek9KUk80RGhkcTMyRThGZ1VJVE5pckcyUWxTZ3BjY0ZMZUFqT3dJMVdHd01TLWxYZzlQdHpWNF9iZ21IWVhib1NmRHMyMU0?oc=5",
+            "date": "2026-01-23 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉がピンクリップに陰影のあるアイシャドウと美しいツヤメイクルック披露！「さらに美しさ増してる」「唇ぷるぷるだ」「美しすぎて画面割れそう」（THE FIRST TIMES） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFAwSkhOcFZQWWZXRmZCeEwzMVZyQmxrSThLaXh0UVhVbFVDYVowTldGelNKaVZHdjhQQW9MWDZxa00yX1BnQkk0VmZnVkRLcjE2Zzh1Qkc1Rl9DMzJUY3MwUUd5NlFnbzgydHM0ajMxVFEzZEEtOWN2UlpYaHFiNEU?oc=5",
+            "date": "2026-01-21 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "King & Prince・永瀬廉の紙面が「スポーツ報知コンビニプリント」で発売 - PR TIMES",
+            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE0yNXZWb25PTTN6OGZQZUVwcnc5QW85RUs1RGd2eTY2TGtUa2p1NnRIU0EyZURLX0QwWFpmeFU5YkV6MGZmcUdHcGNyQTBFSjkzWmxoM09ueWozOUI2bzUxallFX052WDlFMkE?oc=5",
+            "date": "2026-01-20 08:00",
+            "source": "PR TIMES",
+            "img": ""
+        },
+        {
+            "title": "King&Prince 冠番組終了で解散？ 永瀬廉は否定も個人ファンクラブ開設でザワつくワケ - 東スポWEB",
+            "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5FanRtQnIyNXZpT0txdGExUXoxZU5la3ZMbEFMZHM2a2E1YjNnSEJKLWFpWi1PTk5WeXh5MDQ0eXQtZ3ZnRlQwdGdLOHc0MjBKbWFrZk9uYi10ZnRm?oc=5",
+            "date": "2026-01-20 08:00",
+            "source": "東スポWEB",
+            "img": ""
+        },
+        {
+            "title": "“めんたいこ星人”永瀬廉が泣き出す髙橋海人を希望の歌で救う!?初日を迎えたキンプリツアー舞台裏でのやりとりに「なにこのかわいい世界」「癒される」「廉くんノリノリ（笑）」（THE FIRST TIMES） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5FdnM2eGh3VzRvQnhTaldYTDNaaEZvOXlJUG1UalRJVmZwc2VNTVoxWEJOajdiY0p5dXBhQlZQZWFnTjl4OWR6akQ4azhrSlFmVV8yNTBHb3JkRnFJV3FYcVBpTXh0Vk5mNDVxSUFNVE4xdlRlM2dYSmZzLWVza3c?oc=5",
+            "date": "2026-01-20 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉がBLACKPINKジスと初対面！互いを労い合う姿に「会話が平和すぎて可愛い」「歴史的瞬間すぎる」「廉くん紳士」「美男美女」と大反響（THE FIRST TIMES） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE82dWczaDFxWjJsQzhVSmxCdUVhV2VJZ29lQ3AzaWJNY2xCdzNMWTVwRXQyRDFJcS05d3FNcVNVQWdpQ1lLMDFJS2ZhdWN3NTVXNGZlVjl0ZlpucnBuX3RVdmhsd3VmYkhrUHEzLXpLQmRGYnZXT2hJR29hUUVxVEU?oc=5",
+            "date": "2026-01-20 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "【スナップ】ジス＆永瀬廉が「ディオール」“アディクト”ポップアップに来場 キャンディーショップの世界観を満喫 - WWDJAPAN",
+            "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9jTVlhc0xuYXVNSjZSV0dOUDhtUWpuUWdCcmNvZk5CMnBoU2NpNkFCMmt4YjN1al9zVlc1eERhQ2JJeXFrazN3U09SZ3htRzhoSWJB?oc=5",
+            "date": "2026-01-20 03:32",
+            "source": "WWDJAPAN",
+            "img": ""
+        },
+        {
+            "title": "King ＆ Prince永瀬廉＞夢中になっているもの明かす 「オフの気持ちになるための時間」（毎日キレイ） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1YNkFBMVhMcUVwbTJnbi1IeVdIRHJfbUVGbG5OTVRGTW5DRjJCQ3ZkdVVBUVRhN3hqRENoT0N3YTJWV09PRC1laHRIdGZ3aFhBQ0J1WkhzcGU1QjBDRndWSFZ4dHJNamY3N1EtdFdpclFLbWRrcm8wUHljcXpsRjQ?oc=5",
+            "date": "2026-01-19 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "King & Prince永瀬廉、2026年は“美容”追求に意欲「外見も内面も美しい人間に」 空き時間はアニメに夢中 - オリコンニュース",
+            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1PcjBUaXRCVnBPLVBYWG5pTFNwUnpQZl8yWlp3N2tmYWhKRk1jTXNobnRGT1lXR3JFTjhIWThzd0FzTEdNODJFc05CbGltRFRSSnIxS0FR?oc=5",
+            "date": "2026-01-19 08:00",
+            "source": "オリコンニュース",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉、初のバイオレンス役で“覚醒”!?「自分の中にこんな部分あったんや」日曜劇場「リブート」で新境地 - トピクル",
+            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBjdFZoNG1KU2J6dVE5Z1JsLXZwUlFDZGNVY1dnWjFsQ0QxUkUweW5Oa0RSeEJpeWttdVRkR0hvdnBkdUItZnJRTWdEMkw2eWVKVWhKMG5Scm5aR293T2RONmpiVzlCek1IWGx2c1Vfbzc?oc=5",
+            "date": "2026-01-19 08:00",
+            "source": "トピクル",
+            "img": ""
+        },
+        {
+            "title": "鈴木亮平・永瀬廉が北関東屈指のグルメタウンへ - TVer",
+            "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBhVmwyMV9VSWdULWpGdnVDQmlsVFI2NFctWUNrZlEzRkJ5c3ZYUzBNczY4Tm1OMklpN3U3dXM2amFaVXE0Y2ZkVmxxSQ?oc=5",
+            "date": "2026-01-18 12:21",
+            "source": "TVer",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×鈴木亮平×伊藤英明がキンプリの「Theater」をダンス！「3人ともノリノリでかわいい！」「廉くん、愛されてますね♡」 - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9wY05jV2h5bFpyUWpSaC1pTzBuTnYxbmpaUWdrcV9qUmZFb2ZKeFNYc1FQQ21xdzJROUl2UDF6REN6c05UVDVEc1d2ZEU5RVB6UkJsYnpiUVo2RTdvRW9aRXV3VHVMU2JNWjVQZmF6bWt6ejlCZ1M1dTdiUkZ4MkE?oc=5",
+            "date": "2026-01-18 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "King＆Prince・ 永瀬廉の俳優活動が過熱！「ラストマン」「リブート」後に控える「鬼の花嫁」の鬼龍院玲夜役に集まる期待とは？ - ホミニス",
+            "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5Cck1WT2ZpNm0xVVZnTkpPRXg2NFdYb0hpeXFvdGpZYWtOMUJYMzB4aW9RZXRLV2dhWHFmZDRUY3BJeEx4NmtNMXF0cGJwNDFFUkZGMF9rWkt4aUE?oc=5",
+            "date": "2026-01-17 08:00",
+            "source": "ホミニス",
+            "img": ""
+        },
+        {
+            "title": "キンプリ永瀬廉、「大きくて怖い」も差し入れでギャップ萌えした先輩は…（スポーツ報知） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBvQUFCSV9tOE9mU2dIMEJxLTZ0VXlKTExBTi1FSnFaZVAwWVpqa3NuZmJJZlNWaDVEVGQxUGwwNXRNejJMaHZfei1Wa0M2bXNTUWE1OTJRMXhnalk0cTFwdFAtd2xEUTRHSExDSnRpMWgtOWdfUFRQWFU4RlZUWkU?oc=5",
+            "date": "2026-01-16 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "キンプリ永瀬廉が気づいた「意外な一面」とは？　新境地に手応え　鈴木亮平主演日曜劇場「リブート」制作発表会見 - イザ！",
+            "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE10ZXpsdjl5NzVqb1RMMHJ4T0l5elEtYVh1d2hJM2Z4enFWUlFCc3NSdGF5TjJFT0oyNUJWWVQwazlWUGtVQnpxenh2clpvZ1NieHU1RklaelJBT0xGY2R3SjhZeVBZdm94YmNNbFl0YW5saVVX0gGIAUFVX3lxTFBSTWhSNU5RUGdSOUdNVGRTd0hEdzlsRkJIcG5laXlKRGh3MzZMdWVtdXRDMEh4TWJjelh2aHBNcVI2Z1p3TFZZM2lqYTlBUC05VFlxZ29rX2YzRWtJLTJKV2x6WlJIc0JsWkNHZjJ6bGFfYlhBeTBuZmFwM1NLNU1BazF4Ty1QdlU?oc=5",
+            "date": "2026-01-16 08:00",
+            "source": "イザ！",
+            "img": ""
+        },
+        {
+            "title": "ミセス藤澤涼架がキンプリ永瀬廉とバディで初の連ドラレギュラー、大森元貴からの“金言”明かす - nikkansports.com",
+            "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5fTXF3ZE5OTmlPclR0eWI0ZlVfdjZnbjlWZWEydV9DQXdKS1JyZGl1MzJ2UElvX3VwSGVPUHlMWFh5dFJqWm5BdVdSakFRT0d4VW5OWEJURDZEV3REeVpRQWlHRkNkQ25sT2FERjVBU3dxUnFRWTJz0gF_QVVfeXFMTUpJZDJUN3NWZG04S3lhcXFobHdrVnNjSEp0dFFxR2J3b29WYXp0a1otWlhFcExmVGRTaHUwTmZ6VWxvaFZzN2pLSl9uYlZYZEJNRzNSTi1GcngtQmUwWm1KaFJpQlpwMnVCVGs0Z2lyT2dkbTJSQ3BiV1M5WWc5UQ?oc=5",
+            "date": "2026-01-16 08:00",
+            "source": "nikkansports.com",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉、連ドラ初出演のミセス 藤澤涼架を大絶賛　「すごいなと思わされることがたくさん」 - リアルサウンド",
+            "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9NNU83VEZYSmVWNVl5TWlIRDF6OXJsTE9odzA3aUMwSW84bnpLUVVlSHp0SEJBR2RqSW15ZGwzN2c3N1ZtMHVHaHh4NU8tb0dhaXBoMkk5YmFiWkpPTFBKTWNB0gFnQVVfeXFMTzJHSDl2OUp3dkJfd18tSnctVFhGSlRHVXJ3a2dYcG1kS0dXZWtUeGtWUEgxRTJHaXhJXzJmb3ZmVHc4akFXN01CeGQtWUx1c3dfWkhOekZOTjB2bmJTQWwwdmZXSHFxcw?oc=5",
+            "date": "2026-01-16 08:00",
+            "source": "リアルサウンド",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉が萌え袖でポーズ！重め前髪センター分けでほほ笑むアップショットに「優しい表情で好き」「かっこよくて美人さん」「チラッと見える鎖骨も美しい」（THE FIRST TIMES） - Yahoo!ニュース",
+            "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE8ta1ItREpUa2xNX25IS3NhZGtQZHVDVVVFSFRDU3JfWlZEUTdQTXZBS3VORXAzbldYN3MxcjZXTlFTckRzOXZ3ZTJWbTI0TXdjU1FRdFBKUDBKekg5UkYtTENtdGlhUGwxcG1BZ0xmenhIbEJpenBGcjctRVZLVjA?oc=5",
+            "date": "2026-01-15 08:00",
+            "source": "Yahoo!ニュース",
+            "img": ""
+        },
+        {
+            "title": "King ＆ Prince・永瀬 廉、白米効果で驚異の食べっぷりを披露!? 鈴木亮平と群馬県高崎市でグルメ探し - CanCam.jp",
+            "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5IVEFEaFBIMktseGdFR2RpSFFRclQ0VWVnN1dGcWxNTG5oa0ZWeWFQR0xSMlBKUDJhbjlPWU4yWjZfdkk4YnlDZEtR?oc=5",
+            "date": "2026-01-14 08:00",
+            "source": "CanCam.jp",
+            "img": ""
+        },
+        {
+            "title": "鈴木亮平×永瀬廉が「せっかくグルメ」で高崎グルメ探しへ！ 永瀬の食欲が爆発!? - TVガイドWeb",
+            "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5QS29sYUljR2ctdUN0cFZ6alJKWGRrMGxnR0Jrck5VZUNVTDNuUnVSX3BpUkNQazk0T1o1MUh6NXgxOExnNTJ3cHhfclRtWWV2eU50YXVHQQ?oc=5",
+            "date": "2026-01-14 08:00",
+            "source": "TVガイドWeb",
+            "img": ""
+        },
+        {
+            "title": "King & Prince・永瀬廉が“驚異の食べっぷり”を見せる!?「せっかくグルメ」1/18放送 - 推し楽",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5QVWo3N3B0MmxRYkxwNEZRSlVyYWZjd0hYTFdTUkp2UTdmQXBGYWRlVkFmOWRocW15TmMwQ2Z1N3ZackZnRzU0aktIVm1xdHhLazlHVEs4OEE?oc=5",
+            "date": "2026-01-13 21:03",
+            "source": "推し楽",
+            "img": ""
+        },
+        {
+            "title": "鈴木亮平、戸田恵梨香、永瀬廉ら出演「リブート」第1話の場面写真到着！ - 推し楽",
+            "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFA2T0FWZmMzTnJtQnlQU183dXZuLTJoQkxWVGZTVE9EYWdZbTU0WUt6a2UxM3VZS09jeGFPQUJCQzlvNkM5M3d2dzVXWUZtZnFnMTBOeTRZUjE?oc=5",
+            "date": "2026-01-11 08:00",
+            "source": "推し楽",
+            "img": ""
+        },
+        {
+            "title": "福山雅治が『King & Prince永瀬廉のRadioGARDEN』にゲスト出演！ 『地底人ラジオ』と初コラボ - 文化放送",
+            "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1pX1RTT2U1R21hcUFlb0JQcVlqYWVueXVUUWNkWUtMZ21xVjJhTURaV0lHeXpPSDFYVGtCR2c1czNUcWpRQWZFelppYmk3dmVNR0JV?oc=5",
+            "date": "2026-01-06 08:03",
+            "source": "文化放送",
+            "img": ""
+        },
+        {
+            "title": "King ＆ Prince永瀬廉、個人ファンクラブ開設「King ＆ Princeが解散とかはない」 - オリコンニュース",
+            "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9EY3AzZ1pDenNwb3l2Nm9RUWpjRTFUc29RSTh4MEc5OU5NekdYY0xRRTFZVjQtN0F0ckVUR0dON3lxWHI1STg0NnRFTnJLOWtnam9xdllR?oc=5",
+            "date": "2025-12-27 08:00",
+            "source": "オリコンニュース",
+            "img": ""
+        },
+        {
+            "title": "MC永瀬廉/ゲストに髙橋海人が登場 - TVer",
+            "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBHRGw5b3hLSndqREs0cjJpN1lEeEt6cE5oSF85N2JYdU80SFpEXy1TcTdFeU1CVTBoa3QwLXpHOWNOWGIzcVcwanNFaw?oc=5",
+            "date": "2025-12-25 17:40",
+            "source": "TVer",
+            "img": ""
+        },
+        {
+            "title": "MC永瀬廉＆ゲスト大倉忠義 - TVer",
+            "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE51N2hBSEh1WmVEZmxyaTBwT2JDV2hZNjUzS2YxcHJqWHRMYVZlVlVEX3RWQkZXcXU0d2MxMW9yWktpNVhjMXdiZnM3cw?oc=5",
+            "date": "2025-12-04 19:21",
+            "source": "TVer",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉がディオールと紡ぐ、初めてのホリデーの夢｜ファッション・ビューティー・セレブの最新情報 - Vogue Japan",
+            "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5zMWVmSGwtQzNXTmhtdVEwOHpVZWNBS3NwVmhiZnVkUmNoaUtjeXhYYlJsaW56M1hVNDNDQjlWckpidWsxTUNCay1ScW1CUHgxcEw3YWYzZHFRa1FoV09Da3VwRF9lUQ?oc=5",
+            "date": "2025-12-04 08:00",
+            "source": "Vogue Japan",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉×吉川愛が初共演＆W主演。映画『鬼の花嫁』2026年3月27日公開決定 - TOWER RECORDS ONLINE - タワーレコード オンライン",
+            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE55dng4UEZtY2JEUWxoTUFDYlZWT0duNEwyWEk0QWJLd1M3RVJ6ZmFEVTR4bkNWTDFYcHZfUDRjMXJUMWVteG1PR3p3SGw4bVE5MENiOHFBVGd2dw?oc=5",
+            "date": "2025-12-03 08:00",
+            "source": "タワーレコード オンライン",
+            "img": ""
+        },
+        {
+            "title": "永瀬廉、音楽トークバラエティの初レギュラーMCに！音楽トークバラエティ番組「ミュージックカプセル ～人生の推しソング～」10月9日(木)から放送スタート！ - tv-tokyo.co.jp",
+            "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9NTHE4LW15T0FQbEJxUzJlNWxPTUpjLVd1QmFfT3pXNmdBUHprVXhzOUVkbHRhai1XblJ2QmIyMTdDZnRyZDkwUVBMeE96TE0tS0pnYXJ6ZVFXV0hzb3FzaWpydG9DQQ?oc=5",
+            "date": "2025-09-25 07:00",
+            "source": "tv-tokyo.co.jp",
+            "img": ""
         }
     ]
 }

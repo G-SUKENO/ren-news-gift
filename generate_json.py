@@ -1,97 +1,65 @@
-import requests
+import json, os, requests
 from bs4 import BeautifulSoup
-import json
-import urllib.parse
-from datetime import datetime, timedelta
-import time
-import re
-import os
-import glob
-import shutil
+from datetime import datetime
+import email.utils
 
-session = requests.Session()
-HEADERS = {'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1'}
+DATA_FILE = 'news.json'
 
-def sync_images():
-    print("--- [1] Image Sync ---")
-    source_dir = "ren.nagase.official"
-    target_dir = "images"
-    os.makedirs(target_dir, exist_ok=True)
-    image_list = []
-    found_files = glob.glob(f"{source_dir}/*.jpg")
-    for i, file_path in enumerate(found_files):
-        new_name = f"photo_{i+1}.jpg"
-        shutil.copy2(file_path, f"{target_dir}/{new_name}")
-        image_list.append(f"images/{new_name}")
-    return image_list
-
-def get_og_image(url):
+def fetch_broad_news():
+    # GoogleニュースRSS（永瀬廉）を利用して幅広いソースから取得
+    url = "https://news.google.com/rss/search?q=%E6%B0%B8%E7%80%AC%E5%BB%89&hl=ja&gl=JP&ceid=JP:ja"
     try:
-        time.sleep(0.2)
-        res = session.get(url, headers=HEADERS, timeout=5)
-        soup = BeautifulSoup(res.text, 'html.parser')
-        og = soup.find("meta", property="og:image") or soup.find("meta", attrs={"name": "twitter:image"})
-        if og: return f"https://wsrv.nl/?url={urllib.parse.quote(og.get('content'))}&w=400&h=250&fit=cover"
-    except: pass
-    return ""
+        r = requests.get(url, timeout=10)
+        soup = BeautifulSoup(r.content, "xml")
+        items = soup.find_all("item")
+        res = []
+        for i in items:
+            # 投稿日時（pubDate）を解析して並び替え可能な形式に変換
+            pub_date_str = i.pubDate.text
+            parsed_date = email.utils.parsedate_to_datetime(pub_date_str)
+            
+            res.append({
+                "title": i.title.text,
+                "url": i.link.text,
+                "date": parsed_date.strftime('%Y-%m-%d %H:%M'), # 投稿日時
+                "source": i.source.text if i.source else "News",
+                "img": "" # RSSからは画像取得が難しいため空（index.htmlのplaceholderで対応）
+            })
+        return res
+    except Exception as e:
+        print(f"取得エラー: {e}")
+        return []
 
-def get_youtube_data():
-    print("--- [2] YouTube Scan ---")
-    data = {"featured": None, "regulars": []}
-    try:
-        url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCSxwcQnzA5K6DvofvBn6ATA"
-        res = session.get(url, timeout=10)
-        soup = BeautifulSoup(res.text, 'xml')
-        entries = soup.find_all('entry')
-        for i, entry in enumerate(entries):
-            v = {"id": entry.find('yt:videoId').text, "title": entry.find('title').text,
-                 "thumbnail": entry.find('media:group').find('media:thumbnail')['url']}
-            if i == 0: data["featured"] = v
-            else: data["regulars"].append(v)
-    except: pass
-    return data
-
-def smart_fetch(name, url, keywords, limit=8):
-    print(f"--- [3] Scraping: {name} ---")
-    items = []
-    try:
-        res = session.get(url, headers=HEADERS, timeout=10)
-        soup = BeautifulSoup(res.text, 'html.parser')
-        current_date = datetime.now().strftime('%Y/%m/%d %H:%M')
-        for a in soup.find_all('a', href=True):
-            title = a.get_text(strip=True)
-            if any(k in title for k in ["永瀬廉", "キンプリ", "King"]):
-                if any(k in a['href'] for k in keywords):
-                    full_url = urllib.parse.urljoin(url, a['href'])
-                    items.append({"title": title, "url": full_url, "source": name, "date": current_date})
-            if len(items) >= limit: break
-    except: pass
-    return items
-
-def main():
-    images = sync_images()
-    yt = get_youtube_data()
-    news_list = []
-    news_list += smart_fetch("公式", "https://www.universal-music.co.jp/king-and-prince/news/", ["/news/"])
-    news_list += smart_fetch("ナタリー", "https://natalie.mu/search?query=永瀬廉", ["/news/"])
-    news_list += smart_fetch("モデルプレス", "https://mdpr.jp/model/detail/2554", ["/detail/"])
+def update_json(new_data):
+    # index.htmlが期待する構造（{"news": [...]}）に合わせて保存
+    final_data = {"news": []}
     
-    unique_news = {n['url']: n for n in news_list}.values()
-    final_news = []
-    for n in list(unique_news)[:12]: # 最大12件
-        print(f"  画像取得中: {n['title'][:15]}...")
-        n['img'] = get_og_image(n['url'])
-        final_news.append(n)
+    # 既存データの読み込み（過去記事を保持したい場合）
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, 'r', encoding='utf-8') as f:
+            try: 
+                old_data = json.load(f)
+                final_data["news"] = old_data.get("news", [])
+            except: pass
 
-    final_data = {
-        "images": images,
-        "featured": yt["featured"],
-        "regulars": yt["regulars"],
-        "news": final_news
-    }
-    with open('news.json', 'w', encoding='utf-8') as f:
+    # 重複排除と追加
+    links = {n['url'] for n in final_data["news"]}
+    added = 0
+    for item in new_data:
+        if item['url'] not in links:
+            final_data["news"].append(item)
+            added += 1
+    
+    # 【重要】記事の「投稿日時」順に並び替え（新しいものが上）
+    final_data["news"].sort(key=lambda x: x['date'], reverse=True)
+    
+    # 最新の30件に絞る（または必要に応じて全件保持）
+    # final_data["news"] = final_data["news"][:30]
+
+    with open(DATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(final_data, f, ensure_ascii=False, indent=4)
-    print(f"\n[SUCCESS] 画像{len(images)}枚、ニュース{len(final_news)}件を保存")
+    
+    print(f"完了: {added}件の新しい記事を追加（現在合計: {len(final_data['news'])}件）")
 
 if __name__ == "__main__":
-    main()
+    update_json(fetch_broad_news())
