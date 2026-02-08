@@ -10,26 +10,34 @@
         header { padding: 15px; text-align: center; border-bottom: 1px solid #222; }
         h1 { margin: 0; font-size: 1rem; color: var(--accent-color); letter-spacing: 0.1rem; }
         
+        /* SNSハブ */
         .sns-hub { display: flex; justify-content: space-around; padding: 12px 5px; border-bottom: 1px solid #222; }
         .sns-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #fff; width: 18%; }
         .sns-icon { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--accent-color); display: flex; justify-content: center; align-items: center; font-size: 0.45rem; margin-bottom: 4px; color: var(--accent-color); }
         .sns-label { font-size: 0.5rem; font-weight: bold; }
 
-        .section-label { padding: 15px 15px 5px; font-size: 0.7rem; color: var(--accent-color); font-weight: bold; border-left: 3px solid var(--accent-color); margin-left: 15px; }
+        .section-label { padding: 15px 15px 5px; font-size: 0.7rem; color: var(--accent-color); font-weight: bold; border-left: 3px solid var(--accent-color); margin-left: 15px; text-transform: uppercase; }
 
         /* 代表動画 */
         .featured-video { padding: 12px; }
         .v-main { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; border: 1px solid #333; }
         .v-main iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* 新着動画（横スクロール） */
+        /* 通常動画（横長） */
         .video-scroll { display: flex; overflow-x: auto; padding: 10px 15px; gap: 10px; }
         .video-scroll::-webkit-scrollbar { display: none; }
         .v-small { min-width: 140px; text-decoration: none; color: #fff; }
-        .v-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; border: 1px solid #222; }
-        .v-title { font-size: 0.6rem; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .v-thumb-reg { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; border: 1px solid #222; }
 
-        /* ニュースリスト */
+        /* ショート動画（縦長 9:16） */
+        .shorts-scroll { display: flex; overflow-x: auto; padding: 10px 15px; gap: 10px; }
+        .shorts-scroll::-webkit-scrollbar { display: none; }
+        .v-shorts { min-width: 100px; text-decoration: none; color: #fff; }
+        .v-thumb-shorts { width: 100%; aspect-ratio: 9/16; object-fit: cover; border-radius: 10px; border: 1px solid var(--accent-color); }
+
+        .v-title { font-size: 0.55rem; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.2; }
+
+        /* ニュース */
         #news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; padding: 12px; }
         .news-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; text-decoration: none; color: inherit; border: 1px solid #222; }
         .news-img { width: 100%; aspect-ratio: 16/10; object-fit: cover; }
@@ -52,7 +60,10 @@
     <div class="featured-video" id="main-video"></div>
 
     <div class="section-label">New Arrivals</div>
-    <div class="video-scroll" id="video-list"></div>
+    <div class="video-scroll" id="regular-videos"></div>
+
+    <div class="section-label">Shorts</div>
+    <div class="shorts-scroll" id="shorts-videos"></div>
 
     <div class="section-label">Latest News</div>
     <div id="news-container"></div>
@@ -63,22 +74,33 @@
                 const res = await fetch('news.json?v=' + Date.now());
                 const data = await res.json();
                 
-                // 代表動画（最新の1件）
-                if(data.videos.length > 0) {
+                // 代表動画
+                if(data.featured) {
                     document.getElementById('main-video').innerHTML = 
-                        `<div class="v-main"><iframe src="https://www.youtube.com/embed/${data.videos[0].id}" frameborder="0" allowfullscreen></iframe></div>`;
-                    
-                    // 新着動画（2件目以降をリスト表示）
-                    const list = document.getElementById('video-list');
-                    data.videos.slice(1).forEach(v => {
-                        list.innerHTML += `
-                            <a href="https://www.youtube.com/watch?v=${v.id}" class="v-small" target="_blank">
-                                <img src="${v.thumbnail}" class="v-thumb">
-                                <div class="v-title">${v.title}</div>
-                            </a>`;
-                    });
+                        `<div class="v-main"><iframe src="https://www.youtube.com/embed/${data.featured.id}" frameborder="0" allowfullscreen></iframe></div>`;
                 }
+
+                // 通常動画（横長）
+                const regList = document.getElementById('regular-videos');
+                data.regulars.forEach(v => {
+                    regList.innerHTML += `
+                        <a href="https://www.youtube.com/watch?v=${v.id}" class="v-small" target="_blank">
+                            <img src="${v.thumbnail}" class="v-thumb-reg">
+                            <div class="v-title">${v.title}</div>
+                        </a>`;
+                });
+
+                // ショート動画（縦長）
+                const shortList = document.getElementById('shorts-videos');
+                data.shorts.forEach(v => {
+                    shortList.innerHTML += `
+                        <a href="https://www.youtube.com/shorts/${v.id}" class="v-shorts" target="_blank">
+                            <img src="${v.thumbnail}" class="v-thumb-shorts">
+                            <div class="v-title">${v.title}</div>
+                        </a>`;
+                });
                 
+                // ニュース
                 const container = document.getElementById('news-container');
                 data.news.forEach(item => {
                     container.innerHTML += `
