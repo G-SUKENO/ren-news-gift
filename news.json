@@ -1,107 +1,142 @@
 {
+    "youtube": null,
     "news": [
         {
             "title": "2026.02.06TOPICS3/25発売 NEW シングル　「Waltz for Lily」　先",
             "url": "https://www.universal-music.co.jp/king-and-prince/news/2026-02-06/",
             "source": "公式",
-            "img": "https://www.universal-music.co.jp/king-and-prince/wp-content/uploads/sites/3239/2026/02/A_photocard.jpg"
+            "img": "https://www.universal-music.co.jp/king-and-prince/wp-content/uploads/sites/3239/2026/02/A_photocard.jpg",
+            "image": "https://www.universal-music.co.jp/king-and-prince/wp-content/uploads/sites/3239/2026/02/A_photocard.jpg",
+            "thumbnail": "https://www.universal-music.co.jp/king-and-prince/wp-content/uploads/sites/3239/2026/02/A_photocard.jpg"
         },
         {
             "title": "2026.01.30TOPICSKing & Prince NEWシングル「Waltz for Li",
             "url": "https://www.universal-music.co.jp/king-and-prince/news/2026-01-30/",
             "source": "公式",
-            "img": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg"
+            "img": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg",
+            "image": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg",
+            "thumbnail": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg"
         },
         {
             "title": "2026.01.24TOPICSKing & Prince New シングル 「Waltz for ",
             "url": "https://www.universal-music.co.jp/king-and-prince/news/2026-01-24/",
             "source": "公式",
-            "img": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg"
+            "img": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg",
+            "image": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg",
+            "thumbnail": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg"
         },
         {
             "title": "King & Princeの永瀬廉と吉川愛がW主演を務める実写映画『鬼の花嫁』(3月27日公開)において、King & Princeが歌う主題歌「Waltz for Lily」(3月25日リリース予定)とスペシャルコ.",
             "url": "https://www.oricon.co.jp/news/2434062/",
             "source": "オリコン",
-            "img": "https://contents.oricon.co.jp/upimg/news/2435000/2434062/20260202_150824_o_19817755.jpg"
+            "img": "https://contents.oricon.co.jp/upimg/news/2435000/2434062/20260202_150824_o_19817755.jpg",
+            "image": "https://contents.oricon.co.jp/upimg/news/2435000/2434062/20260202_150824_o_19817755.jpg",
+            "thumbnail": "https://contents.oricon.co.jp/upimg/news/2435000/2434062/20260202_150824_o_19817755.jpg"
         },
         {
             "title": "King & Princeの永瀬廉がMCを務めるテレビ東京の音楽トークバラエティー番組『ミュージックカプセル 〜人生の推しソング〜』(毎週木曜 深2:05)において、2月放送のゲストが公開...",
             "url": "https://www.oricon.co.jp/news/2433095/",
             "source": "オリコン",
-            "img": "https://contents.oricon.co.jp/upimg/news/2434000/2433095/20260128_140051_o_39090624.jpg"
+            "img": "https://contents.oricon.co.jp/upimg/news/2434000/2433095/20260128_140051_o_39090624.jpg",
+            "image": "https://contents.oricon.co.jp/upimg/news/2434000/2433095/20260128_140051_o_39090624.jpg",
+            "thumbnail": "https://contents.oricon.co.jp/upimg/news/2434000/2433095/20260128_140051_o_39090624.jpg"
         },
         {
             "title": "2026/02/03 22:00永瀬廉×吉川愛W主演映画『鬼の花嫁』、King & Princeによる主題歌とのコラボ映像が解禁",
             "url": "https://www.billboard-japan.com/d_news/detail/158168",
             "source": "Billboard",
-            "img": "https://www.billboard-japan.com/scale/news/00000158/158168/x200_image.jpg"
+            "img": "https://www.billboard-japan.com/scale/news/00000158/158168/x200_image.jpg",
+            "image": "https://www.billboard-japan.com/scale/news/00000158/158168/x200_image.jpg",
+            "thumbnail": "https://www.billboard-japan.com/scale/news/00000158/158168/x200_image.jpg"
         },
         {
             "title": "2026/01/29 12:50メインMC永瀬廉（King & Prince）、テレ東『ミュージックカプセル』MAZZELなど2月ゲスト一挙発表",
             "url": "https://www.billboard-japan.com/d_news/detail/158003",
             "source": "Billboard",
-            "img": "https://www.billboard-japan.com/scale/news/00000158/158003/x200_image.jpg"
+            "img": "https://www.billboard-japan.com/scale/news/00000158/158003/x200_image.jpg",
+            "image": "https://www.billboard-japan.com/scale/news/00000158/158003/x200_image.jpg",
+            "thumbnail": "https://www.billboard-japan.com/scale/news/00000158/158003/x200_image.jpg"
         },
         {
             "title": "2026/01/06 17:10福山雅治、キンプリ永瀬廉の冠ラジオ番組にゲスト出演　お互いの\"ものまね”バトルも勃発",
             "url": "https://www.billboard-japan.com/d_news/detail/157128",
             "source": "Billboard",
-            "img": "https://www.billboard-japan.com/scale/news/00000157/157128/x200_image.jpeg"
+            "img": "https://www.billboard-japan.com/scale/news/00000157/157128/x200_image.jpeg",
+            "image": "https://www.billboard-japan.com/scale/news/00000157/157128/x200_image.jpeg",
+            "thumbnail": "https://www.billboard-japan.com/scale/news/00000157/157128/x200_image.jpeg"
         },
         {
             "title": "King ＆ Prince最新曲『Waltz for Lily』永瀬廉＆吉川愛W主演『鬼の花嫁』主題歌に！ダンスシーンも",
             "url": "https://www.edgeline-tokyo.com/entertainment/190987",
             "source": "エッジライン",
-            "img": "https://www.edgeline-tokyo.com/wp-content/uploads/2026/01/20260123oni0013.jpg"
+            "img": "https://www.edgeline-tokyo.com/wp-content/uploads/2026/01/20260123oni0013.jpg",
+            "image": "https://www.edgeline-tokyo.com/wp-content/uploads/2026/01/20260123oni0013.jpg",
+            "thumbnail": "https://www.edgeline-tokyo.com/wp-content/uploads/2026/01/20260123oni0013.jpg"
         },
         {
             "title": "永瀬廉と吉川愛W主演『鬼の花嫁』ムビチケ前売券1月23日より！“おにの日”「想うはあなたひとり」",
             "url": "https://www.edgeline-tokyo.com/entertainment/189863",
             "source": "エッジライン",
-            "img": "https://www.edgeline-tokyo.com/wp-content/uploads/2026/01/20260108oni001.jpg"
+            "img": "https://www.edgeline-tokyo.com/wp-content/uploads/2026/01/20260108oni001.jpg",
+            "image": "https://www.edgeline-tokyo.com/wp-content/uploads/2026/01/20260108oni001.jpg",
+            "thumbnail": "https://www.edgeline-tokyo.com/wp-content/uploads/2026/01/20260108oni001.jpg"
         },
         {
             "title": "“庭ラジ”King & Prince永瀬廉のRadioGARDENに福山雅治ゲスト！「地底人ラジオ」とコラボ",
             "url": "https://www.edgeline-tokyo.com/entertainment/189736",
             "source": "エッジライン",
-            "img": "https://www.edgeline-tokyo.com/wp-content/uploads/2026/01/20260106niwa001.jpg"
+            "img": "https://www.edgeline-tokyo.com/wp-content/uploads/2026/01/20260106niwa001.jpg",
+            "image": "https://www.edgeline-tokyo.com/wp-content/uploads/2026/01/20260106niwa001.jpg",
+            "thumbnail": "https://www.edgeline-tokyo.com/wp-content/uploads/2026/01/20260106niwa001.jpg"
         },
         {
             "title": "モデルプレス特選フォト",
             "url": "https://mdpr.jp/photo/detail/19656049",
             "source": "モデルプレス",
-            "img": "https://img-mdpr.freetls.fastly.net/article/rwGY/nm/rwGYqv6ftdKdgCowcWC5sVHK5b8iCngV6Oe-cBFd8Sg.jpg"
+            "img": "https://img-mdpr.freetls.fastly.net/article/rwGY/nm/rwGYqv6ftdKdgCowcWC5sVHK5b8iCngV6Oe-cBFd8Sg.jpg",
+            "image": "https://img-mdpr.freetls.fastly.net/article/rwGY/nm/rwGYqv6ftdKdgCowcWC5sVHK5b8iCngV6Oe-cBFd8Sg.jpg",
+            "thumbnail": "https://img-mdpr.freetls.fastly.net/article/rwGY/nm/rwGYqv6ftdKdgCowcWC5sVHK5b8iCngV6Oe-cBFd8Sg.jpg"
         },
         {
             "title": "モデルプレス特選フォト",
             "url": "https://mdpr.jp/photo/detail/19656048",
             "source": "モデルプレス",
-            "img": "https://img-mdpr.freetls.fastly.net/article/zEqI/nm/zEqIG1CY4IojknmDjOWNDBPa9HWBxBv8n_9SD-68ieQ.jpg"
+            "img": "https://img-mdpr.freetls.fastly.net/article/zEqI/nm/zEqIG1CY4IojknmDjOWNDBPa9HWBxBv8n_9SD-68ieQ.jpg",
+            "image": "https://img-mdpr.freetls.fastly.net/article/zEqI/nm/zEqIG1CY4IojknmDjOWNDBPa9HWBxBv8n_9SD-68ieQ.jpg",
+            "thumbnail": "https://img-mdpr.freetls.fastly.net/article/zEqI/nm/zEqIG1CY4IojknmDjOWNDBPa9HWBxBv8n_9SD-68ieQ.jpg"
         },
         {
             "title": "モデルプレス特選フォト",
             "url": "https://mdpr.jp/photo/detail/19649920",
             "source": "モデルプレス",
-            "img": "https://img-mdpr.freetls.fastly.net/article/RuFy/nm/RuFydsHAGZ7U4Aq24oLTOLnxHhq5ojufy7alSyIbOj0.jpg"
+            "img": "https://img-mdpr.freetls.fastly.net/article/RuFy/nm/RuFydsHAGZ7U4Aq24oLTOLnxHhq5ojufy7alSyIbOj0.jpg",
+            "image": "https://img-mdpr.freetls.fastly.net/article/RuFy/nm/RuFydsHAGZ7U4Aq24oLTOLnxHhq5ojufy7alSyIbOj0.jpg",
+            "thumbnail": "https://img-mdpr.freetls.fastly.net/article/RuFy/nm/RuFydsHAGZ7U4Aq24oLTOLnxHhq5ojufy7alSyIbOj0.jpg"
         },
         {
             "title": "期待は裏切らず、予想は裏切った衝撃展開！映画、スペシャルドラマも放送の「ラストマン－全盲の捜査官－」の魅力をプレイバックコラム2025/12/28 19:30",
             "url": "https://press.moviewalker.jp/news/article/1316695/",
             "source": "映画Walker",
-            "img": "https://press.moviewalker.jp/api/resizeimage/news/article/1316695/15907290?w=1200"
+            "img": "https://press.moviewalker.jp/api/resizeimage/news/article/1316695/15907290?w=1200",
+            "image": "https://press.moviewalker.jp/api/resizeimage/news/article/1316695/15907290?w=1200",
+            "thumbnail": "https://press.moviewalker.jp/api/resizeimage/news/article/1316695/15907290?w=1200"
         },
         {
             "title": "福山雅治、稲葉浩志との音楽最強バディ誕生に感激！『ラストマン』ワールドプレミアは大泉洋＆永瀬廉＆向井康二の“漫才”で大盛り上がりイベント2025/12/18 22:06",
             "url": "https://press.moviewalker.jp/news/article/1315477/",
             "source": "映画Walker",
-            "img": "https://press.moviewalker.jp/api/resizeimage/news/article/1315477/15871697?w=1200"
+            "img": "https://press.moviewalker.jp/api/resizeimage/news/article/1315477/15871697?w=1200",
+            "image": "https://press.moviewalker.jp/api/resizeimage/news/article/1315477/15871697?w=1200",
+            "thumbnail": "https://press.moviewalker.jp/api/resizeimage/news/article/1315477/15871697?w=1200"
         },
         {
             "title": "『ふれる。』脚本家・岡田麿里にインタビュー。「アニメーションのおもしろいところは”共同作業”。現場によって求められる自分が違う」インタビュー2024/10/12 09:30",
             "url": "https://press.moviewalker.jp/news/article/1222167/",
             "source": "映画Walker",
-            "img": "https://press.moviewalker.jp/api/resizeimage/news/article/1222167/13619257?w=1200"
+            "img": "https://press.moviewalker.jp/api/resizeimage/news/article/1222167/13619257?w=1200",
+            "image": "https://press.moviewalker.jp/api/resizeimage/news/article/1222167/13619257?w=1200",
+            "thumbnail": "https://press.moviewalker.jp/api/resizeimage/news/article/1222167/13619257?w=1200"
         }
     ],
-    "updated": "2026-02-08 18:50:10"
+    "updated": "2026-02-08 18:55:03"
 }
