@@ -43,13 +43,19 @@
             items.forEach(item => {
                 const a = document.createElement('a');
                 a.className = 'news-item'; a.href = item.url; a.target = '_blank';
+                
+                // ★ メディア名のガード: undefined なら 'News' と出す
+                const source = (item.source && item.source !== 'undefined') ? item.source : 'News';
+                
+                // ★ 画像のガード: Googleリンクなら星マーク
                 const imgSrc = (item.img && item.img.includes('http') && !item.img.includes('google')) ? item.img : placeholder;
+                
                 a.innerHTML = `<img src="${imgSrc}" onerror="this.src='${placeholder}'" class="news-img">
                     <div class="news-content">
                         <div class="news-title">${item.title}</div>
                         <div class="meta-row">
                             <span class="date">${item.date}</span>
-                            <span class="source-tag">${item.source}</span>
+                            <span class="source-tag">${source}</span>
                             ${item.date === latestDate ? '<span class="new-badge">NEW</span>' : ''}
                         </div>
                     </div>`;
