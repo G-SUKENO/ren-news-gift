@@ -10,26 +10,23 @@
         header { padding: 15px; text-align: center; border-bottom: 1px solid #222; }
         h1 { margin: 0; font-size: 1rem; color: var(--accent-color); letter-spacing: 0.1rem; }
         
-        /* SNSハブの基本設定 */
+        /* SNSハブ：PCは1列、スマホは3列×2段 */
         .sns-hub { 
             display: grid; 
-            padding: 15px 10px; 
+            padding: 15px 5px; 
             border-bottom: 1px solid #222; 
             gap: 15px 0;
+            background: linear-gradient(180deg, #000, #080808);
         }
 
-        /* PC表示：横1列 (5カラム) */
+        /* PC表示：横1列 */
         @media (min-width: 601px) {
-            .sns-hub { grid-template-columns: repeat(5, 1fr); }
+            .sns-hub { grid-template-columns: repeat(6, 1fr); }
         }
 
-        /* スマホ表示：2段構成 (上段2つ / 下段3つ) */
+        /* スマホ表示：3列 × 2段 */
         @media (max-width: 600px) {
-            .sns-hub { grid-template-columns: repeat(6, 1fr); }
-            /* 上段：公式, START (3カラムずつ使用して半分に分ける) */
-            .item-off, .item-start { grid-column: span 3; }
-            /* 下段：YouTube, Insta, X (2カラムずつ使用して3等分にする) */
-            .item-yt, .item-insta, .item-x { grid-column: span 2; }
+            .sns-hub { grid-template-columns: repeat(3, 1fr); }
         }
 
         .sns-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #fff; }
@@ -37,13 +34,13 @@
             width: 44px; height: 44px; border-radius: 50%; 
             border: 1px solid var(--accent-color); 
             display: flex; justify-content: center; align-items: center; 
-            font-size: 0.5rem; margin-bottom: 4px; color: var(--accent-color); 
+            font-size: 0.5rem; margin-bottom: 6px; color: var(--accent-color); 
             background: var(--card-bg);
-            box-shadow: 0 0 8px rgba(212,175,55,0.1);
+            box-shadow: 0 0 10px rgba(212,175,55,0.15);
         }
         .sns-label { font-size: 0.55rem; font-weight: bold; white-space: nowrap; }
 
-        .section-label { padding: 15px 15px 5px; font-size: 0.7rem; color: var(--accent-color); font-weight: bold; border-left: 3px solid var(--accent-color); margin-left: 15px; text-transform: uppercase; }
+        .section-label { padding: 15px 15px 5px; font-size: 0.7rem; color: var(--accent-color); font-weight: bold; border-left: 3px solid var(--accent-color); margin: 10px 0 0 15px; text-transform: uppercase; }
         .featured-video { padding: 12px; }
         .v-main { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; border: 1px solid #333; }
         .v-main iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -64,20 +61,23 @@
     <header><h1>REN NAGASE PORTAL</h1></header>
     
     <div class="sns-hub">
-        <a href="https://www.universal-music.co.jp/king-and-prince/" class="sns-item item-off" target="_blank">
-            <div class="sns-icon">OFFICIAL</div><div class="sns-label">UMJ Official</div>
+        <a href="https://www.universal-music.co.jp/king-and-prince/" class="sns-item" target="_blank">
+            <div class="sns-icon">OFFICIAL</div><div class="sns-label">Official Site</div>
         </a>
-        <a href="https://starto.jp/s/p/artist/41" class="sns-item item-start" target="_blank">
+        <a href="https://starto.jp/s/p/artist/41" class="sns-item" target="_blank">
             <div class="sns-icon">START</div><div class="sns-label">Schedule</div>
         </a>
-        <a href="https://www.youtube.com/@kp_official_523" class="sns-item item-yt" target="_blank">
+        <a href="https://www.youtube.com/@kp_official_523" class="sns-item" target="_blank">
             <div class="sns-icon">YOUTUBE</div><div class="sns-label">YouTube</div>
         </a>
-        <a href="https://www.instagram.com/ren.nagase.official/" class="sns-item item-insta" target="_blank">
+        <a href="https://www.instagram.com/ren.nagase.official/" class="sns-item" target="_blank">
             <div class="sns-icon">INSTA</div><div class="sns-label">Instagram</div>
         </a>
-        <a href="https://x.com/kp_official0523" class="sns-item item-x" target="_blank">
+        <a href="https://x.com/kp_official0523" class="sns-item" target="_blank">
             <div class="sns-icon">X</div><div class="sns-label">X</div>
+        </a>
+        <a href="https://www.tiktok.com/@kp_official_523" class="sns-item" target="_blank">
+            <div class="sns-icon">TIKTOK</div><div class="sns-label">TikTok</div>
         </a>
     </div>
 
