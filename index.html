@@ -7,10 +7,20 @@
     <style>
         :root { --bg-color: #000; --card-bg: #111; --accent-color: #d4af37; --text-color: #fff; }
         body { font-family: -apple-system, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; overflow-x: hidden; }
-        header { padding: 15px; text-align: center; border-bottom: 1px solid #222; }
-        h1 { margin: 0; font-size: 1rem; color: var(--accent-color); letter-spacing: 0.1rem; }
         
-        /* SNSハブ：PCは1列、スマホは3列×2段 */
+        /* ヘッダーデザイン：サブタイトルを上に配置 */
+        header { padding: 30px 15px 20px; text-align: center; border-bottom: 1px solid #222; }
+        .subtitle { 
+            font-size: 0.6rem; 
+            color: var(--accent-color); 
+            letter-spacing: 0.3rem; 
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+        h1 { margin: 0; font-size: 1.2rem; color: var(--accent-color); letter-spacing: 0.2rem; font-weight: bold; }
+        
         .sns-hub { 
             display: grid; 
             padding: 15px 5px; 
@@ -18,16 +28,8 @@
             gap: 15px 0;
             background: linear-gradient(180deg, #000, #080808);
         }
-
-        /* PC表示：横1列 */
-        @media (min-width: 601px) {
-            .sns-hub { grid-template-columns: repeat(6, 1fr); }
-        }
-
-        /* スマホ表示：3列 × 2段 */
-        @media (max-width: 600px) {
-            .sns-hub { grid-template-columns: repeat(3, 1fr); }
-        }
+        @media (min-width: 601px) { .sns-hub { grid-template-columns: repeat(6, 1fr); } }
+        @media (max-width: 600px) { .sns-hub { grid-template-columns: repeat(3, 1fr); } }
 
         .sns-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #fff; }
         .sns-icon { 
@@ -40,25 +42,30 @@
         }
         .sns-label { font-size: 0.55rem; font-weight: bold; white-space: nowrap; }
 
-        .section-label { padding: 15px 15px 5px; font-size: 0.7rem; color: var(--accent-color); font-weight: bold; border-left: 3px solid var(--accent-color); margin: 10px 0 0 15px; text-transform: uppercase; }
+        .section-label { padding: 15px 15px 5px; font-size: 0.7rem; color: var(--accent-color); font-weight: bold; border-left: 3px solid var(--accent-color); margin: 15px 0 0 15px; text-transform: uppercase; }
         .featured-video { padding: 12px; }
         .v-main { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; border: 1px solid #333; }
         .v-main iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        
         .video-scroll { display: flex; overflow-x: auto; padding: 10px 15px; gap: 12px; }
         .video-scroll::-webkit-scrollbar { display: none; }
         .v-card { min-width: 140px; text-decoration: none; color: #fff; }
         .v-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; border: 1px solid #222; }
         .v-title { font-size: 0.6rem; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3; }
+        
         #news-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; padding: 12px; }
         .news-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; text-decoration: none; color: inherit; border: 1px solid #222; }
-        .news-img { width: 100%; aspect-ratio: 16/10; object-fit: cover; }
-        .news-content { padding: 8px; }
+        .news-img { width: 100%; aspect-ratio: 16/10; object-fit: cover; background: #222; }
+        .news-content { padding: 10px; }
         .news-source { font-size: 0.55rem; color: var(--accent-color); font-weight: bold; }
         .news-title { font-size: 0.75rem; line-height: 1.3; margin-top: 4px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     </style>
 </head>
 <body>
-    <header><h1>REN NAGASE PORTAL</h1></header>
+    <header>
+        <div class="subtitle">T.Miku Only</div>
+        <h1>REN NAGASE PORTAL</h1>
+    </header>
     
     <div class="sns-hub">
         <a href="https://www.universal-music.co.jp/king-and-prince/" class="sns-item" target="_blank">
@@ -95,10 +102,13 @@
             try {
                 const res = await fetch('news.json?v=' + Date.now());
                 const data = await res.json();
+                
+                // 動画セクション
                 const allVideos = [];
                 if(data.featured) allVideos.push(data.featured);
                 if(data.regulars) allVideos.push(...data.regulars);
                 if(data.shorts) allVideos.push(...data.shorts);
+                
                 if(allVideos.length > 0) {
                     document.getElementById('main-video').innerHTML = `<div class="v-main"><iframe src="https://www.youtube.com/embed/${allVideos[0].id}" frameborder="0" allowfullscreen></iframe></div>`;
                     const list = document.getElementById('video-list');
@@ -106,11 +116,20 @@
                         list.innerHTML += `<a href="https://www.youtube.com/watch?v=${v.id}" class="v-card" target="_blank"><img src="${v.thumbnail}" class="v-thumb"><div class="v-title">${v.title}</div></a>`;
                     });
                 }
+                
+                // ニュースセクション
                 const container = document.getElementById('news-container');
                 (data.news || []).forEach(item => {
-                    container.innerHTML += `<a href="${item.url}" class="news-card" target="_blank"><img src="${item.img || ''}" class="news-img"><div class="news-content"><div class="news-source">${item.source}</div><div class="news-title">${item.title}</div></div></a>`;
+                    container.innerHTML += `
+                        <a href="${item.url}" class="news-card" target="_blank">
+                            <img src="${item.img || ''}" class="news-img" loading="lazy">
+                            <div class="news-content">
+                                <div class="news-source">${item.source}</div>
+                                <div class="news-title">${item.title}</div>
+                            </div>
+                        </a>`;
                 });
-            } catch (e) { console.error(e); }
+            } catch (e) { console.error("Data load error:", e); }
         }
         init();
     </script>
