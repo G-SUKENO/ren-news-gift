@@ -7,109 +7,101 @@ import re
 from datetime import datetime
 from bs4 import BeautifulSoup
 
-# 本物のiPhoneからアクセスしているように見せかける
-UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Mobile/15E148 Safari/604.1'
+# より本物に近いブラウザ設定
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Mobile/15E148 Safari/604.1',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Accept-Language': 'ja-JP,ja;q=0.9'
+}
 
 def fetch_real_info(rss_url):
-    headers = {'User-Agent': UA}
     try:
-        # 1. Googleの中継を突破して最終URLへ
-        res = requests.get(rss_url, timeout=12, headers=headers, allow_redirects=True)
+        # Sessionを使ってクッキーを保持し、リダイレクトを追いかける
+        session = requests.Session()
+        res = session.get(rss_url, timeout=15, headers=HEADERS, allow_redirects=True)
         final_url = res.url
         
-        # Googleのドメインで止まっていたら失敗
+        # Googleのページで止まっている場合の対策
         if "google.com" in final_url:
+            print(f"  [Wait] Googleの壁に阻まれました: {final_url[:40]}...")
             return final_url, ""
 
-        # 2. ページ解析
         soup = BeautifulSoup(res.text, 'html.parser')
         img_url = ""
         
-        # 優先順位: OGP -> Twitter -> Itemprop
-        tags = [
-            ("meta", {"property": "og:image"}),
-            ("meta", {"name": "twitter:image"}),
-            ("meta", {"itemprop": "image"}),
-            ("link", {"rel": "image_src"})
-        ]
+        # 1. OGPタグを最優先で探す
+        og_img = soup.find("meta", property="og:image") or soup.find("meta", attrs={"name": "og:image"})
+        if og_img and og_img.get("content"):
+            img_url = og_img["content"]
         
-        for tag, attrs in tags:
-            target = soup.find(tag, attrs)
-            if target:
-                candidate = target.get("content") or target.get("href")
-                if candidate and "http" in candidate and "google" not in candidate:
-                    img_url = candidate
-                    break
-        
-        return final_url, img_url
-    except:
+        # 2. Twitterカードタグを探す
+        if not img_url:
+            tw_img = soup.find("meta", attrs={"name": "twitter:image"})
+            if tw_img: img_url = tw_img.get("content")
+
+        if img_url and img_url.startswith("http") and "google" not in img_url:
+            return final_url, img_url
+        return final_url, ""
+    except Exception as e:
+        print(f"  [Error] {e}")
         return rss_url, ""
 
 def get_news():
-    filename = 'news.json'
-    archive = []
-    if os.path.exists(filename):
-        with open(filename, 'r', encoding='utf-8') as f:
-            try: archive = json.load(f)
-            except: archive = []
-
-    def normalize_title(t, src):
-        # タイトルからメディア名を除去して純粋な見出しにする
-        t = re.sub(f' - {src}$', '', t)
-        return re.sub(r'[^\w]', '', t)
-
-    existing_urls = {item['url'] for item in archive}
-    existing_titles = {normalize_title(item['title'], item['source']) for item in archive[:50] if 'source' in item}
-    
-    queries = ["永瀬廉", "永瀬廉 site:natalie.mu", "永瀬廉 site:mdpr.jp"]
-    new_items = []
-
-    for q in queries:
-        rss_url = f"https://news.google.com/rss/search?q={q}&hl=ja&gl=JP&ceid=JP:ja"
-        try:
-            res = requests.get(rss_url, timeout=10)
-            root = ET.fromstring(res.content)
-            for item in root.findall('.//item')[:10]:
-                raw_title = item.find('title').text
-                rss_link = item.find('link').text
-                
-                # ★メディア名を確実にとる
-                source_tag = item.find('source')
-                source = source_tag.text if source_tag is not None else "ニュース"
-                
-                clean_title = re.sub(f' - {source}$', '', raw_title)
-
-                if (normalize_title(clean_title, source) not in existing_titles) and (rss_link not in existing_urls):
-                    print(f"取得中: {clean_title[:15]}...")
-                    url, img = fetch_real_info(rss_link)
-                    
-                    pub_date = item.find('pubDate').text
-                    date_obj = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %Z')
-                    
-                    new_items.append({
-                        "title": clean_title, "source": source, "url": url, "img": img,
-                        "date": date_obj.strftime('%Y/%m/%d'), "year": date_obj.strftime('%Y'),
-                        "timestamp": date_obj.timestamp()
-                    })
-                    existing_titles.add(normalize_title(clean_title, source))
-                    existing_urls.add(url)
-                    time.sleep(1.5)
-        except: continue
-
-    # ★ 既存の「Googleロゴ」や「星マーク」を5件ずつ本物の画像へ書き換える
-    for item in archive:
-        if not item.get('img') or "google" in item['img'] or "placehold.jp" in item['img']:
-            print(f"画像修復中: {item['title'][:10]}...")
-            _, real_img = fetch_real_info(item['url'])
-            if real_img:
-                item['img'] = real_img
-                print(" -> 修復成功!")
-            time.sleep(1.5)
-
-    combined = new_items + archive
-    combined.sort(key=lambda x: x.get('timestamp', 0), reverse=True)
-    with open(filename, 'w', encoding='utf-8') as f:
-        json.dump(combined[:1000], f, ensure_ascii=False, indent=4)
+    # RSSから最新情報を取得
+    url = "https://news.google.com/rss/search?q=永瀬廉&hl=ja&gl=JP&ceid=JP:ja"
+    try:
+        res = requests.get(url, timeout=10)
+        root = ET.fromstring(res.content)
+        item = root.findall('.//item')[0] # ★最新の1件だけ取得
+        
+        raw_title = item.find('title').text
+        rss_link = item.find('link').text
+        
+        # メディア名をGoogleのsourceタグから確実に取得
+        source_el = item.find('source')
+        source_name = source_el.text if source_el is not None else "ニュース"
+        
+        # タイトルを綺麗にする
+        clean_title = re.sub(f' - {source_name}$', '', raw_title)
+        
+        print(f"対象記事: {clean_title[:20]} [{source_name}]")
+        print("詳細（画像）を取得中...")
+        
+        final_url, img_url = fetch_real_info(rss_link)
+        
+        pub_date = item.find('pubDate').text
+        date_obj = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %Z')
+        
+        new_data = {
+            "title": clean_title,
+            "source": source_name,
+            "url": final_url,
+            "img": img_url,
+            "date": date_obj.strftime('%Y/%m/%d'),
+            "year": date_obj.strftime('%Y'),
+            "timestamp": date_obj.timestamp()
+        }
+        
+        # 保存
+        filename = 'news.json'
+        if os.path.exists(filename):
+            with open(filename, 'r', encoding='utf-8') as f:
+                archive = json.load(f)
+        else:
+            archive = []
+            
+        # 重複チェックして先頭に追加
+        if not any(x['title'] == clean_title for x in archive):
+            archive.insert(0, new_data)
+            
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(archive[:1000], f, ensure_ascii=False, indent=4)
+            
+        if img_url: print(" [成功] 画像とメディア名を取得しました")
+        else: print(" [一部失敗] メディア名は取れましたが、画像が見つかりません")
+            
+    except Exception as e:
+        print(f"RSS取得エラー: {e}")
 
 if __name__ == "__main__":
     get_news()
