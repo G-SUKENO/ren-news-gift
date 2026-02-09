@@ -1,22 +1,44 @@
-const IMAGE_COUNT = 9;
 const FEATURED_VIDEO_ID = "8HxFsdGL6og";
 
-function initHeroSlideshow() {
+async function initHeroSlideshow() {
     const heroImg = document.getElementById('random-photo');
     if (!heroImg) return;
-    let currentIdx = 1;
-    const updateImage = () => {
-        heroImg.style.opacity = '0';
-        setTimeout(() => {
-            heroImg.src = `images/photo_${currentIdx}.jpg`;
-            heroImg.onload = () => heroImg.style.opacity = '1';
-            currentIdx = currentIdx >= IMAGE_COUNT ? 1 : currentIdx + 1;
-        }, 500);
-    };
-    updateImage();
-    setInterval(updateImage, 5000);
+
+    try {
+        // キャッシュを避けるためにタイムスタンプを付与
+        const response = await fetch('./image_list.json?t=' + new Date().getTime());
+        if (!response.ok) throw new Error('Network response was not ok');
+        const images = await response.json();
+        
+        if (!images || images.length === 0) {
+            console.error("Image list is empty");
+            return;
+        }
+
+        let lastIdx = -1;
+        const updateImage = () => {
+            heroImg.style.opacity = '0';
+            setTimeout(() => {
+                let newIdx;
+                do {
+                    newIdx = Math.floor(Math.random() * images.length);
+                } while (newIdx === lastIdx && images.length > 1);
+                
+                lastIdx = newIdx;
+                // 画像URLにもキャッシュ対策
+                heroImg.src = `images/${images[newIdx]}?v=${new Date().getTime()}`;
+                heroImg.onload = () => { heroImg.style.opacity = '1'; };
+            }, 500);
+        };
+
+        updateImage();
+        setInterval(updateImage, 5000);
+    } catch (e) {
+        console.error("Hero Image Error:", e);
+    }
 }
 
+// YouTube/Shorts読み込み関数（既存のまま）
 function loadFeaturedVideo() {
     const mainVideo = document.getElementById('main-video');
     if (!mainVideo) return;
@@ -33,10 +55,9 @@ async function loadShorts() {
     const videoList = document.getElementById('video-list');
     if (!videoList) return;
     try {
-        const res = await fetch('news.json');
+        const res = await fetch('news.json?t=' + Date.now());
         const data = await res.json();
         const items = data.shorts || [];
-
         videoList.innerHTML = items.map(item => {
             const vidId = item.id;
             const thumbUrl = `https://img.youtube.com/vi/${vidId}/mqdefault.jpg`;
@@ -46,14 +67,13 @@ async function loadShorts() {
                         <img src="${thumbUrl}" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div style="padding: 0 4px;">
-                        <p style="color: #ffffff; font-size: 0.7rem; margin: 10px 0 0; line-height: 1.4; font-weight: 500; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; white-space: normal;">
+                        <p style="color: #ffffff; font-size: 0.7rem; margin: 10px 0 0; line-height: 1.4; font-weight: 500; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
                             ${item.title}
                         </p>
                     </div>
-                </a>
-            `;
+                </a>`;
         }).join('');
-    } catch (e) { console.error("Shorts Load Error:", e); }
+    } catch (e) { console.error("Shorts Error:", e); }
 }
 
 window.addEventListener('load', () => {
