@@ -2,73 +2,84 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import os
+from datetime import datetime
+from urllib.parse import urljoin
 
 def fetch_news():
-    url = "https://www.universal-music.co.jp/king-and-prince/news/"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    }
+    # 巡回ターゲット（全方位カバー）
+    targets = [
+        {"name": "Official", "url": "https://www.universal-music.co.jp/king-and-prince/news/"},
+        {"name": "Natalie", "url": "https://natalie.mu/music/tag/1043"},
+        {"name": "Oricon", "url": "https://www.oricon.co.jp/prof/717882/news/"},
+        {"name": "Billboard", "url": "https://www.billboard-japan.com/search/news?word=King+%26+Prince"},
+        {"name": "ModelPress", "url": "https://mdpr.jp/tag/11500"},
+        {"name": "Edgeline", "url": "https://www.edgeline-tokyo.com/tag/king-prince"},
+        {"name": "MovieWalker", "url": "https://moviewalker.jp/tag/38283/"},
+        {"name": "RealSound", "url": "https://realsound.jp/tag/king-prince"}
+    ]
     
-    try:
-        res = requests.get(url, headers=headers, timeout=15)
-        res.encoding = res.apparent_encoding
-        soup = BeautifulSoup(res.text, 'html.parser')
-        
-        # 今回の巡回で見つかった最新ニュースを格納
-        scraped_articles = []
-        items = soup.select('article, .news-list-item, .news-list li')
+    headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
+    scraped_articles = []
 
-        for item in items:
-            link_tag = item.find('a', href=True)
-            if not link_tag: continue
+    for target in targets:
+        try:
+            print(f"🧐 {target['name']} をチェック中...")
+            res = requests.get(target['url'], headers=headers, timeout=12)
+            res.encoding = res.apparent_encoding
+            soup = BeautifulSoup(res.text, 'html.parser')
             
-            title_tag = item.select_one('.title, h3, .h3, .text')
-            date_tag = item.select_one('.date, time')
+            # 各サイトの構造から記事を抽出（セレクタをより広範囲に設定）
+            items = soup.select('article, .news-list-item, li[class*="news"], .u-main-v2__item, .mdpr-articleCard, .news-card, .list-item, .post-item')
             
-            href = link_tag['href']
-            title = title_tag.get_text(strip=True) if title_tag else ""
-            date_str = date_tag.get_text(strip=True) if date_tag else ""
+            for item in items[:15]: # 各サイト上位15件をチェック
+                link_tag = item.find('a', href=True)
+                # タイトルを探す（クラス名を網羅）
+                title_tag = item.select_one('.title, h3, .h3, .text, .mdpr-articleCard__title, .list-item__title, .entry-title')
+                
+                if link_tag and title_tag:
+                    title = title_tag.get_text(strip=True)
+                    # 短すぎる、または長すぎるゴミデータ、SNSシェアリンク等を除外
+                    if len(title) < 10 or "Twitter" in title or "Facebook" in title:
+                        continue
 
-            if title and '/news/' in href:
-                full_url = href if href.startswith('http') else "https://www.universal-music.co.jp" + href
-                scraped_articles.append({
-                    "title": title,
-                    "url": full_url,
-                    "date": date_str,
-                    "image": "images/photo_9.jpg",
-                    "site_name": "Official"
-                })
+                    full_url = urljoin(target['url'], link_tag['href'])
+                    
+                    scraped_articles.append({
+                        "title": title,
+                        "url": full_url,
+                        "date": datetime.now().strftime("%Y.%m.%d"),
+                        "image": "images/photo_9.jpg",
+                        "site_name": target['name']
+                    })
+        except Exception as e:
+            print(f"⚠️ {target['name']} でエラー: {e}")
+            continue
 
-        # --- ここから「50件維持」のロジック ---
-        data = {"news": [], "shorts": []}
-        if os.path.exists('news.json'):
-            with open('news.json', 'r', encoding='utf-8') as f:
-                try: data = json.load(f)
-                except: pass
+    # --- 50件維持 & 重複排除ロジック ---
+    data = {"news": [], "shorts": []}
+    if os.path.exists('news.json'):
+        with open('news.json', 'r', encoding='utf-8') as f:
+            try: data = json.load(f)
+            except: pass
 
-        # 1. 既存のニュースを取得
-        existing_news = data.get('news', [])
+    existing_news = data.get('news', [])
+    
+    # 今回取得した記事を、古い順からチェックして既存リストの先頭に「差し込み」
+    # URLで重複を確認するので、同じ記事は二度入りません
+    new_count = 0
+    for article in reversed(scraped_articles):
+        if not any(e['url'] == article['url'] for e in existing_news):
+            existing_news.insert(0, article)
+            new_count += 1
 
-        # 2. 新しく取れた記事を、重複を避けて先頭に追加
-        new_count = 0
-        for article in reversed(scraped_articles): # 古い順にチェックして先頭に差し込む
-            if not any(e['url'] == article['url'] for e in existing_news):
-                existing_news.insert(0, article)
-                new_count += 1
+    # 常に最新50件のみを保持（古いものは自動削除）
+    data['news'] = existing_news[:50]
 
-        # 3. 日付でソート（念のため）
-        existing_news.sort(key=lambda x: x['date'], reverse=True)
-
-        # 4. 50件を超えたら、古いもの（末尾）を削除
-        data['news'] = existing_news[:50]
-
-        with open('news.json', 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=4)
-        
-        print(f"✅ 更新完了: 新着{new_count}件を追加し、合計{len(data['news'])}件を保持しています。")
-
-    except Exception as e:
-        print(f"❌ エラー: {e}")
+    with open('news.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+    
+    print(f"✅ 成功: 新たに {new_count} 件の記事を追加しました。")
+    print(f"📦 現在のストック合計: {len(data['news'])} 件")
 
 if __name__ == "__main__":
     fetch_news()
