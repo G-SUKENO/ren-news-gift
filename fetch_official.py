@@ -5,11 +5,8 @@ import os
 
 def fetch_news():
     url = "https://www.universal-music.co.jp/king-and-prince/news/"
-    # ブラウザになりすますための情報をさらに強化
     headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-        "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }
     
     try:
@@ -17,57 +14,61 @@ def fetch_news():
         res.encoding = res.apparent_encoding
         soup = BeautifulSoup(res.text, 'html.parser')
         
-        new_articles = []
-        
-        # 1. リンク(aタグ)をベースに、親要素や子要素からタイトルと日付を強引に抜く
-        # 今のユニバーサルの構造を網羅的に探す
-        links = soup.find_all('a', href=True)
-        
-        for link in links:
-            href = link['href']
-            # ニュース詳細へのリンクと思われるものに絞る
-            if '/king-and-prince/news/20' in href:
-                # 親要素や自分自身からタイトルを探す
-                # title, h3, p, span, などを順番にチェック
-                title_elem = link.select_one('.title, h3, span, .text')
-                title = title_elem.get_text(strip=True) if title_elem else link.get_text(strip=True)
-                
-                # 日付を探す
-                date_elem = link.find_previous('p', class_='date') or link.select_one('.date, time')
-                date_str = date_elem.get_text(strip=True) if date_elem else "2026.02.06" # 取れなければ仮
+        # 今回の巡回で見つかった最新ニュースを格納
+        scraped_articles = []
+        items = soup.select('article, .news-list-item, .news-list li')
 
-                if title and len(title) > 5: # 短すぎるゴミデータを除外
-                    full_url = href if href.startswith('http') else "https://www.universal-music.co.jp" + href
-                    
-                    if not any(a['url'] == full_url for a in new_articles):
-                        new_articles.append({
-                            "title": title,
-                            "url": full_url,
-                            "date": date_str,
-                            "image": "images/photo_9.jpg",
-                            "site_name": "Official"
-                        })
+        for item in items:
+            link_tag = item.find('a', href=True)
+            if not link_tag: continue
+            
+            title_tag = item.select_one('.title, h3, .h3, .text')
+            date_tag = item.select_one('.date, time')
+            
+            href = link_tag['href']
+            title = title_tag.get_text(strip=True) if title_tag else ""
+            date_str = date_tag.get_text(strip=True) if date_tag else ""
 
-        # 保存処理
+            if title and '/news/' in href:
+                full_url = href if href.startswith('http') else "https://www.universal-music.co.jp" + href
+                scraped_articles.append({
+                    "title": title,
+                    "url": full_url,
+                    "date": date_str,
+                    "image": "images/photo_9.jpg",
+                    "site_name": "Official"
+                })
+
+        # --- ここから「50件維持」のロジック ---
         data = {"news": [], "shorts": []}
         if os.path.exists('news.json'):
             with open('news.json', 'r', encoding='utf-8') as f:
                 try: data = json.load(f)
                 except: pass
 
-        if new_articles:
-            # 日付順（っぽいもの）に並べ替え（簡易的）
-            new_articles.sort(key=lambda x: x['date'], reverse=True)
-            data['news'] = new_articles[:50]
-            print(f"✅ 成功: {len(data['news'])}件の記事を抽出しました。")
-        else:
-            print("⚠️ まだ見つかりません。HTMLのダンプを確認します。")
+        # 1. 既存のニュースを取得
+        existing_news = data.get('news', [])
+
+        # 2. 新しく取れた記事を、重複を避けて先頭に追加
+        new_count = 0
+        for article in reversed(scraped_articles): # 古い順にチェックして先頭に差し込む
+            if not any(e['url'] == article['url'] for e in existing_news):
+                existing_news.insert(0, article)
+                new_count += 1
+
+        # 3. 日付でソート（念のため）
+        existing_news.sort(key=lambda x: x['date'], reverse=True)
+
+        # 4. 50件を超えたら、古いもの（末尾）を削除
+        data['news'] = existing_news[:50]
 
         with open('news.json', 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
+        
+        print(f"✅ 更新完了: 新着{new_count}件を追加し、合計{len(data['news'])}件を保持しています。")
 
     except Exception as e:
-        print(f"❌ エラー発生: {e}")
+        print(f"❌ エラー: {e}")
 
 if __name__ == "__main__":
     fetch_news()
