@@ -1,4 +1,12 @@
 {
-    "news": [],
+    "news": [
+        {
+            "title": "Ren Nagase Portal Open!",
+            "url": "https://www.instagram.com/ren.nagase.official/",
+            "date": "2026.02.10",
+            "image": "images/photo_9.jpg",
+            "site_name": "INFO"
+        }
+    ],
     "shorts": []
 }
