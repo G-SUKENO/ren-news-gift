@@ -1,31 +1,40 @@
-name: Update News Daily
+name: Auto News Update
 
 on:
   schedule:
-    - cron: '0 * * * *' # 日本時間の毎朝6時に実行
-  workflow_dispatch:      # 手動実行も可能にする
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
 
 jobs:
-  build:
+  update-news:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.9'
 
       - name: Install dependencies
-        run: pip install requests
-
-      - name: Run update script
-        run: python3 generate_json.py
-
-      - name: Commit and push if changed
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add news.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update news" && git push)
+          pip install requests beautifulsoup4
+
+      - name: Run update scripts
+        run: |
+          chmod +x update_news.sh
+          ./update_news.sh
+          # ここで247枚のリストを再生成させる
+          python3 generate_image_list.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # news.json と image_list.json の両方を保存対象にする
+          git add news.json image_list.json
+          git commit -m "Auto-update news and image list: $(date)" || echo "No changes to commit"
+          git push

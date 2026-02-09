@@ -1,16 +1,15 @@
 #!/bin/bash
-echo "🌟 永瀬廉 ニュースポータル一括更新開始 🌟"
 
-# 各サイトからの抽出
+echo "🚀 ニュース更新プロセスを開始します..."
+
+# 1. 各サイトのスクリプトを順番に実行
+# ※各スクリプトが「既存のnews.jsonに追記して50件維持する」ロジックになっていることが前提です
 python3 fetch_official.py
-python3 fetch_oricon.py
 python3 fetch_natalie.py
-python3 fetch_modelpress.py
-python3 fetch_moviewalker.py
-python3 fetch_edgeline.py
+python3 fetch_oricon.py
 python3 fetch_billboard.py
+python3 fetch_modelpress.py
+python3 fetch_edgeline.py
+python3 fetch_moviewalker.py
 
-# 最後に50件に切り詰める
-python3 trim_news.py
-
-echo "✅ すべての更新と整理が完了しました。"
+echo "✅ 全サイトの巡回が完了しました。"
