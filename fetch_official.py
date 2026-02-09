@@ -1,81 +1,52 @@
 import requests
 from bs4 import BeautifulSoup
 import json
-import re
-import time
+import os
 
-def fetch_universal_news():
-    base_url = "https://www.universal-music.co.jp/king-and-prince/news/"
-    headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"}
+def fetch_news():
+    url = "https://www.universal-music.co.jp/king-and-prince/news/"
+    headers = {"User-Agent": "Mozilla/5.0"}
     
     try:
-        response = requests.get(base_url, headers=headers)
-        response.encoding = response.apparent_encoding
-        soup = BeautifulSoup(response.text, 'html.parser')
+        res = requests.get(url, headers=headers)
+        res.encoding = res.apparent_encoding
+        soup = BeautifulSoup(res.text, 'html.parser')
         
-        news_list = []
-        # 一覧からリンクを抽出
-        articles = soup.find_all('a', href=re.compile(r'/king-and-prince/news/\d+'))
-        
-        for a_tag in articles[:8]:
-            title = a_tag.get_text(strip=True)
-            if not title or len(title) < 10: continue
+        new_articles = []
+        # ユニバーサルのサイト構造に合わせて抽出（クラス名は現状に合わせる）
+        for item in soup.select('.news-list li, .newsList li'):
+            title_tag = item.select_one('.title')
+            date_tag = item.select_one('.date')
+            link_tag = item.select_one('a')
+            img_tag = item.select_one('img')
             
-            detail_url = a_tag['href']
-            if not detail_url.startswith('http'):
-                detail_url = "https://www.universal-music.co.jp" + detail_url
+            if title_tag and link_tag:
+                new_articles.append({
+                    "title": title_tag.get_text(strip=True),
+                    "url": link_tag['href'] if link_tag['href'].startswith('http') else "https://www.universal-music.co.jp" + link_tag['href'],
+                    "date": date_tag.get_text(strip=True) if date_tag else "",
+                    "image": img_tag['src'] if img_tag else "images/photo_9.jpg",
+                    "site_name": "Official"
+                })
 
-            print(f"詳細解析中: {title[:15]}...")
-            time.sleep(1) # サーバーへの礼儀
-            
-            try:
-                detail_res = requests.get(detail_url, headers=headers)
-                detail_res.encoding = detail_res.apparent_encoding
-                detail_soup = BeautifulSoup(detail_res.text, 'html.parser')
-                
-                # 1. 真の投稿日を詳細ページから抽出
-                # ユニバーサルの詳細ページにある timeタグや .date クラスを狙い撃ち
-                date_node = detail_soup.select_one('time') or detail_soup.select_one('.date') or detail_soup.select_one('.entry-date')
-                true_date = date_node.get_text(strip=True) if date_node else ""
-                
-                # もし詳細ページになければ、一覧ページの親要素から探す補助ロジック
-                if not true_date:
-                    parent = a_tag.find_parent(['li', 'div', 'article'])
-                    fallback_date = parent.find(string=re.compile(r'\d{4}\.\d{2}\.\d{2}')) if parent else None
-                    true_date = fallback_date.strip() if fallback_date else ""
+        # 既存のデータを読み込む（Shortsを消さないため）
+        data = {"news": [], "shorts": []}
+        if os.path.exists('news.json'):
+            with open('news.json', 'r', encoding='utf-8') as f:
+                try:
+                    data = json.load(f)
+                except:
+                    pass
 
-                # 2. 本物の画像を詳細ページから抽出
-                img_node = detail_soup.select_one('.entry-content img') or detail_soup.find('meta', property='og:image')
-                if img_node:
-                    img_url = img_node.get('src') or img_node.get('content')
-                else:
-                    img_url = "images/photo_9.jpg"
+        # ニュースだけを最新の50件に差し替え（Shortsは維持）
+        data['news'] = new_articles[:50]
 
-                if not any(n['url'] == detail_url for n in news_list):
-                    news_list.append({
-                        "site_name": "Official",
-                        "date": true_date,
-                        "title": title,
-                        "url": detail_url,
-                        "image": img_url
-                    })
-            except Exception as e:
-                print(f"詳細解析エラー: {e}")
+        with open('news.json', 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        print(f"✅ ニュースを{len(data['news'])}件更新しました。")
 
-        return news_list
     except Exception as e:
-        print(f"一覧取得エラー: {e}")
-        return []
+        print(f"❌ エラー発生: {e}")
 
 if __name__ == "__main__":
-    new_articles = fetch_universal_news()
-    try:
-        with open('news.json', 'r', encoding='utf-8') as f:
-            data = json.load(f)
-    except:
-        data = {"news": [], "shorts": []}
-
-    data["news"] = new_articles
-    with open('news.json', 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
-    print(f"\n完了：公式ニュース {len(new_articles)}件（真の日付・画像抽出済）")
+    fetch_news()
