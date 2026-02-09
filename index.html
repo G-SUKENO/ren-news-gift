@@ -93,42 +93,43 @@
 </footer>
 
 <script>
-    // スライドショー制御
     fetch('image_list.json').then(res => res.json()).then(images => {
         if (!images || images.length === 0) return;
-        let idx = 0; let activeLayer = 1;
+        
+        // ★ 開始インデックスをランダムにする
+        let idx = Math.floor(Math.random() * images.length);
+        
+        let activeLayer = 1;
         const layer1 = document.getElementById('hero-layer-1');
         const layer2 = document.getElementById('hero-layer-2');
+        
         layer1.style.backgroundImage = `url('${images[idx]}')`;
+        
         const update = () => {
-            const nextIdx = (idx + 1) % images.length;
+            idx = (idx + 1) % images.length;
             if (activeLayer === 1) {
-                layer2.style.backgroundImage = `url('${images[nextIdx]}')`;
+                layer2.style.backgroundImage = `url('${images[idx]}')`;
                 layer2.classList.add('active'); layer1.classList.remove('active');
                 activeLayer = 2;
             } else {
-                layer1.style.backgroundImage = `url('${images[nextIdx]}')`;
+                layer1.style.backgroundImage = `url('${images[idx]}')`;
                 layer1.classList.add('active'); layer2.classList.remove('active');
                 activeLayer = 1;
             }
-            idx = nextIdx;
         };
         if(images.length > 1) { setInterval(update, 5000); }
-    }).catch(e => console.log("Image list not found"));
+    }).catch(e => console.log("Image list error"));
 
-    // ニュース取得制御
     fetch('news_list.json').then(res => res.json()).then(data => {
         const container = document.getElementById('news-list');
-        if (data.length > 0) container.innerHTML = ''; // ローディングメッセージを消去
+        if (data.length > 0) container.innerHTML = '';
         data.forEach(item => {
             const a = document.createElement('a');
             a.className = 'news-item'; a.href = item.link; a.target = '_blank';
             a.innerHTML = `<img src="${item.thumbnail}" class="news-thumb"><div class="news-content"><div class="news-meta">${item.date} | ${item.site_name}</div><div class="news-title">${item.title}</div></div>`;
             container.appendChild(a);
         });
-    }).catch(e => {
-        console.log("News list not found yet.");
-    });
+    }).catch(e => console.log("News not found"));
 </script>
 </body>
 </html>
