@@ -1,13 +1,36 @@
-// 1. ニュース読み込み (undefinedとショート動画の混線を修正済み)
-async function loadNews() {
-    const newsGrid = document.querySelector('.news-grid');
-    if (!newsGrid) return;
+// 共通のデータ取得関数
+async function fetchData(url) {
+    const res = await fetch(url + '?t=' + Date.now());
+    return await res.json();
+}
+
+// 1. ヒーロー画像 (image_list.json)
+async function initHero() {
+    const heroImg = document.getElementById('hero-image');
+    if (!heroImg) return;
     try {
-        const res = await fetch('news.json?t=' + Date.now());
-        const data = await res.json();
+        const images = await fetchData('image_list.json');
+        const updateHero = () => {
+            const img = images[Math.floor(Math.random() * images.length)];
+            heroImg.style.opacity = 0;
+            setTimeout(() => {
+                heroImg.src = img;
+                heroImg.style.opacity = 1;
+            }, 1000);
+        };
+        setInterval(updateHero, 5000);
+        updateHero();
+    } catch (e) { console.error("Hero Error:", e); }
+}
+
+// 2. ニュース (news.json の news セクション)
+async function initNews() {
+    const grid = document.querySelector('.news-grid');
+    if (!grid) return;
+    try {
+        const data = await fetchData('news.json');
         const articles = data.news || [];
-        
-        newsGrid.innerHTML = articles.map(item => `
+        grid.innerHTML = articles.map(item => `
             <a href="${item.url}" target="_blank" class="news-item">
                 <div class="news-thumb">
                     <img src="${item.image}" alt="">
@@ -19,18 +42,17 @@ async function loadNews() {
                 </div>
             </a>
         `).join('');
-    } catch (e) { console.error("News Load Error:", e); }
+    } catch (e) { console.error("News Error:", e); }
 }
 
-// 2. YouTubeショート動画の復活
-async function loadShorts() {
-    const videoList = document.getElementById('video-list');
-    if (!videoList) return;
+// 3. YouTube動画 (news.json の shorts セクション)
+async function initVideos() {
+    const list = document.getElementById('video-list');
+    if (!list) return;
     try {
-        const res = await fetch('news.json?t=' + Date.now());
-        const data = await res.json();
+        const data = await fetchData('news.json');
         const items = data.shorts || [];
-        videoList.innerHTML = items.map(item => `
+        list.innerHTML = items.map(item => `
             <a href="${item.url}" target="_blank" class="short-item">
                 <div class="short-thumb">
                     <img src="https://img.youtube.com/vi/${item.id}/mqdefault.jpg">
@@ -38,35 +60,12 @@ async function loadShorts() {
                 <p class="short-title">${item.title}</p>
             </a>
         `).join('');
-    } catch (e) { console.error("Shorts Error:", e); }
+    } catch (e) { console.error("Video Error:", e); }
 }
 
-// 3. ヒーロー画像スライドショーの復活
-async function initHeroSlideshow() {
-    const heroImage = document.getElementById('hero-image');
-    if (!heroImage) return;
-    try {
-        const res = await fetch('image_list.json?t=' + Date.now());
-        const images = await res.json();
-        if (images.length === 0) return;
-
-        let currentIndex = 0;
-        const updateHero = () => {
-            const nextIndex = Math.floor(Math.random() * images.length);
-            heroImage.style.opacity = 0;
-            setTimeout(() => {
-                heroImage.src = images[nextIndex];
-                heroImage.style.opacity = 1;
-            }, 1000);
-        };
-        setInterval(updateHero, 5000);
-        updateHero(); // 初回表示
-    } catch (e) { console.error("Hero Error:", e); }
-}
-
-// 全てをページ読み込み時に実行
-window.addEventListener('load', () => {
-    loadNews();
-    loadShorts();
-    initHeroSlideshow();
+// ページ読み込み時にすべて起動
+document.addEventListener('DOMContentLoaded', () => {
+    initHero();
+    initNews();
+    initVideos();
 });
