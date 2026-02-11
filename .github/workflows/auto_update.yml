@@ -2,8 +2,8 @@ name: Auto News Update
 
 on:
   schedule:
-    - cron: '0 * * * *'  # 1時間おきに実行
-  workflow_dispatch:      # 手動実行ボタンも作る
+    - cron: '0 * * * *'  # 1時間に1回実行
+  workflow_dispatch:      # 手動実行ボタンを作成
 
 jobs:
   update:
