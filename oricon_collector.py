@@ -1,66 +1,66 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-import time
+from datetime import datetime
 
 def collect():
-    print("📡 ORICON NEWS：永瀬廉専用アーカイブを直接攻略中...")
-    items = []
-    # 永瀬廉のニュース一覧ページ（ここには過去数ヶ月分の「廉さん記事」しか載っていません）
-    url = "https://www.oricon.co.jp/prof/717830/news/"
+    print("📡 ORICON NEWS：最終攻略（文字コード補正版）...")
+    
+    # 検索結果URL
+    url = "https://www.oricon.co.jp/search/result.php?types=article&search_string=%89i%90%A3%97%F5"
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
     }
 
     try:
         res = requests.get(url, headers=headers, timeout=10)
-        res.encoding = 'utf-8'
+        # オリコン特有の文字コード(Shift-JIS)を強制適用
+        res.encoding = 'shift_jis' 
+        
         soup = BeautifulSoup(res.text, 'html.parser')
         
-        # このページにある「全ての記事リンク」を一旦全部拾う
-        # オリコンの個別ニュースは必ず /news/数字/full/ という形式
-        all_links = soup.find_all('a', href=re.compile(r'/news/\d+/full/'))
+        # 記事へのリンク（/news/数字/full/ または /news/数字/）をすべて探す
+        all_links = soup.find_all('a', href=re.compile(r'/news/\d+'))
         
-        target_urls = []
+        items = []
+        seen_urls = set()
+
+        print(f"🔎 ページ内のリンクから精査中...")
+
         for a in all_links:
+            if len(items) >= 5: break
+            
             href = a['href']
             full_url = "https://www.oricon.co.jp" + href if href.startswith('/') else href
-            if full_url not in target_urls:
-                target_urls.append(full_url)
-
-        print(f"🔎 アーカイブ内に {len(target_urls)} 件の対象URLを発見。精密解析を開始...")
-
-        for detail_url in target_urls[:8]: # 最新8件を深掘り
-            try:
-                time.sleep(0.5)
-                res_d = requests.get(detail_url, headers=headers, timeout=5)
-                res_d.encoding = res_d.apparent_encoding
-                soup_d = BeautifulSoup(res_d.text, 'html.parser')
+            
+            if full_url not in seen_urls:
+                seen_urls.add(full_url)
                 
-                # OGP情報（SNS共有用データ）を最優先で取得
-                og_title = soup_d.find('meta', property='og:title')
-                title = og_title['content'].split(' | ')[0] if og_title else ""
+                # タイトルを取得（aタグの中身、またはimgのaltから）
+                title = a.get_text(strip=True)
+                if not title and a.find('img'):
+                    title = a.find('img').get('alt', '')
                 
-                og_img = soup_d.find('meta', property='og:image')
-                thumbnail = og_img['content'] if og_img else ""
-                
-                # 日付
-                time_tag = soup_d.find('time')
-                date = time_tag.get_text(strip=True) if time_tag else ""
-
-                if title and "oricon.co.jp" in thumbnail: # ちゃんと画像があるものだけ
+                # 「永瀬廉」が含まれる記事だけを厳選
+                if "永瀬廉" in title or "King" in title:
+                    # 画像を探す（同じaタグ内、または周辺）
+                    img_tag = a.find('img')
+                    thumbnail = img_tag['src'] if img_tag else ""
+                    
                     items.append({
                         "site_name": "ORICON NEWS",
-                        "title": title.strip(),
-                        "link": detail_url,
-                        "date": date,
+                        "title": title,
+                        "link": full_url,
+                        "date": datetime.now().strftime("%Y.%m.%d"),
                         "thumbnail": thumbnail
                     })
                     print(f"✅ 奪取成功: {title[:15]}...")
-            except:
-                continue
 
+        return items
     except Exception as e:
-        print(f"❌ 解析失敗: {e}")
-        
-    return items
+        print(f"❌ エラー発生: {e}")
+        return []
+
+if __name__ == "__main__":
+    result = collect()
+    print(f"\n最終結果: {len(result)} 件取得")
