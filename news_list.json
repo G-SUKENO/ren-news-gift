@@ -1,9 +1,65 @@
 [
-  {
-    "date": "2026.02.10",
-    "site_name": "INFORMATION",
-    "title": "Ren Nagase Portal が正常に公開されました。ニュース自動更新の準備中です。",
-    "link": "https://starto.jp/s/p/artist/41",
-    "thumbnail": "https://placehold.jp/24/d4af37/000000/400x210.png?text=READY+TO+UPDATE"
-  }
+    {
+        "site_name": "Universal Music",
+        "title": "3/25発売 NEW シングル　「Waltz for Lily」　先着外付け特典のデザインが決定！ - King & Prince",
+        "link": "https://www.universal-music.co.jp/king-and-prince/news/2026-02-06/",
+        "date": "2026.02.06",
+        "thumbnail": "https://www.universal-music.co.jp/king-and-prince/wp-content/uploads/sites/3239/2026/02/A_photocard.jpg"
+    },
+    {
+        "site_name": "Universal Music",
+        "title": "King & Prince NEWシングル「Waltz for Lily」 ジャケット写真と収録内容を一挙公開！ - King & Prince",
+        "link": "https://www.universal-music.co.jp/king-and-prince/news/2026-01-30/",
+        "date": "2026.01.30",
+        "thumbnail": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg"
+    },
+    {
+        "site_name": "Universal Music",
+        "title": "King & Prince New シングル 「Waltz for Lily」　リリース記念 福岡・大阪・東京・名古屋にて「ドームお祝いキャンペーン」開催決定！ - King & Prince",
+        "link": "https://www.universal-music.co.jp/king-and-prince/news/2026-01-24/",
+        "date": "2026.01.24",
+        "thumbnail": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg"
+    },
+    {
+        "site_name": "Universal Music",
+        "title": "King & Prince 18枚目のシングル「Waltz for Lily」が3/25に発売！ 永瀬廉W主演映画『鬼の花嫁』主題歌に決定！ さらに新アーティスト写真も公開！ - King & Prince",
+        "link": "https://www.universal-music.co.jp/king-and-prince/news/2026-01-23/",
+        "date": "2026.01.23",
+        "thumbnail": "https://www.universal-music.co.jp/king-and-prince/wp-content/uploads/sites/3239/2026/01/KP_wol_H1_shokaiA_FIX.jpg"
+    },
+    {
+        "site_name": "Universal Music",
+        "title": "King & Prince 台湾版紅白 「2026超級巨星紅白藝能大賞」に出演決定！出演を記念し台北での「King & Prince POP-UP STORE 2026 “STARRING”」開催も決定！ - King & Prince",
+        "link": "https://www.universal-music.co.jp/king-and-prince/news/2026-01-07/",
+        "date": "2026.01.07",
+        "thumbnail": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg"
+    },
+    {
+        "site_name": "Universal Music",
+        "title": "King & Prince POP-UP STORE 2026 “STARRING” グッズラインナップ・オンラインストア販売決定！一般先着予約に関するご案内 - King & Prince",
+        "link": "https://www.universal-music.co.jp/king-and-prince/news/2025-12-23/",
+        "date": "2025.12.23",
+        "thumbnail": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg"
+    },
+    {
+        "site_name": "Universal Music",
+        "title": "「STARRING」デジタル配信記念！「Theater」単曲ダウンロードキャンペーン開催決定！ - King & Prince",
+        "link": "https://www.universal-music.co.jp/king-and-prince/news/2025-12-22/",
+        "date": "2025.12.22",
+        "thumbnail": "https://www.universal-music.co.jp/king-and-prince/wp-content/uploads/sites/3239/2025/12/dsp-sample02.jpg"
+    },
+    {
+        "site_name": "Universal Music",
+        "title": "New アルバム 「STARRING」　リリース記念 12/23（火）より対象店舗にてアルバムご購入者様にオリジナルステッカーの配布が決定！ - King & Prince",
+        "link": "https://www.universal-music.co.jp/king-and-prince/news/2025-12-21/",
+        "date": "2025.12.21",
+        "thumbnail": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg"
+    },
+    {
+        "site_name": "Universal Music",
+        "title": "「STARRING」デジタル配信記念 ！iTunesプレオーダーキャンペーン開催決定！ - King & Prince",
+        "link": "https://www.universal-music.co.jp/king-and-prince/news/2025-12-15/",
+        "date": "2025.12.15",
+        "thumbnail": "https://www.universal-music.co.jp/king-and-prince/wp-content/uploads/sites/3239/2025/12/kp_starring_po_sample-sp_v2.jpg"
+    }
 ]
