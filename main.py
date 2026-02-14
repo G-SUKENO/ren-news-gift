@@ -1,36 +1,48 @@
 import json
-import os
-import official_collector
-import moviewalker_collector
 import oricon_collector
+import modelpress_collector
+import official_collector  # これがUNIVERSALの正体
 
 def main():
-    print("🚀 ニュース抽出を開始します...")
+    all_news = []
     
-    # 各ソースから収集
-    official_data = official_collector.collect()
-    oricon_data = oricon_collector.collect()
-    movie_data = moviewalker_collector.collect()
-
-    # すべてを統合
-    all_news = official_data + oricon_data + movie_data
+    # 1. UNIVERSAL (official_collector) から取得
+    print("📡 UNIVERSAL MUSIC：取得開始...")
+    try:
+        all_news.extend(official_collector.collect())
+    except Exception as e:
+        print(f"❌ UNIVERSAL取得エラー: {e}")
     
-    # タイトルの重複排除
+    # 2. ORICON NEWS から取得
+    print("📡 ORICON NEWS：取得開始...")
+    try:
+        all_news.extend(oricon_collector.collect())
+    except Exception as e:
+        print(f"❌ ORICON取得エラー: {e}")
+    
+    # 3. MODELPRESS から取得
+    print("📡 MODELPRESS：取得開始...")
+    try:
+        all_news.extend(modelpress_collector.collect())
+    except Exception as e:
+        print(f"❌ MODELPRESS取得エラー: {e}")
+    
+    # 日付順に並び替え（新しい順）
+    all_news.sort(key=lambda x: x.get('date', '0000.00.00'), reverse=True)
+    
+    # 重複削除
     unique_news = []
     seen_titles = set()
-    for item in all_news:
-        if item['title'] not in seen_titles:
-            unique_news.append(item)
-            seen_titles.add(item['title'])
+    for news in all_news:
+        if news['title'] not in seen_titles:
+            unique_news.append(news)
+            seen_titles.add(news['title'])
     
-    # 日付順にソート（新しい順）
-    unique_news.sort(key=lambda x: x['date'], reverse=True)
-    
-    # 最終保存
+    # 保存
     with open('news_list.json', 'w', encoding='utf-8') as f:
-        json.dump(unique_news, f, ensure_ascii=False, indent=4)
-        
-    print(f"\n✨ 更新完了！ 合計 {len(unique_news)} 件の記事を統合しました")
+        json.dump(unique_news[:20], f, ensure_ascii=False, indent=4)
+    
+    print(f"✨ 完了：合計 {len(unique_news[:20])} 件のニュースを保存しました！")
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
