@@ -4,7 +4,7 @@ from datetime import datetime
 import re
 
 def collect():
-    print("📡 MODELPRESS：解析中...")
+    print("📡 MODELPRESS：正確な日付を抽出中...")
     url = "https://mdpr.jp/model/detail/2554"
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'}
 
@@ -13,28 +13,39 @@ def collect():
         res.encoding = 'utf-8'
         soup = BeautifulSoup(res.text, 'html.parser')
         
-        # あなたが grep で見つけてくれた「p-articleListItem__title」をターゲットにします
-        articles = soup.select('.p-articleListItem__title')
+        # 記事リストのアイテムを特定
+        articles = soup.select('.p-articleListItem') or soup.select('.p-articleList__item')
         items = []
         
-        for title_tag in articles:
+        for article in articles:
             if len(items) >= 10: break
             
-            # 親要素や周辺からリンクと画像を探す
-            parent = title_tag.find_parent('a') or title_tag.find_parent('div', class_='p-articleListItem')
-            link_tag = parent if parent and parent.name == 'a' else title_tag.find_previous('a') or title_tag.find_next('a')
+            title_tag = article.select_one('.p-articleListItem__title') or article.select_one('.p-articleList__title')
+            link_tag = article.select_one('a')
             
-            if not link_tag: continue
+            if not title_tag or not link_tag: continue
             
             title = title_tag.get_text(strip=True)
             link = link_tag.get('href', '')
             if not link.startswith('http'): link = "https://mdpr.jp" + link
 
+            # --- 日付の抽出を強化 ---
+            date_str = ""
+            # クラス名で探す
+            date_tag = article.select_one('.p-articleListItem__date') or article.select_one('.c-articleCard__date')
+            if date_tag:
+                date_raw = date_tag.get_text(strip=True)
+                # "2026.02.13" のような形式を抽出
+                match = re.search(r'(\d{4})\.(\d{2})\.(\d{2})', date_raw)
+                if match:
+                    date_str = match.group(0)
+
+            # もし見つからなければ、今日の日付ではなく「不明」と分かるようにする（デバッグ用）
+            if not date_str:
+                date_str = datetime.now().strftime("%Y.%m.%d") # 万が一の予備
+
             # 画像を探す
-            img_tag = None
-            if parent:
-                img_tag = parent.select_one('img')
-            
+            img_tag = article.select_one('img')
             thumbnail = ""
             if img_tag:
                 thumbnail = img_tag.get('data-src') or img_tag.get('src') or ""
@@ -44,10 +55,10 @@ def collect():
                 "site_name": "モデルプレス",
                 "title": title,
                 "link": link,
-                "date": datetime.now().strftime("%Y.%m.%d"),
+                "date": date_str,
                 "thumbnail": thumbnail
             })
-            print(f"✅ 発見: {title[:15]}...")
+            print(f"✅ 取得: {date_str} | {title[:15]}...")
                 
         return items
     except Exception as e:
@@ -55,4 +66,3 @@ def collect():
 
 if __name__ == '__main__':
     results = collect()
-    print(f"\n📊 最終結果: {len(results)} 件")
