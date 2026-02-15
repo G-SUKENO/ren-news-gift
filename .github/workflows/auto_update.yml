@@ -1,33 +1,26 @@
 name: Auto News Update
-
 on:
   schedule:
     - cron: '0 * * * *'  # 1時間に1回実行
   workflow_dispatch:      # 手動実行ボタンを作成
-
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-
       - name: Install dependencies
         run: |
           pip install requests beautifulsoup4
-
       - name: Run collector
         run: |
           python3 main.py
-          python3 generate_data.py
-
       - name: Commit and Push
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git add news_list.json image_list.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto Update: Latest News and Images" && git push)
+          git add news_list.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto Update: Latest News" && git push)
