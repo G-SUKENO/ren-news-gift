@@ -1,6 +1,20 @@
 [
   {
     "site_name": "ORICON NEWS",
+    "title": "「声が1番難しかったな…」北村匠海、『リブート』サプライズ登場　永瀬廉からの“バトン”に苦悩と敬意「声がちゃんと廉だった」",
+    "link": "https://www.oricon.co.jp/news/2445595/",
+    "date": "2026-03-30",
+    "thumbnail": "https://contents.oricon.co.jp/upimg/news/2446000/2445595/20260330_123109_p_o_57542120.jpg"
+  },
+  {
+    "site_name": "モデルプレス",
+    "title": "「リブート」最終話 “リブート後”冬橋（永瀬廉）の小ネタが話題「友情出演してる」「涙出た」【ネタバレあり】",
+    "link": "https://mdpr.jp/drama/4755766",
+    "date": "2026-03-30",
+    "thumbnail": "https://img-mdpr.freetls.fastly.net/article/_LAy/nm/_LAyWsGhvb8vIjW-lBUGHgk5_RhNoUArqhm3WbUfKto.jpg?width=360&enable=upscale&crop=180:120,offset-y0&auto=webp&quality=50"
+  },
+  {
+    "site_name": "ORICON NEWS",
     "title": "北村匠海『リブート』最終回にサプライズ出演　永瀬廉と“二人一役”で物語締める",
     "link": "https://www.oricon.co.jp/news/2445500/",
     "date": "2026-03-29",
@@ -40,13 +54,6 @@
     "link": "https://www.oricon.co.jp/news/2444562/",
     "date": "2026-03-26",
     "thumbnail": "https://contents.oricon.co.jp/upimg/news/2445000/2444562/20260326_174632_p_o_40943021.jpg"
-  },
-  {
-    "site_name": "ORICON NEWS",
-    "title": "永瀬廉＆黒川想矢“兄弟”が朝まで語り合い…心を解放　ユニバーサル ミュージック新CMの第3弾",
-    "link": "https://www.oricon.co.jp/news/2444622/",
-    "date": "2026-03-26",
-    "thumbnail": "https://contents.oricon.co.jp/upimg/news/2445000/2444622/20260325_172253_p_o_71918541.jpg"
   },
   {
     "site_name": "モデルプレス",
@@ -154,13 +161,6 @@
     "thumbnail": "https://www.universal-music.co.jp/wp-content/themes/umj-parent/img/fb_um_logo_m.jpg"
   },
   {
-    "site_name": "モデルプレス",
-    "title": "「リブート」King ＆ Prince永瀬廉、苦労したシーン振り返る「苺を支えます！」",
-    "link": "https://mdpr.jp/drama/4748602",
-    "date": "2026-03-17",
-    "thumbnail": "https://img-mdpr.freetls.fastly.net/article/zWr1/wm/zWr11-cXJzNqowIGI2E3srGUn5b32lExVVibYLNE4OU.jpg?width=360&enable=upscale&crop=180:120,offset-y0&auto=webp&quality=50"
-  },
-  {
     "site_name": "映画ナタリー",
     "title": "King & Prince永瀬廉が「A-Studio+」登場、俳優としての魅力に迫る永瀬廉（King & Prince）が、明日3月13日23時からTBS系で放送されるトーク番組「A-Studio+」にゲスト出演する。21813月12日映画",
     "link": "https://natalie.mu/eiga/news/663671",
@@ -222,5 +222,19 @@
     "link": "https://news.mynavi.jp/article/20260116-3979206/",
     "date": "2026-01-16",
     "thumbnail": "https://news.mynavi.jp/article/20260116-3979206/ogp_images/ogp.jpg"
+  },
+  {
+    "site_name": "MOVIE WALKER",
+    "title": "永瀬廉×吉川愛のW主演映画『鬼の花嫁』のポスタービジュアル",
+    "link": "https://press.moviewalker.jp/news/article/1321863/",
+    "date": "2025-12-28",
+    "thumbnail": "https://press.moviewalker.jp/api/resizeimage/news/article/1321863/16052608?w=218"
+  },
+  {
+    "site_name": "MOVIE WALKER",
+    "title": "永瀬廉＆吉川愛Ｗ主演『鬼の花嫁』伊藤健太郎、片岡凛、尾野真千子ほか総勢8名の新キャスト",
+    "link": "https://press.moviewalker.jp/news/article/1318723/",
+    "date": "2025-12-28",
+    "thumbnail": "https://press.moviewalker.jp/api/resizeimage/news/article/1318723/15971271?w=218"
   }
 ]
