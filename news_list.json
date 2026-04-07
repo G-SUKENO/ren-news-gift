@@ -28,6 +28,20 @@
     "thumbnail": "https://contents.oricon.co.jp/upimg/news/2448000/2447107/20260407_174922_p_o_76436920.jpg"
   },
   {
+    "site_name": "モデルプレス",
+    "title": "キンプリ永瀬廉、“美しさ”褒める声に歓喜「パネルにして持って写真撮りたいぐらい」ドヤ顔でカメラアピールも【鬼の花嫁】",
+    "link": "https://mdpr.jp/cinema/4760795",
+    "date": "2026-04-07",
+    "thumbnail": "https://img-mdpr.freetls.fastly.net/article/g93Y/wm/g93YU0zaj_wDsL2NPvnJfqP07wG4S0ygQ-mz0g66KkU.jpg?width=360&enable=upscale&crop=180:120,offset-y0&auto=webp&quality=50"
+  },
+  {
+    "site_name": "モデルプレス",
+    "title": "キンプリ永瀬廉、高橋海人は「僕のカッコいいシーンがすごい照れるみたい」鑑賞後の反応明かす【鬼の花嫁】",
+    "link": "https://mdpr.jp/cinema/4760756",
+    "date": "2026-04-07",
+    "thumbnail": "https://img-mdpr.freetls.fastly.net/article/ZrXe/wm/ZrXeIbXd0pyiWaZG-KCmAqxmpAiSGnl36PUCBA6AHR8.jpg?width=360&enable=upscale&crop=180:120,offset-y0&auto=webp&quality=50"
+  },
+  {
     "site_name": "ORICON NEWS",
     "title": "Kis-My-Ft2・藤ヶ谷太輔、人生初のアルバイトに挑戦　初回『サンド＆キスマイの気になるマン』のゲストは永瀬廉ら",
     "link": "https://www.oricon.co.jp/news/2446706/",
@@ -103,20 +117,6 @@
     "link": "https://mdpr.jp/drama/4755330",
     "date": "2026-03-29",
     "thumbnail": "https://img-mdpr.freetls.fastly.net/article/ecdE/nm/ecdErMGYcu06HjZrzcbCFylCX9xbIiPurneesjYdzZw.jpg?width=360&enable=upscale&crop=180:120,offset-y0&auto=webp&quality=50"
-  },
-  {
-    "site_name": "モデルプレス",
-    "title": "King ＆ Prince永瀬廉へ共演俳優が“キンプリ愛”熱弁「ファンとしては贅沢な時間を過ごさせていただきました」【鬼の花嫁】",
-    "link": "https://mdpr.jp/cinema/4753729",
-    "date": "2026-03-26",
-    "thumbnail": "https://img-mdpr.freetls.fastly.net/article/1DkJ/wm/1DkJ6tmgr-8mHxRSX00dGAwtuVm4WTIunA-ERZqQXYs.jpg?width=360&enable=upscale&crop=180:120,offset-y0&auto=webp&quality=50"
-  },
-  {
-    "site_name": "モデルプレス",
-    "title": "キンプリ永瀬廉、“相棒”高橋海人からの飲みの誘い断る「スケジュールだけは運命じゃない」【鬼の花嫁】",
-    "link": "https://mdpr.jp/cinema/4753708",
-    "date": "2026-03-26",
-    "thumbnail": "https://img-mdpr.freetls.fastly.net/article/FJEO/wm/FJEOkD_-2pp8xXHye1qd4fgSeI2ccqLAHBm4G_6A3do.jpg?width=360&enable=upscale&crop=180:120,offset-y0&auto=webp&quality=50"
   },
   {
     "site_name": "Universal Music",
@@ -208,5 +208,19 @@
     "link": "https://news.mynavi.jp/article/20260116-3979206/",
     "date": "2026-01-16",
     "thumbnail": "https://news.mynavi.jp/article/20260116-3979206/ogp_images/ogp.jpg"
+  },
+  {
+    "site_name": "MOVIE WALKER",
+    "title": "永瀬廉×吉川愛のW主演映画『鬼の花嫁』のポスタービジュアル",
+    "link": "https://press.moviewalker.jp/news/article/1321863/",
+    "date": "2025-12-28",
+    "thumbnail": "https://press.moviewalker.jp/api/resizeimage/news/article/1321863/16052608?w=218"
+  },
+  {
+    "site_name": "MOVIE WALKER",
+    "title": "永瀬廉＆吉川愛Ｗ主演『鬼の花嫁』伊藤健太郎、片岡凛、尾野真千子ほか総勢8名の新キャスト",
+    "link": "https://press.moviewalker.jp/news/article/1318723/",
+    "date": "2025-12-28",
+    "thumbnail": "https://press.moviewalker.jp/api/resizeimage/news/article/1318723/15971271?w=218"
   }
 ]
